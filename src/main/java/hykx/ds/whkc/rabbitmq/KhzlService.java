@@ -14,6 +14,30 @@ import java.util.UUID;
 public class KhzlService {
     @Autowired
     private KhzlMapper khzlMapper;
+
+    public void deleteYZYGOODS(){
+        khzlMapper.deleteYZYGOODS();
+    }
+
+    public void insertYZYGOODS(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODS(yzygoods);
+    }
+    public List<BBSPJG> getBBSPJG() {
+        return  khzlMapper.getBBSPJG();
+    }
+
+    public List<BBSPKC> getBBSPKC() {
+        return  khzlMapper.getBBSPKC();
+    }
+
+    public List<BBSPPH> getBBSPPH() {
+        return  khzlMapper.getBBSPPH();
+    }
+
+    public List<BBSPZL> getBBSPZL() {
+        return  khzlMapper.getBBSPZL();
+    }
+
     public List<Khzl> getKH() {
         return  khzlMapper.getKH();
     }
@@ -35,6 +59,10 @@ public class KhzlService {
 
     public List<ERPddhz> getERPDD() {
         return  khzlMapper.getERPDD();
+    }
+
+    public List<DZFP> getdzfp() {
+        return  khzlMapper.getdzfp();
     }
 
     public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {

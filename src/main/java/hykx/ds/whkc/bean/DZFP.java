@@ -55,4 +55,13 @@ public class DZFP { //20190825 whstruts 电子发票
     private String securityCode;
     private String invoiceUrl;
     private String dates;
+    private String xsddbh;
+
+    public String getXsddbh() {
+        return xsddbh;
+    }
+
+    public void setXsddbh(String xsddbh) {
+        this.xsddbh = xsddbh;
+    }
 }

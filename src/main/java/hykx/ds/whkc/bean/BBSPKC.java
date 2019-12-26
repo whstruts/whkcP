@@ -1,15 +1,15 @@
 package hykx.ds.whkc.bean;
 
 public class BBSPKC {
-    private String durgCode;
+    private String drugCode;
     private String stock;
 
-    public String getDurgCode() {
-        return durgCode;
+    public String getDrugCode() {
+        return drugCode;
     }
 
-    public void setDurgCode(String durgCode) {
-        this.durgCode = durgCode;
+    public void setDrugCode(String drugCode) {
+        this.drugCode = drugCode;
     }
 
     public String getStock() {

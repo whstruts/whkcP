@@ -3,7 +3,7 @@ package hykx.ds.whkc.bean;
 public class BBSPPH {
     private String drugCode;
     private String batchNum;
-    private String proDate;
+    private String prodDate;
     private String validity;
 
     public String getDrugCode() {
@@ -22,12 +22,12 @@ public class BBSPPH {
         this.batchNum = batchNum;
     }
 
-    public String getProDate() {
-        return proDate;
+    public String getProdDate() {
+        return prodDate;
     }
 
-    public void setProDate(String proDate) {
-        this.proDate = proDate;
+    public void setProdDate(String prodDate) {
+        this.prodDate = prodDate;
     }
 
     public String getValidity() {
