@@ -24,6 +24,13 @@ public class RabbitTopicConfig {
 
     final static String YZYGOODS = "topic.yzygoods"; //20191226 whstruts 兵兵 MSSQL 商品库存
 
+    final static String YSBDD = "topic.ysbdd"; //20191229 whstruts 兵兵 时空药师帮订单
+
+    @Bean
+    public Queue queueYSBDD() {
+        return new Queue(RabbitTopicConfig.YSBDD);
+    }
+
     @Bean
     public Queue queueYZYGOODS() {
         return new Queue(RabbitTopicConfig.YZYGOODS);
@@ -127,5 +134,10 @@ public class RabbitTopicConfig {
     @Bean
     Binding bindingExchangeYZYGOODS(Queue queueYZYGOODS, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueYZYGOODS).to(topicExchange).with("topic.yzygoods");
+    }
+
+    @Bean
+    Binding bindingExchangeYSBDD(Queue queueYSBDD, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueYSBDD).to(topicExchange).with("topic.ysbdd");
     }
 }
