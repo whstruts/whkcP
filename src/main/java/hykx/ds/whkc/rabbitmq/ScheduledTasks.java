@@ -261,12 +261,11 @@ import java.util.List;
 //            }
 //
             JSONObject data = JSONObject.fromObject(dd);
-//
+
             System.out.println("GetDD,Name:" + data.toString());
-//
-//
+
             String context = data.toString();
-//
+
             String routeKey = "topic.erpdd";
 
             String exchange = "topicExchange";
