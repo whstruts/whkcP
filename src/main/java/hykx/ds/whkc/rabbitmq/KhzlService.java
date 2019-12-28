@@ -70,4 +70,14 @@ public class KhzlService {
     }
 
    // public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
+
+    public void updateysbddhz(String djbh) { khzlMapper.updateysbddhz(djbh);}
+
+    public List<ysbddhz> getysbddhzs() {
+        return  khzlMapper.getysbddhzs();
+    }
+
+    public List<ysbddmx> getysbddmxbydjbh(String djbh) {
+        return  khzlMapper.getysbddmxbydjbh(djbh);
+    }
 }

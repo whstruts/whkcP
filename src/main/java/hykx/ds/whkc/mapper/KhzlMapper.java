@@ -4,6 +4,7 @@ import hykx.ds.whkc.bean.*;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -128,4 +129,13 @@ public interface KhzlMapper {
 
 //    @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
 //    public void updateERPDD(String kpbh);
+
+    @Select("select * from ysbddhz where is_run = 0 ")
+    public List<ysbddhz> getysbddhzs();
+
+    @Select("select * from ysbddmx where djbh = #{djbh} ")
+    public List<ysbddmx> getysbddmxbydjbh(String djbh);
+
+    @Update("update ysb_ddhz set is_run = 1 where is_run = 0 and djbh = #{djbh}")
+     public void updateysbddhz(String djbh);
 }
