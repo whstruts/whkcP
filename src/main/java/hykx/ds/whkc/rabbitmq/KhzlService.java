@@ -15,6 +15,10 @@ public class KhzlService {
     @Autowired
     private KhzlMapper khzlMapper;
 
+    public void updateYZYGOODS(){
+        khzlMapper.updateYZYGOODS();
+    }
+
     public void deleteYZYGOODS(){
         khzlMapper.deleteYZYGOODS();
     }

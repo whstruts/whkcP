@@ -266,7 +266,7 @@ import java.util.List;
 
             String context = data.toString();
 
-            String routeKey = "topic.erpdd";
+            String routeKey = "topic.ysbdd";
 
             String exchange = "topicExchange";
 

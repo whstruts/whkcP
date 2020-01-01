@@ -18,11 +18,16 @@ public class TopicReceiverYZYGOODS {
     public void process(String message) throws IOException
     {
         int i_pos;
+        int i_pos2;
         String s_json;
         YZYGOODS yzygoods = new YZYGOODS();
         i_pos = message.indexOf("DELETEYZYGOODS");
+        i_pos2 = message.indexOf("UPDATEYZYGOODS");
         if(i_pos>0){
             khzlService.deleteYZYGOODS();
+            System.out.println("接收者 message," + message);
+        }else if(i_pos2>0){
+            khzlService.updateYZYGOODS();
             System.out.println("接收者 message," + message);
         }
         else {
