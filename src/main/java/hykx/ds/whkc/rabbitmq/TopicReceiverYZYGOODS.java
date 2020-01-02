@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RabbitListener(queues = "topic.yzygoods")
@@ -36,6 +37,13 @@ public class TopicReceiverYZYGOODS {
             yzygoods = (YZYGOODS) JSONChange.jsonToObj(yzygoods, s_json);
             khzlService.insertYZYGOODS(yzygoods);
             System.out.println("接收者 TopicReceiverYZYGOODS," + s_json);
+
+            List<YZYGOODS>  yzygoods_fix_list = khzlService.getYZYGOODS_FIX(yzygoods.getGoods_sn());
+
+            if(yzygoods_fix_list.size()==0)
+            {
+                khzlService.insertYZYGOODS_FIX(yzygoods);
+            }
         }
     }
 }

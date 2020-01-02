@@ -26,6 +26,15 @@ public class KhzlService {
     public void insertYZYGOODS(YZYGOODS yzygoods){
         khzlMapper.insertYZYGOODS(yzygoods);
     }
+
+    public void insertYZYGOODS_FIX(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODS_FIX(yzygoods);
+    }
+
+    public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn){
+        return khzlMapper.getYZYGOODS_FIX(goods_sn);
+    }
+
     public List<BBSPJG> getBBSPJG() {
         return  khzlMapper.getBBSPJG();
     }

@@ -17,6 +17,15 @@ public interface KhzlMapper {
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s})")
     void insertYZYGOODS(YZYGOODS yzygoods);
+
+    @Insert("INSERT INTO YZYGOODS_FIX(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s) "+
+            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s})")
+    void insertYZYGOODS_FIX(YZYGOODS yzygoods);
+
+    @Select("select * from YZYGOODS_FIX where goods_sn = #{goods_sn}")
+    public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn);
+
     //---20191205 whstruts
     @Select("select a.goodscode as drugCode,case when sum(ab.PlaceNum) -sum(isnull(ab.OccupNum,0.00))<0 then 0 else sum(ab.PlaceNum)-sum(isnull(ab.OccupNum,0.00)) end  as stock " +
             "from  goodsdoc a  " +
