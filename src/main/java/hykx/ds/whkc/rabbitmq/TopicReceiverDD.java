@@ -21,7 +21,7 @@ public class TopicReceiverDD {
     @Autowired
     private KhzlService khzlService;
     @RabbitHandler
-    public void process(String message) throws IOException
+    public void process(String message) throws Exception
     {
         int i_pos;
         String s_json;
@@ -38,7 +38,8 @@ public class TopicReceiverDD {
               khzlService.ItoDDMXs(mx);
         }
         khzlService.DoERPDD(dd.getErpddhz().getKpbh(),"","");
-       // khzlService.updateERPDD(dd.getErpddhz().getKpbh());
+        khzlService.updateERPDD(dd.getErpddhz().getKpbh());
         System.out.println("接收者 TopicReceiverDD,"+s_json);
+        Thread.sleep(10000);
     }
 }

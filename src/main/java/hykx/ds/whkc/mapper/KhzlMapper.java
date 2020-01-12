@@ -38,6 +38,6 @@ public interface KhzlMapper {
     @Select("call proc_of_jk_cgdd(#{kpbh},#{cgjhbh},#{xsjhbh}) ")
     public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh);
 
-//    @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
-//    public void updateERPDD(String kpbh);
+    @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
+    public void updateERPDD(String kpbh);
 }

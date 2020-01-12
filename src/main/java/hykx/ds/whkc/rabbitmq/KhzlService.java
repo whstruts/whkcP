@@ -41,5 +41,5 @@ public class KhzlService {
         khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);
     }
 
-   // public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
+    public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
 }
