@@ -63,6 +63,30 @@ import java.util.List;
                 this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
             }
         }
+
+    @Scheduled(fixedDelay = 3600*1000) //20190826 whstruts ERP电子发票同步 每小时同步一次七天内的数据
+    public void reportCurrentTime5()throws Exception {
+
+        List<DZFP> listsDZFP = khzlService.getdzfp();
+        for (int i = 0; i < listsDZFP.size(); i++) {
+            DZFP dzfp = listsDZFP.get(i);
+
+            System.out.println("GetDZFP,Name:" + JSONChange.objToJson(dzfp));
+
+            String context = JSONChange.objToJson(dzfp);
+
+            String routeKey = "topic.whdzfp";
+
+            String exchange = "topicExchange";
+
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+            System.out.println("sendDZFP : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
+
         @Scheduled(fixedDelay = 600*1000)
         public void reportCurrentTime1()throws Exception {
 
@@ -111,17 +135,17 @@ import java.util.List;
             System.out.println("The time is now " + dateFormat.format(new Date()));
         }
 
-//    @Scheduled(fixedDelay = 60*1000)
-//    public void reportCurrentTime3()throws Exception {
-//        System.out.println("开始处理订单 : " + dateFormat.format(new Date()));
-//        List<ERPddhz> listsddHZ = khzlService.getERPDD();
-//        String cgjhbh = "";
-//        String xsjhbh = "";
-//        for (int i = 0; i < listsddHZ.size(); i++) {
-//             ERPddhz ddhz = listsddHZ.get(i);
-//             khzlService.DoERPDD(ddhz.getKpbh(),cgjhbh,xsjhbh);
-//             khzlService.updateERPDD(ddhz.getKpbh());
-//            System.out.println("订单已经处理 : " + ddhz.getKpbh());
-//        }
-//    }
+    @Scheduled(fixedDelay = 60*1000)
+    public void reportCurrentTime3()throws Exception {
+        System.out.println("开始处理订单 : " + dateFormat.format(new Date()));
+        List<ERPddhz> listsddHZ = khzlService.getERPDD();
+        String cgjhbh = "";
+        String xsjhbh = "";
+        for (int i = 0; i < listsddHZ.size(); i++) {
+             ERPddhz ddhz = listsddHZ.get(i);
+             khzlService.DoERPDD(ddhz.getKpbh(),cgjhbh,xsjhbh);
+             //khzlService.updateERPDD(ddhz.getKpbh());
+            System.out.println("订单已经处理 : " + ddhz.getKpbh());
+        }
+    }
 }

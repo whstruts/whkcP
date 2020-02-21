@@ -40,4 +40,18 @@ public interface KhzlMapper {
 
     @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
     public void updateERPDD(String kpbh);
+
+    @Select("select  trim(c.DSFDDH) as orderId, " +
+            "trim(a.FP_DM) as invoiceCode, " +
+            "trim(a.FP_HM) as invoiceNo, " +
+            "'' as securityCode, " +
+            "trim(nvl(a.PDF_URL,'')) as invoiceUrl, " +
+            "a.dates  ,c.xsddbh " +
+            "from FYYK_PSY_InvMainDt a " +
+            "inner join FYYK_PSY_InvDetails b on a.DataExchangeId=b.DataExchangeId " +
+            "inner join zt_xslist c on b.billcode=c.kpbh " +
+            "where (c.xsddbh like '%YSB%' or c.xsddbh like '%YYC%') " +
+            " and a.dates > to_char(sysdate-7,'yyyy-mm-dd') " +
+            "group by c.DSFDDH,a.FP_DM,a.FP_HM,a.PDF_URL,a.dates,c.xsddbh ")
+    public List<DZFP> getdzfp();
 }

@@ -37,6 +37,10 @@ public class KhzlService {
         return  khzlMapper.getERPDD();
     }
 
+    public List<DZFP> getdzfp() {
+        return  khzlMapper.getdzfp();
+    }
+
     public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {
         khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);
     }
