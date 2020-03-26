@@ -10,6 +10,34 @@ public class Khzl {
     private  String zzzch;
     private  String zzyxqz;
 
+    public String getLinkman() {
+        return linkman;
+    }
+
+    public void setLinkman(String linkman) {
+        this.linkman = linkman;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTaxnumber() {
+        return taxnumber;
+    }
+
+    public void setTaxnumber(String taxnumber) {
+        this.taxnumber = taxnumber;
+    }
+
+    private  String linkman;
+    private  String address;
+    private  String taxnumber;
+
     public String getCode() {
         return code;
     }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface KhzlMapper {
-    @Select("select code,dwbh,name,jyfw,zzzch,zzyxqz,xkzh,xkzyxqz,gspzh,gspzyxqz,dwjb,qyfr,shr1,email,telephone,fzrlxdh from zt_kh ")
+    @Select("select code,dwbh,name,jyfw,zzzch,zzyxqz,xkzh,xkzyxqz,gspzh,gspzyxqz,dwjb,qyfr,shr1,email,telephone,fzrlxdh,linkman,address,taxnumber from zt_kh ")
     public List<Khzl> getKH();
 
     @Select("select kpbh,to_char(kprq,'yyyy-mm-dd') as kprq,1 as ds from jk_cgddzb " +
