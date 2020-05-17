@@ -19,8 +19,8 @@ public interface KhzlMapper {
             "where to_char(kprq,'yyyy-mm-dd') = to_char(sysdate,'yyyy-mm-dd') ")
     public List<Ddzt> getDD();
 
-    @Select("select code,sum(amount) amount,wm_concat(batchnumber) batchnumber,wm_concat(to_char(validdate,'YYYY-MM-DD')) validdate,"+
-            " wm_concat(to_char(productdate,'YYYY-MM-DD')) productdate from zt_ywkc where  cwtz = 5  group by code")
+    @Select("select cwtz,code,sum(amount) amount,wm_concat(batchnumber) batchnumber,wm_concat(to_char(validdate,'YYYY-MM-DD')) validdate,"+
+            " wm_concat(to_char(productdate,'YYYY-MM-DD')) productdate,wm_concat(price) price from zt_ywkc  group by cwtz,code")
     public List<SpKC> getKC();
     @Select("select code,spmc,spgg,spcd,pzwh from zt_spzl where spcd is not null ")
     public List<Spzl> getSP();

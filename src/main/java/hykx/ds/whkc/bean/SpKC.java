@@ -1,6 +1,24 @@
 package hykx.ds.whkc.bean;
 
 public class SpKC {
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    private  double price;
+    public String getCwtz() {
+        return cwtz;
+    }
+
+    public void setCwtz(String cwtz) {
+        this.cwtz = cwtz;
+    }
+
+    private String cwtz;
     private String code;
 
     public String getCode() {
