@@ -144,7 +144,7 @@ import java.util.List;
         for (int i = 0; i < listsddHZ.size(); i++) {
              ERPddhz ddhz = listsddHZ.get(i);
              khzlService.DoERPDD(ddhz.getKpbh(),cgjhbh,xsjhbh);
-             //khzlService.updateERPDD(ddhz.getKpbh());
+             khzlService.updateERPDD(ddhz.getKpbh());
             System.out.println("订单已经处理 : " + ddhz.getKpbh());
         }
     }
