@@ -66,6 +66,9 @@ public class RabbitTopicConfig {
     @Value("${rabbitmq.fanout.queue.b}")
     private String queueB;
 
+    @Value("${rabbitmq.fanout.queue.c}")
+    private String queueC;
+
     private static Binding bindingFanoutExchange4Queue(Queue queue, FanoutExchange exchange, RabbitAdmin rabbitAdmin) {
         Binding binding = BindingBuilder.bind(queue).to(exchange);
         rabbitAdmin.declareBinding(binding);
@@ -104,6 +107,13 @@ public class RabbitTopicConfig {
         return queue;
     }
 
+    @Bean("queueC")
+    public Queue queueC(RabbitAdmin rabbitAdmin) {
+        Queue queue = new Queue(queueC, true);
+        rabbitAdmin.declareQueue(queue);
+        return queue;
+    }
+
     @Bean
     public Binding bindingFanoutExchange4QueueA(@Qualifier("queueA") Queue queueA,
                                                 @Qualifier("fanoutExchange") FanoutExchange exchange,
@@ -116,5 +126,12 @@ public class RabbitTopicConfig {
                                                 @Qualifier("fanoutExchange") FanoutExchange exchange,
                                                 RabbitAdmin rabbitAdmin) {
         return bindingFanoutExchange4Queue(queueB, exchange, rabbitAdmin);
+    }
+
+    @Bean
+    public Binding bindingFanoutExchange4QueueC(@Qualifier("queueC") Queue queueC,
+                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
+                                                RabbitAdmin rabbitAdmin) {
+        return bindingFanoutExchange4Queue(queueC, exchange, rabbitAdmin);
     }
 }
