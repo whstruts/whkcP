@@ -3,9 +3,6 @@ package hykx.ds.whkc.bean;
 public class gysgoods {
 
 
-    public void setGysbh(String gysbh) {
-        this.gysbh = gysbh;
-    }
 
     public String getDrugCode() {
         return drugCode;
@@ -189,6 +186,14 @@ public class gysgoods {
 
     public void setJingd(String jingd) {
         this.jingd = jingd;
+    }
+
+    public String getGysbh() {
+        return gysbh;
+    }
+
+    public void setGysbh(String gysbh) {
+        this.gysbh = gysbh;
     }
 
     private String gysbh;

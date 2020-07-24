@@ -16,7 +16,7 @@ import java.util.List;
         @Autowired
         private KhzlService khzlService;
         private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        @Scheduled(fixedDelay = 60*5*1000) //5分钟
+        @Scheduled(fixedDelay = 60*10*1000) //10分钟
 //        public void reportCurrentTime()throws Exception {
 //        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
 //        for (int i = 0; i < listysbddhz.size(); i++) {
