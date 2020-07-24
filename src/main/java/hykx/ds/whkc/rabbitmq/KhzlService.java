@@ -42,4 +42,9 @@ public class KhzlService {
     public List<ysbddmx> getysbddmxbydjbh(String djbh) {
         return  khzlMapper.getysbddmxbydjbh(djbh);
     }
+
+    public List<gysgoods> getGYSGoods() {
+        return  khzlMapper.getGYSGoods();
+    }
+
 }
