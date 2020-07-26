@@ -36,7 +36,10 @@ public interface KhzlMapper {
      public void updateysbddhz(String djbh);
 
     @Select("select jingd,'XH' as gysbh,'XH'+RTRIM(a.spbh) as drugCode,isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0) as stock, " +
-            "sptm,spmch,zjm,dw,shpchd,shpgg,pizhwh,jixing,youxq,shangplx,leibie,jlgg,bzgg,cunchtj,gmpzsyxq,gmpzsh,gsp_pzwhyxq,zzhcpj,ssxkcy,ysbgwj " +
+            "sptm,spmch,zjm,dw,shpchd,shpgg,pizhwh,jixing,youxq,shangplx,leibie,jlgg,bzgg,cunchtj,gmpzsyxq,gmpzsh,gsp_pzwhyxq,zzhcpj,ssxkcy,ysbgwj, " +
+            "shlv as taxRate,rtrim(isnull(e.pihao,'')) as batchNum, " +
+            "isnull(convert(varchar(100), e.baozhiqi, 23),'') as prodDate, " +
+            "isnull(convert(varchar(100), e.sxrq, 23),'') as validity   " +
             "from spkfk a " +
             "left join (select spid,sum(hwshl) hwshl from hwsp  " +
             "group by spid) b on a.spid = b.spid " +
@@ -46,8 +49,11 @@ public interface KhzlMapper {
             "left join (select spid,sum(shl) as shl from tmp_dj_XSG212 " +
             "where gzid not like 'YSB%' " +
             "group by spid) c on b.spid = c.spid " +
+            "left join sphwph e on a.spid = e.spid " +
             "where a.beactive = '是' " +
             "and a.ysbgwj > 0 " +
+            "and e.shl >0 " +
+            "and e.sxrq > convert(varchar,getdate(),23)  " +
             "order by drugCode")
     public List<gysgoods> getGYSGoods();
 }
