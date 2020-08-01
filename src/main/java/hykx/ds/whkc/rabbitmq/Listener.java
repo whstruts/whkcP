@@ -18,7 +18,7 @@ public class Listener {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RabbitListener(queues = "${rabbitmq.fanout.queue.a}")
+    @RabbitListener(queues = "${rabbitmq.fanout.queue.b}")
     public void handleQueue(String content) throws IOException {
         int i_pos;
         int i_pos2;
