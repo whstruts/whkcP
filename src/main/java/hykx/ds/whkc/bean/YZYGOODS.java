@@ -228,4 +228,14 @@ public class YZYGOODS {
     private double shop_price_hl;
     private double shop_price_yex;
     private double shop_price_wky;
+
+    public double getShop_price_st() {
+        return shop_price_st;
+    }
+
+    public void setShop_price_st(double shop_price_st) {
+        this.shop_price_st = shop_price_st;
+    }
+
+    private double shop_price_st;
 }
