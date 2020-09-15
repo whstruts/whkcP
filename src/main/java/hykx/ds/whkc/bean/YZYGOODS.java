@@ -200,4 +200,42 @@ public class YZYGOODS {
     private String PCH;
     private String SCRQ;
     private String goods_id_s;
+
+    public double getShop_price_hl() {
+        return shop_price_hl;
+    }
+
+    public void setShop_price_hl(double shop_price_hl) {
+        this.shop_price_hl = shop_price_hl;
+    }
+
+    public double getShop_price_yex() {
+        return shop_price_yex;
+    }
+
+    public void setShop_price_yex(double shop_price_yex) {
+        this.shop_price_yex = shop_price_yex;
+    }
+
+    public double getShop_price_wky() {
+        return shop_price_wky;
+    }
+
+    public void setShop_price_wky(double shop_price_wky) {
+        this.shop_price_wky = shop_price_wky;
+    }
+
+    private double shop_price_hl;
+    private double shop_price_yex;
+    private double shop_price_wky;
+
+    public double getShop_price_st() {
+        return shop_price_st;
+    }
+
+    public void setShop_price_st(double shop_price_st) {
+        this.shop_price_st = shop_price_st;
+    }
+
+    private double shop_price_st;
 }
