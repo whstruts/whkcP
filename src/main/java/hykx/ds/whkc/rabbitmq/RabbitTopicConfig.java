@@ -146,9 +146,9 @@ public class RabbitTopicConfig {
     }
 
     @Bean
-    public Binding bindingFanoutExchange4QueueD(@Qualifier("queueD") Queue queueC,
+    public Binding bindingFanoutExchange4QueueD(@Qualifier("queueD") Queue queueD,
                                                 @Qualifier("fanoutExchange") FanoutExchange exchange,
                                                 RabbitAdmin rabbitAdmin) {
-        return bindingFanoutExchange4Queue(queueC, exchange, rabbitAdmin);
+        return bindingFanoutExchange4Queue(queueD, exchange, rabbitAdmin);
     }
 }
