@@ -50,7 +50,7 @@ public interface KhzlMapper {
             "from FYYK_PSY_InvMainDt a " +
             "inner join FYYK_PSY_InvDetails b on a.DataExchangeId=b.DataExchangeId " +
             "inner join zt_xslist c on b.billcode=c.kpbh " +
-            "where (c.xsddbh like '%YSB%' or c.xsddbh like '%YYC%') " +
+            "where (c.xsddbh like '%YSB%' or c.xsddbh like '%YYC%' or c.xsddbh like '%APP%') " +
             " and a.dates > to_char(sysdate-7,'yyyy-mm-dd') " +
             "group by c.DSFDDH,a.FP_DM,a.FP_HM,a.PDF_URL,a.dates,c.xsddbh ")
     public List<DZFP> getdzfp();
