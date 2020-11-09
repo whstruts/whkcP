@@ -15,6 +15,7 @@ public class RabbitTopicConfig {
     final static String WHKH = "topic.whkhcx";
     final static String WHSP = "topic.whkspx";
     final static String WHDD = "topic.whds";
+    final static String WHDZFP = "topic.whdzfp";
 
     @Bean
     public Queue queueWhkc() {
@@ -35,6 +36,13 @@ public class RabbitTopicConfig {
     public Queue queueWhdd() {
         return new Queue(RabbitTopicConfig.WHDD);
     }
+
+    @Bean
+    public Queue queueWhdzfp() {
+        return new Queue(RabbitTopicConfig.WHDZFP);
+    }
+
+
 
     /**
      * 交换机(Exchange) 描述：接收消息并且转发到绑定的队列，交换机不存储消息
@@ -62,5 +70,10 @@ public class RabbitTopicConfig {
     @Bean
     Binding bindingExchangeWhdd(Queue queueWhdd, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueWhdd).to(topicExchange).with("topic.whds");
+    }
+
+    @Bean
+    Binding bindingExchangeWhdzfp(Queue queueWhdd, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueWhdd).to(topicExchange).with("topic.whdzfp");
     }
 }
