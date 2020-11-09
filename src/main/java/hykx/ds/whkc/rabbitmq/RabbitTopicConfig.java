@@ -15,7 +15,6 @@ public class RabbitTopicConfig {
     final static String WHKH = "topic.whkhcx";
     final static String WHSP = "topic.whkspx";
     final static String WHDD = "topic.whds";
-    final static String WHDZFP = "topic.whdzfp";
 
     @Bean
     public Queue queueWhkc() {
@@ -37,10 +36,6 @@ public class RabbitTopicConfig {
         return new Queue(RabbitTopicConfig.WHDD);
     }
 
-    @Bean
-    public Queue queueWhdzfp() {
-        return new Queue(RabbitTopicConfig.WHDZFP);
-    }
 
 
 
@@ -72,8 +67,4 @@ public class RabbitTopicConfig {
         return BindingBuilder.bind(queueWhdd).to(topicExchange).with("topic.whds");
     }
 
-    @Bean
-    Binding bindingExchangeWhdzfp(Queue queueWhdd, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWhdd).to(topicExchange).with("topic.whdzfp");
-    }
 }

@@ -41,28 +41,28 @@ import java.util.List;
                 this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
             }
         }
-        @Scheduled(fixedDelay = 600*1000) //20190605 whstruts ERP订单状态同步
-        public void reportCurrentTime4()throws Exception {
-
-            List<Ddzt> listsDD = khzlService.getDD();
-            for (int i = 0; i < listsDD.size(); i++) {
-                Ddzt ddzt = listsDD.get(i);
-
-                System.out.println("GetDD,Name:" + JSONChange.objToJson(ddzt));
-
-                String context = JSONChange.objToJson(ddzt);
-
-                String routeKey = "topic.whds";
-
-                String exchange = "topicExchange";
-
-                context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
-
-                System.out.println("sendKHTest : " + context);
-
-                this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-            }
-        }
+//        @Scheduled(fixedDelay = 600*1000) //20190605 whstruts ERP订单状态同步
+//        public void reportCurrentTime4()throws Exception {
+//
+//            List<Ddzt> listsDD = khzlService.getDD();
+//            for (int i = 0; i < listsDD.size(); i++) {
+//                Ddzt ddzt = listsDD.get(i);
+//
+//                System.out.println("GetDD,Name:" + JSONChange.objToJson(ddzt));
+//
+//                String context = JSONChange.objToJson(ddzt);
+//
+//                String routeKey = "topic.whds";
+//
+//                String exchange = "topicExchange";
+//
+//                context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+//
+//                System.out.println("sendKHTest : " + context);
+//
+//                this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+//            }
+//        }
 
     @Scheduled(fixedDelay = 3600*1000) //20190826 whstruts ERP电子发票同步 每小时同步一次七天内的数据
     public void reportCurrentTime5()throws Exception {
