@@ -35,8 +35,8 @@ public class TopicReceiverDD {
               ERPddmx mx = (ERPddmx) JSONObject.toBean(JSONObject.fromObject(array.get(i)),ERPddmx.class);
               khzlService.ItoDDMXs(mx);
         }
-        khzlService.DoERPDD(dd.getErpddhz().getKpbh(),"","");
-        khzlService.updateERPDD(dd.getErpddhz().getKpbh());
+        //khzlService.DoERPDD(dd.getErpddhz().getKpbh(),"","");
+        //khzlService.updateERPDD(dd.getErpddhz().getKpbh());
         System.out.println("接收者 TopicReceiverDD,"+s_json);
         Thread.sleep(10000);
     }
