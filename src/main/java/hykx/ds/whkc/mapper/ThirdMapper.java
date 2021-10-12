@@ -42,11 +42,13 @@ public interface ThirdMapper {
             "'' as barCode," +
             "'安童生' as supplierName," +
             "'' as supplier," +
-            "nvl(max(case when a.zdjj=0 then 9999 else a.zdjj end),9999)  as supplierPrice , " +
+            "max(a.pfj)  as supplierPrice ," +
             "wm_concat(nvl(to_char(k.productdate,'yyyy-mm-dd'),'')) as productionDate " +
             "from zt_spzl a " +
-            "left join zt_kc k on k.code=a.code " +
+            "left join zt_ywkc k on k.code=a.code " +
             "left join ZT_ZL_JYFW c on a.jyfw=c.code " +
+            "where k.storehouse in('2','3','7') and k.cwtz in('01','03','04') --根据对接内容做调整 " +
+            "and k.state=1 and k.sfgq=0 and a.pfj > 0 " +
             "group by a.code,a.spmc,a.spgg,a.spcd,a.unit,a.pzwh,c.name,1,a.xxsl,a.spellcode,a.spcdzjm,a.spbz " +
             "having sum(k.amount) > 0 " +
             "order by drugid")
