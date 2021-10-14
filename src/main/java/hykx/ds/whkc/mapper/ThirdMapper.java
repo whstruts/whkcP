@@ -1,6 +1,7 @@
 package hykx.ds.whkc.mapper;
 
 import hykx.ds.whkc.bean.ThirdCommodity;
+import hykx.ds.whkc.bean.ThirdCustomer;
 import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
@@ -53,5 +54,8 @@ public interface ThirdMapper {
             "having sum(k.amount) > 0 " +
             "order by drugid")
     public List<ThirdCommodity> getCommodity();
+
+    @Select("select code,name,telephone,linkman,address,taxnumber as taxNumber,xkzh from zt_kh")
+    public List<ThirdCustomer> getCustomer();
 
 }

@@ -13,11 +13,16 @@ public class RabbitTopicConfig {
 
 
     final static String thirdCommodity = "topic.thirdCommodity"; //20211009  安童生商品数据
-
+    final static String thirdCustomer = "topic.thirdCustomer"; //20211014  安童生客户数据
 
     @Bean
     public Queue queueThirdCommodity() {
         return new Queue(RabbitTopicConfig.thirdCommodity);
+    }
+
+    @Bean
+    public Queue queueThirdCustomer() {
+        return new Queue(RabbitTopicConfig.thirdCustomer);
     }
 
     /**
