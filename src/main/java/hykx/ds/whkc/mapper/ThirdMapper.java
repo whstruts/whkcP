@@ -11,7 +11,7 @@ public interface ThirdMapper {
             "a.spellcode as nameZjm," +
             "a.spcd as manufacturer," +
             "a.spcdzjm as manufacturerZjm," +
-            "a.pzwh as approval," +
+            "a.pzwh as approveNumber," +
             "'' as drugImg," +
             "'' as recipeType," +
             "'' as typeCode," +
