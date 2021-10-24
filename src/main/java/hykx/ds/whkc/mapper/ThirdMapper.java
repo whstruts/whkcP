@@ -44,7 +44,6 @@ public interface ThirdMapper {
             "            '' as barCode, " +
             "            nvl(a.ZDYBM,'安童生') as supplierName, " +
             "            '' as supplier, " +
-            "          --  max(a.pfj)  as supplierPrice , " +
             "            wm_concat(nvl(to_char(k.productdate,'yyyy-mm-dd'),'')) as productionDate  " +
             "            from zt_spzl a  " +
             "            left join zt_ywkc k on k.code=a.code  " +
