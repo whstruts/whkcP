@@ -55,7 +55,7 @@ public interface ThirdMapper {
             "            order by drugid")
     public List<ThirdCommodity> getCommodity();
 
-    @Select("select code,name,telephone,linkman,address,taxnumber as taxNumber,xkzh from zt_kh")
+    @Select("select code,name,telephone,linkman,address,zzzch as taxNumber,xkzh from zt_kh")
     public List<ThirdCustomer> getCustomer();
 
 }
