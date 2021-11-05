@@ -60,14 +60,14 @@ public class RabbitTopicConfig {
     @Value("${rabbitmq.fanout.exchange}")
     private String fanoutExchangeName;
 
-    @Value("${rabbitmq.fanout.queue.a}")
-    private String queueA;
-
-    @Value("${rabbitmq.fanout.queue.b}")
-    private String queueB;
-
-    @Value("${rabbitmq.fanout.queue.c}")
-    private String queueC;
+//    @Value("${rabbitmq.fanout.queue.a}")
+//    private String queueA;
+//
+//    @Value("${rabbitmq.fanout.queue.b}")
+//    private String queueB;
+//
+//    @Value("${rabbitmq.fanout.queue.c}")
+//    private String queueC;
 
     @Value("${rabbitmq.fanout.queue.d}")
     private String queueD;
@@ -96,26 +96,26 @@ public class RabbitTopicConfig {
         return fanoutExchange;
     }
 
-    @Bean("queueA")
-    public Queue queueA(RabbitAdmin rabbitAdmin) {
-        Queue queue = new Queue(queueA, true);
-        rabbitAdmin.declareQueue(queue);
-        return queue;
-    }
-
-    @Bean("queueB")
-    public Queue queueB(RabbitAdmin rabbitAdmin) {
-        Queue queue = new Queue(queueB, true);
-        rabbitAdmin.declareQueue(queue);
-        return queue;
-    }
-
-    @Bean("queueC")
-    public Queue queueC(RabbitAdmin rabbitAdmin) {
-        Queue queue = new Queue(queueC, true);
-        rabbitAdmin.declareQueue(queue);
-        return queue;
-    }
+//    @Bean("queueA")
+//    public Queue queueA(RabbitAdmin rabbitAdmin) {
+//        Queue queue = new Queue(queueA, true);
+//        rabbitAdmin.declareQueue(queue);
+//        return queue;
+//    }
+//
+//    @Bean("queueB")
+//    public Queue queueB(RabbitAdmin rabbitAdmin) {
+//        Queue queue = new Queue(queueB, true);
+//        rabbitAdmin.declareQueue(queue);
+//        return queue;
+//    }
+//
+//    @Bean("queueC")
+//    public Queue queueC(RabbitAdmin rabbitAdmin) {
+//        Queue queue = new Queue(queueC, true);
+//        rabbitAdmin.declareQueue(queue);
+//        return queue;
+//    }
 
     @Bean("queueD")
     public Queue queueD(RabbitAdmin rabbitAdmin) {
@@ -124,26 +124,26 @@ public class RabbitTopicConfig {
         return queue;
     }
 
-    @Bean
-    public Binding bindingFanoutExchange4QueueA(@Qualifier("queueA") Queue queueA,
-                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
-                                                RabbitAdmin rabbitAdmin) {
-        return bindingFanoutExchange4Queue(queueA, exchange, rabbitAdmin);
-    }
-
-    @Bean
-    public Binding bindingFanoutExchange4QueueB(@Qualifier("queueB") Queue queueB,
-                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
-                                                RabbitAdmin rabbitAdmin) {
-        return bindingFanoutExchange4Queue(queueB, exchange, rabbitAdmin);
-    }
-
-    @Bean
-    public Binding bindingFanoutExchange4QueueC(@Qualifier("queueC") Queue queueC,
-                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
-                                                RabbitAdmin rabbitAdmin) {
-        return bindingFanoutExchange4Queue(queueC, exchange, rabbitAdmin);
-    }
+//    @Bean
+//    public Binding bindingFanoutExchange4QueueA(@Qualifier("queueA") Queue queueA,
+//                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
+//                                                RabbitAdmin rabbitAdmin) {
+//        return bindingFanoutExchange4Queue(queueA, exchange, rabbitAdmin);
+//    }
+//
+//    @Bean
+//    public Binding bindingFanoutExchange4QueueB(@Qualifier("queueB") Queue queueB,
+//                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
+//                                                RabbitAdmin rabbitAdmin) {
+//        return bindingFanoutExchange4Queue(queueB, exchange, rabbitAdmin);
+//    }
+//
+//    @Bean
+//    public Binding bindingFanoutExchange4QueueC(@Qualifier("queueC") Queue queueC,
+//                                                @Qualifier("fanoutExchange") FanoutExchange exchange,
+//                                                RabbitAdmin rabbitAdmin) {
+//        return bindingFanoutExchange4Queue(queueC, exchange, rabbitAdmin);
+//    }
 
     @Bean
     public Binding bindingFanoutExchange4QueueD(@Qualifier("queueD") Queue queueD,
