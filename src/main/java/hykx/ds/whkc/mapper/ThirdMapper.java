@@ -39,7 +39,7 @@ public interface ThirdMapper {
             "            a.code as goodsSn, " +
             "            '1' as isRetail, " +
             "            wm_concat(k.batchnumber) as productionBatch, " +
-            "            wm_concat(nvl(to_char(k.validdate,'yyyy-mm-dd'),'')) as dateExpriation, " +
+            "            wm_concat(nvl(to_char(k.validdate,'yyyy-mm-dd'),'')) as dateExpiration, " +
             "            nvl(sum(k.amount),0) as repertory , " +
             "            '' as barCode, " +
             "            nvl(a.ZDYBM,'安童生') as supplierName, " +
