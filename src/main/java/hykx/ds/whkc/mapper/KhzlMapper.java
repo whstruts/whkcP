@@ -27,7 +27,7 @@ public interface KhzlMapper {
             "       wm_concat(to_char(productdate, 'YYYY-MM-DD')) productdate," +
             "       avg(price) price" +
             "  from zt_ywkc" +
-            "  WHERE CWTZ IN (22,27,28)" +
+            "  WHERE CWTZ IN (20,22,27,28)" +
             " group by  code")
     public List<SpKC> getKC();
     @Select("select code,spmc,spgg,spcd,pzwh from zt_spzl where spcd is not null ")
