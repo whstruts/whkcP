@@ -42,4 +42,8 @@ public class KhzlService {
     public List<ysbddmx> getysbddmxbydjbh(String djbh) {
         return  khzlMapper.getysbddmxbydjbh(djbh);
     }
+
+    public List<STGoods> getSTGoods() {
+        return  khzlMapper.getSTGoods();
+    }
 }

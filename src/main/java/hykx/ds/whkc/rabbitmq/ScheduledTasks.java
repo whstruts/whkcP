@@ -1,6 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
 
+import hykx.ds.whkc.bean.STGoods;
 import hykx.ds.whkc.bean.ysbdd;
 import hykx.ds.whkc.bean.ysbddhz;
 import hykx.ds.whkc.bean.ysbddmx;
@@ -48,6 +49,26 @@ import java.util.List;
             context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
             System.out.println("sendDDTest : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
+        @Scheduled(fixedDelay = 60*60*1000)
+        public void reportCurrentTime1()throws Exception {
+        List<STGoods> listGoods = khzlService.getSTGoods();
+        for (int i = 0; i < listGoods.size(); i++) {
+
+            JSONObject data = JSONObject.fromObject(listGoods.get(i));
+
+            System.out.println("GetSTGoods,Value:" + data.toString());
+
+            String routeKey = "topic.STGoods";
+
+            String exchange = "topicExchange";
+
+            String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
+
+            System.out.println("sendSTGoods : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }

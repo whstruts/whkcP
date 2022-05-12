@@ -35,8 +35,6 @@ public interface KhzlMapper {
             "rtrim(a.sptm) as barcode , --商品条形码(字符串）（*最好有）" +
             "rtrim(a.pizhwh) as approval , --批准文号，国药准字H20103180(字符串） *" +
             "rtrim(a.leibie) as busiType , ----经营类别（*最好有）（字符串）可能是leibie或shangplx这个字段(匹配药店经营范围)" +
-            "isnull(b.hwshl,0) as stock , --库存（数字）（建议与库存同步语句匹配，可不取有效库存）*" +
-            "isnull(a.lshj,9999) as price , --价格（数字）（可选）（有同步价格的需要这个，取值与价格同步语句相同）" +
             "rtrim(a.spid) as inCode, --药品内码(字符串）" +
             "1 as step , --购买增量、步长(数字类型）--即 采购倍数（1）" +
             "a.shlv as taxRate , --税率（数字）" +
@@ -58,7 +56,7 @@ public interface KhzlMapper {
             " on k.spid=a.spid" +
             " where a.beactive='是' " +
             " and isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0)> 0;")
-    public List<YZYGOODS> getSTGoods();
+    public List<STGoods> getSTGoods();
 
 
     @Select("select * from YZYGOODS_FIX where goods_sn = #{goods_sn}")
