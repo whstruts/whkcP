@@ -53,7 +53,7 @@ import java.util.List;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-        @Scheduled(fixedDelay = 60*60*1000)
+        @Scheduled(fixedDelay = 20*60*1000)
         public void reportCurrentTime1()throws Exception {
         List<STGoods> listGoods = khzlService.getSTGoods();
         for (int i = 0; i < listGoods.size(); i++) {
