@@ -58,6 +58,15 @@ public interface KhzlMapper {
             " and isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0)> 0")
     public List<STGoods> getSTGoods();
 
+    @Select("select dwbh,danwbh,dwmch,zjm,kehufl,isjh,isxs,dzhdh,yhzhh,lxr,ghxde,xsxde,otd," +
+            "xdqxg,xdqxx,koul,canskl,yshye,yfye,yingshsx,yshjzh,yfjzh,beactive,yishj,xvkz,shfyyzz," +
+            "yingyzz,jingyfw,oldyfye,oldyshye,frdb,zhgzsh,zhj_bl,shn_xshe,pzhshl,is_jg,shn_hgl,khyh," +
+            "idcard,xvkzname,fzhjg,fzhrq,yyzzdjjg,reg_capital,shwdjh,jyfsh,gonghnl,yusye,yufye,flye,chnjsts," +
+            "oldflye,oldyufye,oldyusye,yufjzh,yusjzh,fljzh,kehulbbh,shenhe,gsp_gspyxq,gsp_gmpyxq,gsp_yyzzyxq," +
+            "gsp_xkzyxq,gsp_wtsyxq,gsp_zbxyyxq,gsp_dmzyxq,khhm,gspzs,gmpzs,gsp_jgdmnjyxq,gsp_thr,gsp_thrsfz,gsp_zlfzr," +
+            "gsp_cgwtr,gsp_cgwtrsfz,gsp_cgwtrdh,gsp_cgwtsyxq,zhilbztx,xydcb,email,xy_gxysfz,xy_frwts,xy_zzjgdmz,xy_swdjz from mchk")
+    public List<mchk> getCustomer();
+
 
     @Select("select * from YZYGOODS_FIX where goods_sn = #{goods_sn}")
     public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn);

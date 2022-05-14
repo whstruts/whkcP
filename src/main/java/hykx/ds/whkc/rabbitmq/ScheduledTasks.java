@@ -1,10 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
 
-import hykx.ds.whkc.bean.STGoods;
-import hykx.ds.whkc.bean.ysbdd;
-import hykx.ds.whkc.bean.ysbddhz;
-import hykx.ds.whkc.bean.ysbddmx;
+import hykx.ds.whkc.bean.*;
 import net.sf.json.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +66,27 @@ import java.util.List;
             String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
 
             System.out.println("sendSTGoods : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTime2()throws Exception {
+        List<mchk> listCustomer = khzlService.getCustomer();
+        for (int i = 0; i < listCustomer.size(); i++) {
+
+            JSONObject data = JSONObject.fromObject(listCustomer.get(i));
+
+            System.out.println("GetCustomer,Value:" + data.toString());
+
+            String routeKey = "topic.mchk";
+
+            String exchange = "topicExchange";
+
+            String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
+
+            System.out.println("sendCustomer : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }

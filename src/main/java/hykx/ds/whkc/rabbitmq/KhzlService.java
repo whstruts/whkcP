@@ -46,4 +46,8 @@ public class KhzlService {
     public List<STGoods> getSTGoods() {
         return  khzlMapper.getSTGoods();
     }
+
+    public List<mchk> getCustomer() {
+        return  khzlMapper.getCustomer();
+    }
 }
