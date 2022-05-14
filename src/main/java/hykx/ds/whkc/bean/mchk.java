@@ -2,7 +2,26 @@ package hykx.ds.whkc.bean;
 
 public class mchk {
     private String dwbh;
+
+    public String getDwbh() {
+        return dwbh;
+    }
+
+    public void setDwbh(String dwbh) {
+        this.dwbh = dwbh;
+    }
+
+    public String getDanwbh() {
+        return danwbh;
+    }
+
+    public void setDanwbh(String danwbh) {
+        this.danwbh = danwbh;
+    }
+
     private String danwbh;
+
+
 
     public String getDwmch() {
         return dwmch;
