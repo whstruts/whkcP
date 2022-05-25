@@ -192,5 +192,14 @@ public class STGoods {
 
     private String zjm;
     private String jixing;
+
+    public String getIsdesc() {
+        return isdesc;
+    }
+
+    public void setIsdesc(String isdesc) {
+        this.isdesc = isdesc;
+    }
+
     private String isdesc;
 }
