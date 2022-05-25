@@ -24,7 +24,7 @@ public interface KhzlMapper {
     void insertYZYGOODS_FIX(YZYGOODS yzygoods);
 
 
-    @Select("select rtrim(a.spbh) as drugCode,isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0) as stock,a.lshj as price, a.lshj as chainPrice," +
+    @Select("select rtrim(a.spbh) as drugCode,isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0) as stock,a.pfpj as price, a.pfpj as chainPrice," +
             "rtrim(isnull(k.pihao,'')) as batchNum," +
             "isnull(convert(varchar(100), k.baozhiqi, 23),'') as prodDate," +
             "isnull(convert(varchar(100), k.sxrq, 23),'') as validity ," +
@@ -41,7 +41,8 @@ public interface KhzlMapper {
             "a.bzgg as midPack , " +
             "a.jlgg as wholePack , " +
             "a.zjm as zjm , " +
-            "a.jixing as jixing  " +
+            "a.jixing as jixing,  " +
+            "a.is_desc as isdesc  " +
             "from spkfk a (nolock)" +
             "left join (select spid,sum(shl) hwshl from sphwph (nolock) " +
             "where hw in ('HWI00000004','HWI00000005','HWI00000015') and dangqzht='合格' and shl>0 " +

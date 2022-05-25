@@ -192,4 +192,5 @@ public class STGoods {
 
     private String zjm;
     private String jixing;
+    private String isdesc;
 }
