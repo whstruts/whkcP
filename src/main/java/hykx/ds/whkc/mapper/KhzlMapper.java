@@ -39,7 +39,9 @@ public interface KhzlMapper {
             "1 as step , " +
             "a.shlv as taxRate , " +
             "a.bzgg as midPack , " +
-            "a.jlgg as wholePack  " +
+            "a.jlgg as wholePack , " +
+            "a.zjm as zjm , " +
+            "a.jixing as jixing  " +
             "from spkfk a (nolock)" +
             "left join (select spid,sum(shl) hwshl from sphwph (nolock) " +
             "where hw in ('HWI00000004','HWI00000005','HWI00000015') and dangqzht='合格' and shl>0 " +

@@ -173,4 +173,23 @@ public class STGoods {
     private float taxRate;
     private int midPack;
     private int wholePack;
+
+    public String getZjm() {
+        return zjm;
+    }
+
+    public void setZjm(String zjm) {
+        this.zjm = zjm;
+    }
+
+    public String getJixing() {
+        return jixing;
+    }
+
+    public void setJixing(String jixing) {
+        this.jixing = jixing;
+    }
+
+    private String zjm;
+    private String jixing;
 }
