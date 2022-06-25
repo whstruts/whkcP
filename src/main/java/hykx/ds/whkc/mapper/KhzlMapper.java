@@ -61,6 +61,43 @@ public interface KhzlMapper {
             " and isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0)> 0")
     public List<STGoods> getSTGoods();
 
+    @Select("select rtrim(a.spbh) as drugCode,isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0) as stock,a.pfpj as price, a.pfpj as chainPrice," +
+            "rtrim(isnull(k.pihao,'')) as batchNum," +
+            "isnull(convert(varchar(100), k.baozhiqi, 23),'') as prodDate," +
+            "isnull(convert(varchar(100), k.sxrq, 23),'') as validity ," +
+            "rtrim(a.spmch) as drugName , " +
+            "rtrim(a.shpgg) as pack , " +
+            "rtrim(a.shengccj) as factory , " +
+            "rtrim(a.dw) as unit , " +
+            "rtrim(a.sptm) as barcode , " +
+            "rtrim(a.pizhwh) as approval , " +
+            "rtrim(a.leibie) as busiType , " +
+            "rtrim(a.spid) as inCode, " +
+            "1 as step , " +
+            "a.shlv as taxRate , " +
+            "a.bzgg as midPack , " +
+            "a.jlgg as wholePack , " +
+            "a.zjm as zjm , " +
+            "a.jixing as jixing,  " +
+            "a.is_desc as isdesc  " +
+            "from spkfk a (nolock)" +
+            "left join (select spid,sum(shl) hwshl from sphwph (nolock) " +
+            "where hw in ('HWI00000004','HWI00000005','HWI00000015') and dangqzht='合格' and shl>0 " +
+            " and sxrq > convert(varchar,getdate(),23) group by spid) b on a.spid=b.spid" +
+            " left join (select mx.spid,sum(mx.shl) as ykdshl from jzorder_MX MX (nolock)" +
+            " where (mx.djbh like 'XSG%' OR mx.djbh like 'JHT%') and mx.is_zx='否'" +
+            " and mx.hw in ('HWI00000004','HWI00000005','HWI00000015') group by mx.spid) t " +
+            " on b.spid=t.spid " +
+            " left join(select spid,sum(shl) as shl from tmp_dj_xsg212 (nolock)" +
+            " where hw in ('HWI00000004','HWI00000005','HWI00000015') and gzid not like '%YSB%' " +
+            " group by spid)c " +
+            " on b.spid=c.spid" +
+            " left join (select * from sphwph (nolock)) k" +
+            " on k.spid=a.spid" +
+            " where a.beactive='是' " +
+            " and isnull(b.hwshl-isnull(t.ykdshl,0)-isnull(c.shl,0),0)> 0")
+    public List<STGoods> getST2YNGoods();
+
     @Select("select dwbh,danwbh,dwmch,zjm,kehufl,isjh,isxs,dzhdh,yhzhh,lxr,ghxde,xsxde,otd," +
             "xdqxg,xdqxx,koul,canskl,yshye,yfye,yingshsx,yshjzh,yfjzh,beactive,yishj,xvkz,shfyyzz," +
             "yingyzz,jingyfw,oldyfye,oldyshye,frdb,zhgzsh,zhj_bl,shn_xshe,pzhshl,is_jg,shn_hgl,khyh," +

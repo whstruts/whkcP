@@ -71,6 +71,27 @@ import java.util.List;
         }
     }
 
+    @Scheduled(fixedDelay = 20*60*1000)
+    public void reportCurrentTime3()throws Exception {
+        List<STGoods> listGoods = khzlService.getST2YNGoods();
+        for (int i = 0; i < listGoods.size(); i++) {
+
+            JSONObject data = JSONObject.fromObject(listGoods.get(i));
+
+            System.out.println("GetST2YNGoods,Value:" + data.toString());
+
+            String routeKey = "topic.ST2YNGoods";
+
+            String exchange = "topicExchange";
+
+            String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
+
+            System.out.println("sendST2YNGoods : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
+
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTime2()throws Exception {
         List<mchk> listCustomer = khzlService.getCustomer();
