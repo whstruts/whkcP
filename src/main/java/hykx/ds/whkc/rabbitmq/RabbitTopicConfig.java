@@ -24,9 +24,16 @@ public class RabbitTopicConfig {
 
     final static String MCHK = "topic.mchk"; //20220513
 
+    final static String YSBDDST = "topic.ysbddst"; //20191229 whstruts 兵兵 时空药师帮订单
+
     @Bean
     public Queue queueYSBDD() {
         return new Queue(RabbitTopicConfig.YSBDD);
+    }
+
+    @Bean
+    public Queue queueYSBDDST() {
+        return new Queue(RabbitTopicConfig.YSBDDST);
     }
 
     @Bean
@@ -69,6 +76,11 @@ public class RabbitTopicConfig {
     @Bean
     Binding bindingExchangeYSBDD(Queue queueYSBDD, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueYSBDD).to(topicExchange).with("topic.ysbdd");
+    }
+
+    @Bean
+    Binding bindingExchangeYSBDDST(Queue queueYSBDDST, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueYSBDDST).to(topicExchange).with("topic.ysbddst");
     }
 
     @Bean

@@ -39,7 +39,7 @@ import java.util.List;
 
             String context = data.toString();
 
-            String routeKey = "topic.ysbdd";
+            String routeKey = "topic.ysbddst";
 
             String exchange = "topicExchange";
 

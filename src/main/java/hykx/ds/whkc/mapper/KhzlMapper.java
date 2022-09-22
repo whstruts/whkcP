@@ -112,12 +112,12 @@ public interface KhzlMapper {
     public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn);
 
 
-    @Select("select * from ysb_ddhz where is_run = 0 ")
+    @Select("select * from ysb_ddhz where is_run is NULL ")
     public List<ysbddhz> getysbddhzs();
 
     @Select("select * from ysb_ddmx where djbh = #{djbh} ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
-    @Update("update ysb_ddhz set is_run = 1 where is_run = 0 and djbh = #{djbh}")
+    @Update("update ysb_ddhz set is_run = 1 where is_run is NULL and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 }
