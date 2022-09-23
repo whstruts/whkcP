@@ -92,4 +92,24 @@ public class ysbddhz {
     private String xgdjbh;
     private String beizhu;
     private String is_zx;
+
+    public double getJe() {
+        return je;
+    }
+
+    public void setJe(double je) {
+        this.je = je;
+    }
+
+    private double je;
+
+    public String getWebdjbh() {
+        return webdjbh;
+    }
+
+    public void setWebdjbh(String webdjbh) {
+        this.webdjbh = webdjbh;
+    }
+
+    private String webdjbh;
 }
