@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface KhzlMapper {
     @Update("update YZYGOODS set is_on_sale = 0 ")
-    void updateYZYGOODS();
+    void updateYZYGOODSAll();
     @Delete("DELETE FROM YZYGOODS where is_on_sale = 0")
-    void deleteYZYGOODS();
+    void deleteYZYGOODSAll();
     @Insert("INSERT INTO YZYGOODS(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s})")

@@ -13,11 +13,11 @@ public class KhzlService {
     private KhzlMapper khzlMapper;
 
     public void updateYZYGOODS(){
-        khzlMapper.updateYZYGOODS();
+        khzlMapper.updateYZYGOODSAll();
     }
 
     public void deleteYZYGOODS(){
-        khzlMapper.deleteYZYGOODS();
+        khzlMapper.deleteYZYGOODSAll();
     }
 
     public void insertYZYGOODS(YZYGOODS yzygoods){
