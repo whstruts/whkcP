@@ -39,78 +39,15 @@ import java.util.List;
 
             String context = data.toString();
 
-            String routeKey = "topic.ysbddst";
+            String routeKey = "topic.HNYJOrder";
 
             String exchange = "topicExchange";
 
             context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
-            System.out.println("sendDDTest : " + context);
+            System.out.println("sendHNYJOrder : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-        @Scheduled(fixedDelay = 20*60*1000)
-        public void reportCurrentTime1()throws Exception {
-        List<STGoods> listGoods = khzlService.getSTGoods();
-        for (int i = 0; i < listGoods.size(); i++) {
-
-            JSONObject data = JSONObject.fromObject(listGoods.get(i));
-
-            System.out.println("GetSTGoods,Value:" + data.toString());
-
-            String routeKey = "topic.STGoods";
-
-            String exchange = "topicExchange";
-
-            String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
-
-            System.out.println("sendSTGoods : " + context);
-
-            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-        }
-    }
-
-    @Scheduled(fixedDelay = 20*60*1000)
-    public void reportCurrentTime3()throws Exception {
-        List<STGoods> listGoods = khzlService.getST2YNGoods();
-        for (int i = 0; i < listGoods.size(); i++) {
-
-            JSONObject data = JSONObject.fromObject(listGoods.get(i));
-
-            System.out.println("GetST2YNGoods,Value:" + data.toString());
-
-            String routeKey = "topic.ST2YNGoods";
-
-            String exchange = "topicExchange";
-
-            String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
-
-            System.out.println("sendST2YNGoods : " + context);
-
-            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-        }
-    }
-
-    @Scheduled(fixedDelay = 60*60*1000)
-    public void reportCurrentTime2()throws Exception {
-        List<mchk> listCustomer = khzlService.getCustomer();
-        for (int i = 0; i < listCustomer.size(); i++) {
-
-            JSONObject data = JSONObject.fromObject(listCustomer.get(i));
-
-            System.out.println("GetCustomer,Value:" + data.toString());
-
-            String routeKey = "topic.mchk";
-
-            String exchange = "topicExchange";
-
-            String context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + data.toString();
-
-            System.out.println("sendCustomer : " + context);
-
-            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-        }
-    }
-
 }
