@@ -238,4 +238,14 @@ public class YZYGOODS {
     }
 
     private double shop_price_st;
+
+    public String getYpbh() {
+        return ypbh;
+    }
+
+    public void setYpbh(String ypbh) {
+        this.ypbh = ypbh;
+    }
+
+    private String ypbh;
 }
