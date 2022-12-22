@@ -49,17 +49,17 @@ public interface KhzlMapper {
     @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
     public void updateERPDD(String kpbh);
 
-    @Select("select  trim(c.DSFDDH) as orderId, " +
-            "trim(a.FP_DM) as invoiceCode, " +
-            "trim(a.FP_HM) as invoiceNo, " +
+    @Select("select trim(c.dsfddh) as orderId, " +
+            "trim(a.fp_dm) as invoiceCode, " +
+            "trim(a.fp_hm) as invoiceNo, " +
             "'' as securityCode, " +
-            "trim(nvl(a.PDF_URL,'')) as invoiceUrl, " +
-            "a.dates  ,c.xsddbh " +
-            "from FYYK_PSY_InvMainDt a " +
-            "inner join FYYK_PSY_InvDetails b on a.DataExchangeId=b.DataExchangeId " +
-            "inner join zt_xslist c on b.billcode=c.kpbh " +
+            "trim(nvl(b.pdf_url,'')) as invoiceUrl, " +
+            "b.dates,c.xsddbh " +
+            "from fyyk_psy_invoicedet a " +
+            "inner join fyyk_psy_invoicesum b on a.fp_hm = b.fp_hm and a.fp_dm = b.fp_dm " +
+            "inner join zt_xslist c on c.kpbh = a.billcode " +
             "where (c.xsddbh like '%YSB%' or c.xsddbh like '%YYC%' or c.xsddbh like '%APP%') " +
-            " and a.dates > to_char(sysdate-7,'yyyy-mm-dd') " +
-            "group by c.DSFDDH,a.FP_DM,a.FP_HM,a.PDF_URL,a.dates,c.xsddbh ")
+            "and b.dates > to_char(sysdate-7,'yyyy-mm-dd') " +
+            "group by c.dsfddh,a.fp_dm,a.fp_hm,b.pdf_url,b.dates,c.xsddbh ")
     public List<DZFP> getdzfp();
 }
