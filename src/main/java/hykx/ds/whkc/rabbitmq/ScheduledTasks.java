@@ -2,14 +2,16 @@ package hykx.ds.whkc.rabbitmq;
 
 
 import hykx.ds.whkc.bean.*;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
+@Slf4j
 @Component
     public class ScheduledTasks {
         @Autowired
@@ -50,4 +52,14 @@ import java.util.List;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
+        @Scheduled(cron="0 0 3 * * ?")
+        private void DownDrug(){
+            try{
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                khzlService.unOnSale();
+                System.out.println(df.format(new Date()));
+            }catch (Exception e) {
+                log.error("全部华源商品下架", e);
+            }
+        }
 }

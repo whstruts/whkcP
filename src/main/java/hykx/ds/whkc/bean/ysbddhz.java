@@ -112,4 +112,14 @@ public class ysbddhz {
     }
 
     private String webdjbh;
+
+    public String getDrugstoreName() {
+        return drugstoreName;
+    }
+
+    public void setDrugstoreName(String drugstoreName) {
+        this.drugstoreName = drugstoreName;
+    }
+
+    private String drugstoreName;
 }

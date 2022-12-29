@@ -46,4 +46,6 @@ public class KhzlService {
         return  khzlMapper.getysbddmxbydjbh(djbh);
     }
 
+    public void unOnSale() { khzlMapper.unOnSale();}
+
 }
