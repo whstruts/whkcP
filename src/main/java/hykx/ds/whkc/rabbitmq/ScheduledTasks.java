@@ -19,7 +19,7 @@ import java.util.List;
         @Autowired
         private KhzlService khzlService;
         private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        @Scheduled(fixedDelay = 600*1000)
+        @Scheduled(fixedDelay = 60*60*1000)
         public void reportCurrentTime()throws Exception {
 
             List<Khzl> listsKH = khzlService.getKH();

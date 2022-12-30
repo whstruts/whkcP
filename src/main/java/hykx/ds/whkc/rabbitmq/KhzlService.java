@@ -46,4 +46,8 @@ public class KhzlService {
     }
 
     public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
+
+    public void ItoYSBKH(ysbkh ysbkh){
+        khzlMapper.insertYSBKH(ysbkh);
+    }
 }
