@@ -38,6 +38,15 @@ public class ysbkh {
     private String drugstorename;
     private String provincename;
 
+    public String getCityname() {
+        return cityname;
+    }
+
+    public void setCityname(String cityname) {
+        this.cityname = cityname;
+    }
+
+    private String cityname;
     public String getDistrictname() {
         return districtname;
     }
