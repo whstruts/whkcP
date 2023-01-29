@@ -50,4 +50,11 @@ public class KhzlService {
     public void ItoYSBKH(ysbkh ysbkh){
         khzlMapper.insertYSBKH(ysbkh);
     }
+
+    public void ysb_kh2erp() {
+        khzlMapper.ysb_kh2erp();
+    }
+    public void ysb_kh2erp_x() {
+        khzlMapper.ysb_kh2erp_x();
+    }
 }

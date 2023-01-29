@@ -135,17 +135,21 @@ import java.util.List;
             System.out.println("The time is now " + dateFormat.format(new Date()));
         }
 
-    @Scheduled(fixedDelay = 60*1000)
+    @Scheduled(fixedDelay = 5*60*1000)
     public void reportCurrentTime3()throws Exception {
-//        System.out.println("开始处理订单 : " + dateFormat.format(new Date()));
-//        List<ERPddhz> listsddHZ = khzlService.getERPDD();
-//        String cgjhbh = "";
-//        String xsjhbh = "";
-//        for (int i = 0; i < listsddHZ.size(); i++) {
-//             ERPddhz ddhz = listsddHZ.get(i);
-//             khzlService.DoERPDD(ddhz.getKpbh(),cgjhbh,xsjhbh);
-//             khzlService.updateERPDD(ddhz.getKpbh());
-//            System.out.println("订单已经处理 : " + ddhz.getKpbh());
-//        }
+        try{
+            Date now = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            System.out.println(dateFormat.format(now)+":ysb_kh2erp : BEGIN");
+            khzlService.ysb_kh2erp();
+            System.out.println(dateFormat.format(now)+":ysb_kh2erp : END");
+            System.out.println(dateFormat.format(now)+":ysb_kh2erp_x : BEGIN");
+            khzlService.ysb_kh2erp_x();
+            System.out.println(dateFormat.format(now)+":ysb_kh2erp_x : END");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception : " + e.toString());
+        }
     }
 }
