@@ -34,6 +34,10 @@ public interface KhzlMapper {
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODS(YZYGOODS yzygoods);
 
+    @Update("update YZYGOODS_FIX set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = #{is_on_sale},YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = GETDATE() " +
+            "where goods_id_s = #{goods_id_s}")
+    public void updateYZYGOODSFIX(YZYGOODS yzygoods);
+
 
     @Select("select BillNo as djbh,Dates as rq,OnTime as ontime,'' as customerId,'已提交' as status,Remark as beizhu,customerName,'否' as is_zx from SALEORDERMT where  is_run_hy = 0 ")
     public List<ysbddhz> getysbddhzs();
