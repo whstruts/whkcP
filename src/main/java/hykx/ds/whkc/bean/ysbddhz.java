@@ -122,4 +122,23 @@ public class ysbddhz {
     }
 
     private String drugstoreName;
+    private double cgje;
+
+    public double getCgje() {
+        return cgje;
+    }
+
+    public void setCgje(double cgje) {
+        this.cgje = cgje;
+    }
+
+    public int getMx_num() {
+        return mx_num;
+    }
+
+    public void setMx_num(int mx_num) {
+        this.mx_num = mx_num;
+    }
+
+    private int mx_num;
 }
