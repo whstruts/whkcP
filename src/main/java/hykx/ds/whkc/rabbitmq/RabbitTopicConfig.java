@@ -14,20 +14,20 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class RabbitTopicConfig {
 
 
-    final static String WHKZGoods = "topic.WHKZGoods"; //20230114 whstruts 康庄医药 商品数据
+    final static String HBDMGoods = "topic.HBDMGoods"; //20230312 whstruts 湖北东明 商品数据
 
 
-    final static String WHKZOrder = "topic.WHKZOrder"; //20230114 康庄医药 药师帮订单数据
+    final static String HBDMOrder = "topic.HBDMOrder"; //20230312 湖北东明 药师帮订单数据
 
 
     @Bean
-    public Queue queueWHKZOrder() {
-        return new Queue(RabbitTopicConfig.WHKZOrder);
+    public Queue queueHBDMOrder() {
+        return new Queue(RabbitTopicConfig.HBDMOrder);
     }
 
     @Bean
-    public Queue queueWHKZGoods() {
-        return new Queue(RabbitTopicConfig.WHKZGoods);
+    public Queue queueHBDMGoods() {
+        return new Queue(RabbitTopicConfig.HBDMGoods);
     }
 
 
@@ -43,14 +43,14 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    Binding bindingExchangeWHKZGoods(Queue queueWHKZGoods, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWHKZGoods).to(topicExchange).with("topic.WHKZGoods");
+    Binding bindingExchangeHBDMGoods(Queue queueHBDMGoods, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHBDMGoods).to(topicExchange).with("topic.HBDMGoods");
     }
 
 
     @Bean
-    Binding bindingExchangeYSBDDST(Queue queueWHKZOrder, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWHKZOrder).to(topicExchange).with("topic.WHKZOrder");
+    Binding bindingExchangeYSBDDDM(Queue queueHBDMOrder, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHBDMOrder).to(topicExchange).with("topic.HBDMOrder");
     }
 
 
