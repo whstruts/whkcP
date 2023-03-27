@@ -51,4 +51,8 @@ public class KhzlService {
 
     public void unOnSale() { khzlMapper.unOnSale();}
 
+    public void batchUpdate(List<YZYGOODS> list){
+        khzlMapper.batchUpdate(list);
+    }
+
 }

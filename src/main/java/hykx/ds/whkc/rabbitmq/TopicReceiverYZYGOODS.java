@@ -1,15 +1,17 @@
 package hykx.ds.whkc.rabbitmq;
 
 import hykx.ds.whkc.bean.YZYGOODS;
-import hykx.ds.whkc.tools.JSONChange;
+import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONArray;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
-
+@Slf4j
 @Component
 @RabbitListener(queues = "topic.HBDMGoods")
 public class TopicReceiverYZYGOODS {
@@ -32,17 +34,16 @@ public class TopicReceiverYZYGOODS {
             System.out.println("接收者 message," + message);
         }
         else {
-            i_pos = message.indexOf("{");
-            s_json = message.substring(i_pos);
-            yzygoods = (YZYGOODS) JSONChange.jsonToObj(yzygoods, s_json);
-            khzlService.insertYZYGOODS(yzygoods);
-            System.out.println("接收者 TopicReceiverYZYGOODS," + s_json);
-
-            List<YZYGOODS>  yzygoods_fix_list = khzlService.getYZYGOODS_FIX(yzygoods.getGoods_sn());
-
-            if(yzygoods_fix_list.size()==0)
+            try {
+                i_pos = message.indexOf("[");
+                s_json = message.substring(i_pos);
+                List<YZYGOODS> goodsList = JSONArray.fromObject(s_json);
+                khzlService.batchUpdate(goodsList);
+            }
+            catch (Exception e)
             {
-                khzlService.insertYZYGOODS_FIX(yzygoods);
+                System.out.println(e.toString());
+                log.error("batchUpdate", e);
             }
         }
     }
