@@ -51,27 +51,9 @@ public interface KhzlMapper {
             "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +
             " UPDATE" +
             " YZYGOODS" +
-            " SET goods_sn = #{item.goods_sn, jdbcType=VARCHAR}, " +
-            "  goods_name = #{item.goods_name, jdbcType=VARCHAR}, " +
-            "  goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
-            "  market_price = #{item.market_price, jdbcType=NUMERIC}, " +
+            "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
             "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
             "  is_on_sale = #{item.is_on_sale, jdbcType=INTEGER}, " +
-            "  YPDM = #{item.YPDM, jdbcType=VARCHAR}, " +
-            "  CDMC = #{item.CDMC, jdbcType=VARCHAR}, " +
-            "  GG = #{item.GG, jdbcType=VARCHAR}, " +
-            "  TXM = #{item.TXM, jdbcType=VARCHAR}, " +
-            "  DW = #{item.DW, jdbcType=VARCHAR}, " +
-            "  JX = #{item.JX, jdbcType=VARCHAR}, " +
-            "  PZWH = #{item.PZWH, jdbcType=VARCHAR}, " +
-            "  BZ = #{item.BZ, jdbcType=INTEGER}, " +
-            "  ZBZ = #{item.ZBZ, jdbcType=INTEGER}, " +
-            "  YXQ = #{item.YXQ, jdbcType=VARCHAR}, " +
-            "  PH = #{item.PH, jdbcType=VARCHAR}, " +
-            "  ISRETAIL = #{item.ISRETAIL, jdbcType=INTEGER}, " +
-            "  PCH = #{item.PCH, jdbcType=VARCHAR}, " +
-            "  SCRQ = #{item.SCRQ, jdbcType=VARCHAR}, " +
-            "  ypbh = #{item.ypbh, jdbcType=VARCHAR}, " +
             "  updatetime = GETDATE() " +
             "   where goods_id_s = #{item.goods_id_s,jdbcType=VARCHAR} " +
             "</foreach>" +
