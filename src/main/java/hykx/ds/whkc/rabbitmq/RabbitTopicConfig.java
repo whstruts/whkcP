@@ -19,6 +19,8 @@ public class RabbitTopicConfig {
 
     final static String HBDMOrder = "topic.HBDMOrder"; //20230312 湖北东明 药师帮订单数据
 
+    final static String HBDMGoodsAll = "topic.HBDMGoodsAll"; //20230328 whstruts 湖北东明 全量商品数据
+
 
     @Bean
     public Queue queueHBDMOrder() {
@@ -28,6 +30,11 @@ public class RabbitTopicConfig {
     @Bean
     public Queue queueHBDMGoods() {
         return new Queue(RabbitTopicConfig.HBDMGoods);
+    }
+
+    @Bean
+    public Queue queueHBDMGoodsAll() {
+        return new Queue(RabbitTopicConfig.HBDMGoodsAll);
     }
 
 
@@ -45,6 +52,11 @@ public class RabbitTopicConfig {
     @Bean
     Binding bindingExchangeHBDMGoods(Queue queueHBDMGoods, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueHBDMGoods).to(topicExchange).with("topic.HBDMGoods");
+    }
+
+    @Bean
+    Binding bindingExchangeHBDMGoodsAll(Queue queueHBDMGoodsAll, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHBDMGoodsAll).to(topicExchange).with("topic.HBDMGoodsAll");
     }
 
 
