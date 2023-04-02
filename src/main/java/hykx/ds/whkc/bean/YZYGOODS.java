@@ -248,4 +248,14 @@ public class YZYGOODS {
     }
 
     private String ypbh;
+
+    public String getOtc() {
+        return otc;
+    }
+
+    public void setOtc(String otc) {
+        this.otc = otc;
+    }
+
+    private String otc;
 }
