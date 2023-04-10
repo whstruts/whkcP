@@ -1,10 +1,7 @@
 package hykx.ds.whkc.mapper;
 
 import hykx.ds.whkc.bean.*;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -50,4 +47,17 @@ public interface KhzlMapper {
 
     @Update("update YZYGOODS set is_on_sale = 0,updatetime = GETDATE() ")
     public void unOnSale();
+
+    @Update({"<script>" +
+            "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +
+            " UPDATE" +
+            " YZYGOODS" +
+            "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
+            "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
+            "  is_on_sale = #{item.is_on_sale, jdbcType=INTEGER}, " +
+            "  updatetime = GETDATE() " +
+            "   where goods_id_s = #{item.goods_id_s,jdbcType=VARCHAR} " +
+            "</foreach>" +
+            "</script>"})
+    void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
 }
