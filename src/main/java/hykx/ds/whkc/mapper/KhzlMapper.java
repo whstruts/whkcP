@@ -54,7 +54,7 @@ public interface KhzlMapper {
             " YZYGOODS" +
             "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
             "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
-            "  is_on_sale = #{item.is_on_sale, jdbcType=INTEGER}, " +
+            "  is_on_sale = 1, " +
             "  updatetime = GETDATE() " +
             "   where goods_id_s = #{item.goods_id_s,jdbcType=VARCHAR} " +
             "</foreach>" +
