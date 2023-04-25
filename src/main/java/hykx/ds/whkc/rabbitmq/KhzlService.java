@@ -52,4 +52,6 @@ public class KhzlService {
         khzlMapper.batchUpdate(list);
     }
 
+    public void UpdateYSBDDMX() { khzlMapper.UpdateYSBDDMX();}
+
 }
