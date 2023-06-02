@@ -13,7 +13,7 @@ public class KhzlService {
     private KhzlMapper khzlMapper;
 
     public void updateYZYGOODS(){
-        khzlMapper.updateYZYGOODSAll();
+        //khzlMapper.updateYZYGOODSAll();
     }
 
     public void deleteYZYGOODS(){
