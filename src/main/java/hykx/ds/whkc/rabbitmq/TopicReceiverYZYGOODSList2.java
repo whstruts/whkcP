@@ -27,10 +27,10 @@ public class TopicReceiverYZYGOODSList2 {
         i_pos = message.indexOf("DELETEYZYGOODS");
         i_pos2 = message.indexOf("UPDATEYZYGOODS");
         if(i_pos>0){
-            khzlService.deleteYZYGOODS();
+            //khzlService.deleteYZYGOODS();
             System.out.println("接收者 message," + message);
         }else if(i_pos2>0){
-            khzlService.updateYZYGOODS();
+            //khzlService.updateYZYGOODS();
             System.out.println("接收者 message," + message);
         }
         else {
