@@ -36,8 +36,10 @@ public class KhzlService {
             khzlMapper.updateYZYGOODS(yzygoods);
             khzlMapper.updateYZYGOODSFIX(yzygoods);
         }
-        else
+        else {
             khzlMapper.insertYZYGOODS(yzygoods);
+            khzlMapper.insertYZYGOODS_FIX(yzygoods);
+        }
     }
 
     public void insertYZYGOODS_FIX(YZYGOODS yzygoods){
@@ -62,7 +64,7 @@ public class KhzlService {
     public void unOnSale() { khzlMapper.unOnSale();}
 
     public void batchUpdate(List<YZYGOODS> list){
-        khzlMapper.batchUpdate(list);
+      //  khzlMapper.batchUpdate(list);
     }
 
 }

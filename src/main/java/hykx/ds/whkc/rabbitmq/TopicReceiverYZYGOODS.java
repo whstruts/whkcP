@@ -1,6 +1,9 @@
 package hykx.ds.whkc.rabbitmq;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import hykx.ds.whkc.entity.YZYGOODS;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
@@ -24,6 +27,7 @@ public class TopicReceiverYZYGOODS {
         int i_pos;
         int i_pos2;
         String s_json;
+        Gson gson = new GsonBuilder().create();
         YZYGOODS yzygoods = new YZYGOODS();
         i_pos = message.indexOf("DELETEYZYGOODS");
         i_pos2 = message.indexOf("UPDATEYZYGOODS");
@@ -38,13 +42,15 @@ public class TopicReceiverYZYGOODS {
             try {
                 i_pos = message.indexOf("[");
                 s_json = message.substring(i_pos);
-                List<YZYGOODS> goodsList = JSONArray.fromObject(s_json);
-                khzlService.batchUpdate(goodsList);
+                List<YZYGOODS> goodsList = gson.fromJson(s_json,new TypeToken<List<YZYGOODS>>(){}.getType());
+                for(YZYGOODS g:goodsList){
+                    khzlService.insertYZYGOODS(g);
+                }
             }
             catch (Exception e)
             {
                 System.out.println(e.toString());
-                log.error("batchUpdate", e);
+                log.error("topic.HBLZGoods", e);
             }
         }
     }
