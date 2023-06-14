@@ -1,6 +1,8 @@
 package hykx.ds.whkc.rabbitmq;
 
 
+import hykx.ds.whkc.bean.ERPddhz;
+import hykx.ds.whkc.bean.ERPddmx;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -66,6 +68,17 @@ public class KhzlService {
     public void batchUpdate(List<YZYGOODS> list){
       //  khzlMapper.batchUpdate(list);
     }
+    public void ItoDDHZs(ERPddhz ddhz){
+        khzlMapper.insertDDHZ(ddhz);
+    }
+    public void ItoDDMXs(ERPddmx ddmx){
+        khzlMapper.insertDDMX(ddmx);
+    }
 
+    public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {
+        khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);
+    }
+
+    public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
 
 }

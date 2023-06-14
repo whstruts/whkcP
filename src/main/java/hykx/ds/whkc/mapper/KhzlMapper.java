@@ -1,5 +1,7 @@
 package hykx.ds.whkc.mapper;
 
+import hykx.ds.whkc.bean.ERPddhz;
+import hykx.ds.whkc.bean.ERPddmx;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -67,4 +69,17 @@ public interface KhzlMapper {
             "</foreach>" +
             "</script>"})
     void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
+
+    @Insert("INSERT INTO jk_cgddzb(kpbh,kprq,khcode,khmc,soft,dsfddh,hyzbddh,provide) VALUES(#{kpbh},to_date(#{kprq},'yyyy-mm-dd'),#{khcode},#{khmc},#{soft},#{dsfddh},#{hyzbddh},'0015')")
+    void insertDDHZ(ERPddhz ddhz);
+    @Insert("INSERT INTO jk_cgddmxb(kpbh,ywxh,spmc,spgg,spcd,jx,unit,spbz,pzwh,amount,factprice,xfactprice,batchnumber,yxqz,validdate,productdate,fhdd,kprq,factkprq) "+
+            " VALUES(#{kpbh},#{ywxh},#{spmc},#{spgg},#{spcd},#{jx},#{unit},#{spbz},#{pzwh},#{amount},#{factprice},#{xfactprice},#{batchnumber},"+
+            " #{yxqz},to_date(#{validdate},'yyyymmdd'),to_date(RPAD(#{productdate},10,'-15'),'yyyy-mm-dd'),#{fhdd},to_date(#{kprq},'yyyy-mm-dd'),to_date(#{factkprq},'yyyy-mm-dd'))")
+    void insertDDMX(ERPddmx ddmx);
+
+    @Select("call proc_of_jk_cgdd(#{kpbh},#{cgjhbh},#{xsjhbh}) ")
+    public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh);
+
+    @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
+    public void updateERPDD(String kpbh);
 }
