@@ -1,25 +1,10 @@
 package hykx.ds.whkc.bean;
 
+import lombok.Data;
+
 import java.util.List;
-
+@Data
 public class ERPDD {
-    private ERPddhz erpddhz;
-
-    public ERPddhz getErpddhz() {
-        return erpddhz;
-    }
-
-    public void setErpddhz(ERPddhz erpddhz) {
-        this.erpddhz = erpddhz;
-    }
-
-    public List<ERPddmx> getErpddmxs() {
-        return erpddmxs;
-    }
-
-    public void setErpddmxs(List<ERPddmx> erpddmxs) {
-        this.erpddmxs = erpddmxs;
-    }
-
-    private List<ERPddmx> erpddmxs;
+    private ERPddhz ysbddhz;
+    private List<ERPddmx> ysbddmxes;
 }
