@@ -14,27 +14,27 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class RabbitTopicConfig {
 
 
-    final static String HBDMGoods = "topic.HBDMGoods"; //20230312 whstruts 湖北东明 商品数据
+    final static String JXTYGoods = "topic.JXTYGoods"; //20230312 whstruts 湖北东明 商品数据
 
 
-    final static String HBDMOrder = "topic.HBDMOrder"; //20230312 湖北东明 药师帮订单数据
+    final static String JXTYOrder = "topic.JXTYOrder"; //20230312 湖北东明 药师帮订单数据
 
-    final static String HBDMGoodsAll = "topic.HBDMGoodsAll"; //20230328 whstruts 湖北东明 全量商品数据
+    final static String JXTYGoodsList = "topic.JXTYGoodsList"; //20230328 whstruts 湖北东明 全量商品数据
 
 
     @Bean
-    public Queue queueHBDMOrder() {
-        return new Queue(RabbitTopicConfig.HBDMOrder);
+    public Queue queueJXTYOrder() {
+        return new Queue(RabbitTopicConfig.JXTYOrder);
     }
 
     @Bean
-    public Queue queueHBDMGoods() {
-        return new Queue(RabbitTopicConfig.HBDMGoods);
+    public Queue queueJXTYGoods() {
+        return new Queue(RabbitTopicConfig.JXTYGoods);
     }
 
     @Bean
-    public Queue queueHBDMGoodsAll() {
-        return new Queue(RabbitTopicConfig.HBDMGoodsAll);
+    public Queue queueJXTYGoodsList() {
+        return new Queue(RabbitTopicConfig.JXTYGoodsList);
     }
 
 
@@ -50,19 +50,19 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    Binding bindingExchangeHBDMGoods(Queue queueHBDMGoods, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBDMGoods).to(topicExchange).with("topic.HBDMGoods");
+    Binding bindingExchangeJXTYGoods(Queue queueJXTYGoods, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJXTYGoods).to(topicExchange).with("topic.JXTYGoods");
     }
 
     @Bean
-    Binding bindingExchangeHBDMGoodsAll(Queue queueHBDMGoodsAll, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBDMGoodsAll).to(topicExchange).with("topic.HBDMGoodsAll");
+    Binding bindingExchangeJXTYGoodsList(Queue queueJXTYGoodsList, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJXTYGoodsList).to(topicExchange).with("topic.JXTYGoodsList");
     }
 
 
     @Bean
-    Binding bindingExchangeYSBDDDM(Queue queueHBDMOrder, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBDMOrder).to(topicExchange).with("topic.HBDMOrder");
+    Binding bindingExchangeYSBDDDM(Queue queueJXTYOrder, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJXTYOrder).to(topicExchange).with("topic.JXTYOrder");
     }
 
 

@@ -15,7 +15,7 @@ import java.io.IOException;
 
 
 @Component
-@RabbitListener(queues = "topic.DMOrderBack")
+@RabbitListener(queues = "topic.JXTYOrderBack")
 public class TopicReceiverHYDD {
     @Autowired
     ysbddMapper ysbddMapper;
