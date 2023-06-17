@@ -72,8 +72,8 @@ public interface KhzlMapper {
 
     @Insert("INSERT INTO jk_cgddzb(kpbh,kprq,khcode,khmc,soft,dsfddh,hyzbddh,provide) VALUES(#{djbh},to_date(#{rq},'yyyy-mm-dd'),#{customerId},#{customerName},4,#{xgdjbh},#{hydjbh},'0015')")
     void insertDDHZ(ERPddhz ddhz);
-    @Insert("INSERT INTO jk_cgddmxb(kpbh,spmc,spgg,spcd,unit,pzwh,amount,factprice,xfactprice,batchnumber,yxqz,validdate,productdate,fhdd,kprq,factkprq) "+
-            " VALUES(#{djbh},#{ypmc},#{gg},#{cdmc},#{dw},#{pzwh},#{shl},#{cgdj},#{dj},#{ph},"+
+    @Insert("INSERT INTO jk_cgddmxb(kpbh,ywxh,spmc,spgg,spcd,unit,pzwh,amount,factprice,xfactprice,batchnumber,yxqz,validdate,productdate,fhdd,kprq,factkprq) "+
+            " VALUES(#{djbh},SQ_ZT_YWLX.NextVal,#{ypmc},#{gg},#{cdmc},#{dw},#{pzwh},#{shl},#{cgdj},#{dj},#{ph},"+
             " #{validity},to_date(#{yxq},'yyyymmdd'),to_date(RPAD(#{scrq},10,'-15'),'yyyy-mm-dd'),2,sysdate,sysdate)")
     void insertDDMX(ERPddmx ddmx);
 
