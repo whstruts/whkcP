@@ -54,7 +54,7 @@ public interface KhzlMapper {
     @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 
-    @Update("update jk_hy_kc set is_on_sale = 0,updatetime = GETDATE() ")
+    @Update("update jk_hy_kc set is_on_sale = 0,updatetime = sysdate ")
     public void unOnSale();
 
     @Update({"<script>" +
@@ -64,7 +64,7 @@ public interface KhzlMapper {
             "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
             "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
             "  is_on_sale = #{item.is_on_sale, jdbcType=INTEGER}, " +
-            "  updatetime = GETDATE() " +
+            "  updatetime = sysdate " +
             "   where goods_id_s = #{item.goods_id_s,jdbcType=VARCHAR} " +
             "</foreach>" +
             "</script>"})
