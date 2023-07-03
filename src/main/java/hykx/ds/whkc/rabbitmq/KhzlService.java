@@ -74,6 +74,9 @@ public class KhzlService {
     public void ItoDDMXs(ERPddmx ddmx){
         khzlMapper.insertDDMX(ddmx);
     }
+    public void updateysbddmx(ERPddmx erPddmx){
+        khzlMapper.updateysbddmx(erPddmx);
+    }
 
     public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {
         khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);

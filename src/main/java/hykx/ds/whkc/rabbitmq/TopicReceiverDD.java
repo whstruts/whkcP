@@ -27,16 +27,20 @@ public class TopicReceiverDD {
         s_json = message.substring(i_pos);
         JSONObject jsonObject = JSONObject.fromObject(s_json);
         ERPDD dd = (ERPDD) JSONObject.toBean(jsonObject,ERPDD.class);
-        khzlService.ItoDDHZs(dd.getYsbddhz());
+        //khzlService.ItoDDHZs(dd.getYsbddhz());
         String aa = jsonObject.get("ysbddmxes").toString();
         JSONArray array = JSONArray.fromObject(aa);
         for(int i=0;i<array.size();i++)
         {
               ERPddmx mx = (ERPddmx) JSONObject.toBean(JSONObject.fromObject(array.get(i)),ERPddmx.class);
-              khzlService.ItoDDMXs(mx);
+              if(mx.getBeizhu().length()>0)
+                  mx.setStatus(0);
+              else
+                  mx.setStatus(1);
+              khzlService.updateysbddmx(mx);
         }
-        khzlService.DoERPDD(dd.getYsbddhz().getDjbh(),"","");
-        khzlService.updateERPDD(dd.getYsbddhz().getDjbh());
+        //khzlService.DoERPDD(dd.getYsbddhz().getDjbh(),"","");
+        //khzlService.updateERPDD(dd.getYsbddhz().getDjbh());
         System.out.println("接收者 TopicReceiverDD,"+s_json);
         Thread.sleep(10000);
     }
