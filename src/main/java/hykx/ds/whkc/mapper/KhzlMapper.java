@@ -54,7 +54,7 @@ public interface KhzlMapper {
     @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 
-    @Update("update ysb_ddmx a set a.`HY_FKXX_FLAG` = #{status},a.`HY_FKXX_MSG` = #{beizhu},a.`cg_je` = #{cgje},a.`cg_dj` = #{cgdj} where a.djbh = #{djbh} and a.dj_sn = #{dj_sn}")
+    @Update("update ysb_ddmx set hy_fkxx_flag = #{status},hy_fkxx_msg = #{beizhu},cg_je = #{cgje},cg_dj = #{cgdj} where djbh = #{djbh} and dj_sn = #{dj_sn}")
     public void updateysbddmx(ERPddmx erPddmx);
 
     @Update("update jk_hy_kc set is_on_sale = 0,updatetime = sysdate ")
