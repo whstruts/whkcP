@@ -8,8 +8,8 @@ public class ERPddmx {
     private String batchnum;
     private String beizhu;
     private String cdmc;
-    private float cgdj;
-    private float cgje;
+    private double cgdj;
+    private double cgje;
     private float dj;
     private String dj_sn;
     private String djbh;
