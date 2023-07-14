@@ -38,7 +38,7 @@ public class TopicReceiverDD {
               else
                   mx.setStatus(1);
               khzlService.updateysbddmx(mx);
-            if(dd.getYsbddhz().getStatus().equals("5"))
+            if(dd.getYsbddhz().getIs_run() == 5)
             {
                 khzlService.insertysbddmxbak(mx);
             }
