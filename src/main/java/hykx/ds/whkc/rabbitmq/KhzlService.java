@@ -78,6 +78,10 @@ public class KhzlService {
         khzlMapper.updateysbddmx(erPddmx);
     }
 
+    public void insertysbddmxbak(ERPddmx erPddmx){
+        khzlMapper.insertysbddmxbak(erPddmx);
+    }
+
     public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {
         khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);
     }

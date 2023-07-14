@@ -38,7 +38,12 @@ public class TopicReceiverDD {
               else
                   mx.setStatus(1);
               khzlService.updateysbddmx(mx);
+            if(dd.getYsbddhz().getStatus().equals("5"))
+            {
+                khzlService.insertysbddmxbak(mx);
+            }
         }
+
         //khzlService.DoERPDD(dd.getYsbddhz().getDjbh(),"","");
         //khzlService.updateERPDD(dd.getYsbddhz().getDjbh());
         System.out.println("接收者 TopicReceiverDD,"+s_json);
