@@ -57,7 +57,7 @@ public interface KhzlMapper {
     @Update("update ysb_ddmx set hy_fkxx_flag = #{status},hy_fkxx_msg = #{beizhu},cg_je = #{cgje},cg_dj = #{cgdj} where djbh = #{djbh} and dj_sn = #{dj_sn}")
     public void updateysbddmx(ERPddmx erPddmx);
 
-    @Insert("INSERT INTO ysb_ddmx_bak(djbh,dj_sn,drugcode,erp_code,shl,dj,je,batchnum,prodate,validity,status,wholesale_type,is_zx,factkprq,sfhy,cg_dj,cg_je,hy_fkxx_flag,hy_fkxx_msg) "+
+    @Insert("INSERT INTO ysb_ddmx_bak(djbh,dj_sn,drugcode,erp_code,shl,dj,je,batchnum,proddate,validity,status,wholesale_type,is_zx,factkprq,sfhy,cg_dj,cg_je,hy_fkxx_flag,hy_fkxx_msg) "+
             " VALUES(#{djbh},#{dj_sn},#{drugcode},'',#{shl},#{dj},#{shl}*#{dj},#{batchnum},#{proddate},#{validity},#{status},1,'否',"+
             " sysdate,1,#{cgdj},#{cgje},1,#{beizhu})")
     public void insertysbddmxbak(ERPddmx erPddmx);
