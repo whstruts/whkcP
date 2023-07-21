@@ -21,7 +21,7 @@ public class RabbitTopicConfig {
 
     final static String WHKZGoodsList = "topic.WHKZGoodsList"; //20230410 whstruts 康庄医药 商品数据List
 
-
+    final static String WHKZGoodsListPP = "topic.WHKZGoodsListPP"; //20230721 whstruts 康庄医药 爬虫数据List
     @Bean
     public Queue queueWHKZOrder() {
         return new Queue(RabbitTopicConfig.WHKZOrder);
@@ -35,6 +35,11 @@ public class RabbitTopicConfig {
     @Bean
     public Queue queueWHKZGoodsList() {
         return new Queue(RabbitTopicConfig.WHKZGoodsList);
+    }
+
+    @Bean
+    public Queue queueWHKZGoodsListPP() {
+        return new Queue(RabbitTopicConfig.WHKZGoodsListPP);
     }
 
 
@@ -64,6 +69,12 @@ public class RabbitTopicConfig {
     Binding bindingExchangeWHKZGoodsList(Queue queueWHKZGoodsList, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueWHKZGoodsList).to(topicExchange).with("topic.WHKZGoodsList");
     }
+
+    @Bean
+    Binding bindingExchangeWHKZGoodsListPP(Queue queueWHKZGoodsListPP, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueWHKZGoodsListPP).to(topicExchange).with("topic.WHKZGoodsListPP");
+    }
+
 
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
