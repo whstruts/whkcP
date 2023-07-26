@@ -21,6 +21,8 @@ public class RabbitTopicConfig {
 
     final static String JXTYGoodsList = "topic.JXTYGoodsList"; //20230328 whstruts 湖北东明 全量商品数据
 
+    final static String JXTYGoodsListPP = "topic.JXTYGoodsListPP"; //20230726 whstruts 江西天尧 云仓数据
+
 
     @Bean
     public Queue queueJXTYOrder() {
@@ -35,6 +37,11 @@ public class RabbitTopicConfig {
     @Bean
     public Queue queueJXTYGoodsList() {
         return new Queue(RabbitTopicConfig.JXTYGoodsList);
+    }
+
+    @Bean
+    public Queue queueJXTYGoodsListPP() {
+        return new Queue(RabbitTopicConfig.JXTYGoodsListPP);
     }
 
 
@@ -57,6 +64,11 @@ public class RabbitTopicConfig {
     @Bean
     Binding bindingExchangeJXTYGoodsList(Queue queueJXTYGoodsList, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueJXTYGoodsList).to(topicExchange).with("topic.JXTYGoodsList");
+    }
+
+    @Bean
+    Binding bindingExchangeJXTYGoodsListPP(Queue queueJXTYGoodsListPP, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJXTYGoodsListPP).to(topicExchange).with("topic.JXTYGoodsListPP");
     }
 
 
