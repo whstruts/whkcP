@@ -42,6 +42,8 @@ public class TopicReceiverYZYGOODSALLPP {
 
             if(yzygoods_fix_list.size()==0)
             {
+                if(yzygoods.getCDDM().isEmpty())
+                    yzygoods.setCDDM("***");
                 khzlService.insertYZYGOODS_FIX(yzygoods);
             }
         }
