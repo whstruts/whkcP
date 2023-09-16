@@ -53,14 +53,14 @@ import lombok.extern.slf4j.Slf4j;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-    @Scheduled(cron="0 0 3 * * ?")
-    private void DownDrug(){
-        try{
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            khzlService.unOnSale();
-            System.out.println(df.format(new Date()));
-        }catch (Exception e) {
-            log.error("全部华源商品下架", e);
-        }
-    }
+//    @Scheduled(cron="0 0 3 * * ?")
+//    private void DownDrug(){
+//        try{
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            khzlService.unOnSale();
+//            System.out.println(df.format(new Date()));
+//        }catch (Exception e) {
+//            log.error("全部华源商品下架", e);
+//        }
+//    }
 }
