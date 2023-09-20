@@ -52,7 +52,7 @@ import java.util.List;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-        @Scheduled(cron="0 0 3 * * ?")
+        @Scheduled(cron="0 0 1 * * ?")
         private void DownDrug(){
             try{
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
