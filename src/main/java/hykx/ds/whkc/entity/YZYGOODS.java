@@ -22,13 +22,13 @@ public class YZYGOODS {
    private int goods_number;
    private String goods_sn;
    private int is_on_sale;
-   private double market_price;
+   private float market_price;
    private String otc;
-   private double shop_price;
-   private double shop_price_hl;
-   private double shop_price_st;
-   private double shop_price_wky;
-   private double shop_price_yex;
+   private float shop_price;
+   private float shop_price_hl;
+   private float shop_price_st;
+   private float shop_price_wky;
+   private float shop_price_yex;
    private String ypbh;
 
    private String YXQ;

@@ -1,8 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
-import hykx.ds.whkc.entity.ysbdd;
-import hykx.ds.whkc.entity.ysbddhz;
-import hykx.ds.whkc.entity.ysbddmx;
+import hykx.ds.whkc.MiddleService;
+import hykx.ds.whkc.entity.*;
 import net.sf.json.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +61,36 @@ import lombok.extern.slf4j.Slf4j;
         }catch (Exception e) {
             log.error("全部华源商品下架", e);
         }
+    }
+    @Scheduled(fixedDelay = 60*60*1000)
+    //@Scheduled(fixedDelay = 1000)
+    public void reportCurrentTimeCommodityYBM()throws Exception {
+        System.out.println("取中台数据:开始");
+        List<MyGoodsEntity> list = MiddleService.GetMyGoodsEntityByUse("13017319628");
+        YZYGOODS yzygoods = new YZYGOODS();
+        for(MyGoodsEntity myGoodsEntity:list)
+        {
+            yzygoods.setBZ(Integer.valueOf(myGoodsEntity.getBz()));
+            yzygoods.setGG(myGoodsEntity.getGg());
+            yzygoods.setDW(myGoodsEntity.getDw());
+            yzygoods.setCDMC(myGoodsEntity.getCdmc());
+            yzygoods.setJX(myGoodsEntity.getJx());
+            yzygoods.setPH(myGoodsEntity.getPh());
+            yzygoods.setPCH(String.valueOf(myGoodsEntity.getPch()));
+            yzygoods.setGoods_id_s(myGoodsEntity.getId());
+            yzygoods.setGoods_name(myGoodsEntity.getYpmc());
+            yzygoods.setGoods_number(myGoodsEntity.getSl());
+            yzygoods.setIs_on_sale(1);
+            yzygoods.setISRETAIL(myGoodsEntity.getIsretail());
+            yzygoods.setGoods_sn(myGoodsEntity.getId());
+            yzygoods.setSCRQ(myGoodsEntity.getScrq());
+            yzygoods.setYXQ(myGoodsEntity.getYxq());
+            yzygoods.setShop_price(myGoodsEntity.getDj());
+            yzygoods.setZBZ(Integer.valueOf(myGoodsEntity.getZbz()));
+            yzygoods.setTXM(myGoodsEntity.getTm());
+            yzygoods.setPZWH(myGoodsEntity.getPzwh());
+            khzlService.insertYZYGOODS(yzygoods);
+        }
+        System.out.println("取中台数据:结束");
     }
 }
