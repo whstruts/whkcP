@@ -2,6 +2,7 @@ package hykx.ds.whkc.mapper;
 
 import hykx.ds.whkc.bean.ERPddhz;
 import hykx.ds.whkc.bean.ERPddmx;
+import hykx.ds.whkc.entity.MyGoodsEntity;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -20,30 +21,30 @@ public interface KhzlMapper {
     void updateYZYGOODSAll();
     @Delete("DELETE FROM jk_hy_kc where is_on_sale = 0")
     void deleteYZYGOODSAll();
-    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
-            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
-    void insertYZYGOODS(YZYGOODS yzygoods);
+    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,CDMC,GG,DW,JX,PZWH,BZ,ZBZ,YXQ,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+            " VALUES(#{id},#{ypmc},#{sl},#{lsj},#{dj},1,#{cdmc},#{gg},#{dw},#{jx},"+
+            " #{pzwh},#{bz},#{zbz},#{yxq},#{isretail},#{pch},#{scrq},#{id},#{ypbh},sysdate)")
+    void insertYZYGOODS(MyGoodsEntity yzygoods);
 
-    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
-            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
-    void insertYZYGOODS_FIX(YZYGOODS yzygoods);
+    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,CDMC,GG,DW,JX,PZWH,BZ,ZBZ,YXQ,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+            " VALUES(#{id},#{ypmc},#{sl},#{lsj},#{dj},1,#{cdmc},#{gg},#{dw},#{jx},"+
+            " #{pzwh},#{bz},#{zbz},#{yxq},#{isretail},#{pch},#{scrq},#{id},#{ypbh},sysdate)")
+    void insertYZYGOODS_FIX(MyGoodsEntity yzygoods);
 
 
     @Select("select * from jk_hy_kc_fix where goods_sn = #{goods_sn}")
-    public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn);
+    public List<MyGoodsEntity> getYZYGOODS_FIX(String goods_sn);
 
     @Select("select count(*) from jk_hy_kc where goods_id_s = #{goods_id_s}")
     public int getYZYGOODS(String goods_id_s);
 
-    @Update("update jk_hy_kc set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
-            "where goods_id_s = #{goods_id_s}")
-    public void updateYZYGOODS(YZYGOODS yzygoods);
+    @Update("update jk_hy_kc set goods_sn = #{id},goods_name = #{ypmc},goods_number = #{sl},market_price = #{lsj},shop_price = #{dj},is_on_sale = 1,CDMC = #{cdmc},GG = #{gg},DW = #{dw},JX = #{jx},PZWH = #{pzwh},BZ = #{bz},ZBZ = #{zbz},YXQ = #{yxq}, ISRETAIL = #{isretail},PCH = #{pch},SCRQ = #{scrq},ypbh = #{ypbh},updatetime = sysdate " +
+            "where goods_id_s = #{id}")
+    public void updateYZYGOODS(MyGoodsEntity yzygoods);
 
-    @Update("update jk_hy_kc_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
-            "where goods_id_s = #{goods_id_s}")
-    public void updateYZYGOODSFIX(YZYGOODS yzygoods);
+    @Update("update jk_hy_kc_fix set goods_sn = #{id},goods_name = #{ypmc},goods_number = #{sl},market_price = #{lsj},shop_price = #{dj},is_on_sale = 1,CDMC = #{cdmc},GG = #{gg},DW = #{dw},JX = #{jx},PZWH = #{pzwh},BZ = #{bz},ZBZ = #{zbz},YXQ = #{yxq}, ISRETAIL = #{isretail},PCH = #{pch},SCRQ = #{scrq},ypbh = #{ypbh},updatetime = sysdate  " +
+            "where goods_id_s = #{id}")
+    public void updateYZYGOODSFIX(MyGoodsEntity yzygoods);
 
     @Select("select * from ysb_ddhz where is_run_hy = 0 ")
     public List<ysbddhz> getysbddhzs();

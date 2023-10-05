@@ -20,7 +20,7 @@ public class MyGoodsEntity {
     private int pch;
     private String yxq;
     private int sl;
-    private int lsj;
+    private float lsj;
     private float dj;
     private String dw;
     private String jx;

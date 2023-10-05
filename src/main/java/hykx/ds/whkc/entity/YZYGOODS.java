@@ -3,7 +3,7 @@ import lombok.Data;
 
 @Data
 public class YZYGOODS {
-   private  String YPDM;
+   private String YPDM;
    private int BZ;
    private String CDDM;
    private String CDMC;

@@ -3,6 +3,7 @@ package hykx.ds.whkc.rabbitmq;
 
 import hykx.ds.whkc.bean.ERPddhz;
 import hykx.ds.whkc.bean.ERPddmx;
+import hykx.ds.whkc.entity.MyGoodsEntity;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -32,8 +33,8 @@ public class KhzlService {
         khzlMapper.deleteYZYGOODSAll();
     }
 
-    public void insertYZYGOODS(YZYGOODS yzygoods){
-        if(khzlMapper.getYZYGOODS(yzygoods.getGoods_id_s())>0)
+    public void insertYZYGOODS(MyGoodsEntity yzygoods){
+        if(khzlMapper.getYZYGOODS(yzygoods.getId())>0)
         {
             khzlMapper.updateYZYGOODS(yzygoods);
             khzlMapper.updateYZYGOODSFIX(yzygoods);
@@ -44,11 +45,11 @@ public class KhzlService {
         }
     }
 
-    public void insertYZYGOODS_FIX(YZYGOODS yzygoods){
+    public void insertYZYGOODS_FIX(MyGoodsEntity yzygoods){
         khzlMapper.insertYZYGOODS_FIX(yzygoods);
     }
 
-    public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn){
+    public List<MyGoodsEntity> getYZYGOODS_FIX(String goods_sn){
         return khzlMapper.getYZYGOODS_FIX(goods_sn);
     }
 
