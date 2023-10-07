@@ -24,4 +24,5 @@ public class ysbddhz {
     private String webdjbh;
 
     private String drugstorename;
+    private String userName;
 }
