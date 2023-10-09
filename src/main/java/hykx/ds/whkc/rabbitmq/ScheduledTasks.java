@@ -52,14 +52,14 @@ import java.util.List;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-        @Scheduled(cron="0 0 3 * * ?")
+        @Scheduled(fixedDelay = 5*60*1000)
         private void DownDrug(){
             try{
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 khzlService.unOnSale();
                 System.out.println(df.format(new Date()));
             }catch (Exception e) {
-                log.error("全部华源商品下架", e);
+                log.error("24小时以外商品下架", e);
             }
         }
 }
