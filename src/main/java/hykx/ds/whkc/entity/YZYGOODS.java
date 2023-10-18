@@ -25,11 +25,7 @@ public class YZYGOODS {
    private float market_price;
    private String otc;
    private float shop_price;
-   private float shop_price_hl;
-   private float shop_price_st;
-   private float shop_price_wky;
-   private float shop_price_yex;
    private String ypbh;
-
    private String YXQ;
+   private String updatetime;
 }
