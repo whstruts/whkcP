@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class MiddleService {
     public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetYZYGOODSByUser";
-    public static List<YZYGOODS> GetMyGoodsEntityByUse(String userName) throws Exception {
+    public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
         JSONObject jsonObject = JSONObject.parseObject(res);
@@ -21,6 +21,6 @@ public class MiddleService {
         return yzygoodsList;
     }
     public static void main(String[] args) throws Exception {
-        GetMyGoodsEntityByUse("18692180722");
+        GetYZYGOODSByUser("18692180722");
     }
 }
