@@ -1,5 +1,6 @@
 package hykx.ds.whkc.rabbitmq;
 
+import hykx.ds.whkc.HttpGetYYNHYData;
 import hykx.ds.whkc.MiddleService;
 import hykx.ds.whkc.entity.*;
 import net.sf.json.JSONObject;
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("HNWH");
+            ddhz.setUserName("HNHR");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -65,13 +66,25 @@ import lombok.extern.slf4j.Slf4j;
     }
     @Scheduled(fixedDelay = 60*60*1000)
     //@Scheduled(fixedDelay = 1000)
-    public void reportCurrentTimeCommodityYBM()throws Exception {
-        System.out.println("取中台数据:开始");
-        List<MyGoodsEntity> list = MiddleService.GetMyGoodsEntityByUse("13017319628");
+    public void reportCurrentTimeCommodityHY()throws Exception {
+        System.out.println("取华源YYN批号数据:开始");
+        List<MyGoodsEntity> list = HttpGetYYNHYData.getHYGoods();
         for(MyGoodsEntity myGoodsEntity:list)
         {
             khzlService.insertYZYGOODS(myGoodsEntity);
         }
-        System.out.println("取中台数据:结束");
+        System.out.println("取华源YYN批号数据:结束");
+    }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    //@Scheduled(fixedDelay = 1000)
+    public void reportCurrentTimeCommodity()throws Exception {
+        System.out.println("取华源YYN品种数据:开始");
+        List<MyGoodsEntity> list = HttpGetYYNHYData.getHYGoodsP();
+        for(MyGoodsEntity myGoodsEntity:list)
+        {
+            khzlService.insertYZYGOODSP(myGoodsEntity);
+        }
+        System.out.println("取华源YYN品种数据:结束");
     }
 }

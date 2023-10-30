@@ -18,41 +18,25 @@ public class KhzlService {
     @Autowired
     private KhzlMapper khzlMapper;
 
-    public void ysb_kh2erp() {
-        khzlMapper.ysb_kh2erp();
-    }
-    public void ysb_kh2erp_x() {
-        khzlMapper.ysb_kh2erp_x();
-    }
-
-    public void updateYZYGOODS(){
-        khzlMapper.updateYZYGOODSAll();
-    }
-
-    public void deleteYZYGOODS(){
-        khzlMapper.deleteYZYGOODSAll();
-    }
 
     public void insertYZYGOODS(MyGoodsEntity yzygoods){
         if(khzlMapper.getYZYGOODS(yzygoods.getId())>0)
         {
             khzlMapper.updateYZYGOODS(yzygoods);
-            khzlMapper.updateYZYGOODSFIX(yzygoods);
         }
         else {
             khzlMapper.insertYZYGOODS(yzygoods);
-            khzlMapper.insertYZYGOODS_FIX(yzygoods);
         }
     }
 
-    public void insertYZYGOODS_FIX(MyGoodsEntity yzygoods){
-        khzlMapper.insertYZYGOODS_FIX(yzygoods);
+    public void insertYZYGOODSP(MyGoodsEntity yzygoods){
+        if(khzlMapper.getYZYGOODSP(yzygoods.getYpbh())>0)
+        {
+        }
+        else {
+            khzlMapper.insertYZYGOODSP(yzygoods);
+        }
     }
-
-    public List<MyGoodsEntity> getYZYGOODS_FIX(String goods_sn){
-        return khzlMapper.getYZYGOODS_FIX(goods_sn);
-    }
-
 
     public void updateysbddhz(String djbh) { khzlMapper.updateysbddhz(djbh);}
 
@@ -66,27 +50,8 @@ public class KhzlService {
 
     public void unOnSale() { khzlMapper.unOnSale();}
 
-    public void batchUpdate(List<YZYGOODS> list){
-      //  khzlMapper.batchUpdate(list);
-    }
-    public void ItoDDHZs(ERPddhz ddhz){
-        khzlMapper.insertDDHZ(ddhz);
-    }
-    public void ItoDDMXs(ERPddmx ddmx){
-        khzlMapper.insertDDMX(ddmx);
-    }
     public void updateysbddmx(ERPddmx erPddmx){
         khzlMapper.updateysbddmx(erPddmx);
     }
-
-    public void insertysbddmxbak(ERPddmx erPddmx){
-        khzlMapper.insertysbddmxbak(erPddmx);
-    }
-
-    public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {
-        khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);
-    }
-
-    public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
 
 }
