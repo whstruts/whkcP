@@ -34,9 +34,9 @@ public class TopicReceiverYZYGOODSALLPP {
         else {
             i_pos = message.indexOf("{");
             s_json = message.substring(i_pos);
+            System.out.println("接收者 TopicReceiverYZYGOODSALLPP," + s_json);
             yzygoods = (YZYGOODS) JSONChange.jsonToObj(yzygoods, s_json);
             khzlService.insertYZYGOODS(yzygoods);
-            System.out.println("接收者 TopicReceiverYZYGOODSALLPP," + s_json);
 
             List<YZYGOODS>  yzygoods_fix_list = khzlService.getYZYGOODS_FIX(yzygoods.getGoods_sn());
 
