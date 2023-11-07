@@ -40,13 +40,22 @@ public class KhzlService {
 
 
     public void updateysbddhz(String djbh) { khzlMapper.updateysbddhz(djbh);}
+    public void updatexyyddhz(String order_no) { khzlMapper.updatexyyddhz(order_no);}
 
     public List<ysbddhz> getysbddhzs() {
         return  khzlMapper.getysbddhzs();
     }
 
+    public List<xyyddhz> getxyyddhzs() {
+        return  khzlMapper.getxyyddhzs();
+    }
+
     public List<ysbddmx> getysbddmxbydjbh(String djbh) {
         return  khzlMapper.getysbddmxbydjbh(djbh);
+    }
+
+    public List<xyyddmx> getxyyddmxbyOrderNo(String order_no) {
+        return  khzlMapper.getxyyddmxbyOrderNo(order_no);
     }
 
     public void unOnSale() { khzlMapper.unOnSale();}

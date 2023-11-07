@@ -52,6 +52,40 @@ import java.util.List;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
+
+    @Scheduled(fixedDelay = 60*1000)
+    public void reportCurrentTimeX()throws Exception {
+        List<xyyddhz> listxyyddhz = khzlService.getxyyddhzs();
+        for (int i = 0; i < listxyyddhz.size(); i++) {
+            xyyddhz ddhz = listxyyddhz.get(i);
+            List<xyyddmx> listDDMX = khzlService.getxyyddmxbyOrderNo(ddhz.getOrder_no());
+            xyydd dd = new xyydd();
+            if(listDDMX.size()>0)
+            {
+                dd.setXyyddhz(ddhz);
+                dd.setXyyddmxes(listDDMX);
+            }
+            else
+                return;
+            khzlService.updatexyyddhz(ddhz.getOrder_no());//更新订单汇总状态
+
+            JSONObject data = JSONObject.fromObject(dd);
+
+            System.out.println("GetDD,Name:" + data.toString());
+
+            String context = data.toString();
+
+            String routeKey = "topic.JXTYOrderX";
+
+            String exchange = "topicExchange";
+
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+            System.out.println("sendJXTYOrder : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
         @Scheduled(fixedDelay = 5*60*1000)
         private void DownDrug(){
             try{

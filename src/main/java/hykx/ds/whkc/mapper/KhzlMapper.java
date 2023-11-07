@@ -38,11 +38,20 @@ public interface KhzlMapper {
     @Select("select * from ysb_ddhz where is_run_hy = 0 ")
     public List<ysbddhz> getysbddhzs();
 
+    @Select("select * from xyy_seller_order_info where is_hy_run = 0 ")
+    public List<xyyddhz> getxyyddhzs();
+
     @Select("select * from ysb_ddmx where djbh = #{djbh} ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
+    @Select("select * from xyy_seller_order_detail where order_no = #{order_no} ")
+    public List<xyyddmx> getxyyddmxbyOrderNo(String order_no);
+
     @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
+
+    @Update("update xyy_seller_order_info set is_hy_run = 1 where is_hy_run = 0 and order_no = #{order_no}")
+    public void updatexyyddhz(String order_no);
 
     @Update("update YZYGOODS set is_on_sale = 0 where DATEDIFF(HH,updatetime,getdate())>24 and is_on_sale =1 ")
     public void unOnSale();
