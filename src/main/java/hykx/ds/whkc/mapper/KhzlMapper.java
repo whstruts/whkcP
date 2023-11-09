@@ -38,7 +38,19 @@ public interface KhzlMapper {
     @Select("select * from powererp_hnhryy.ysb_ddhz where is_zx = '否' ")
     public List<ysbddhz> getysbddhzs();
 
-    @Select("select * from powererp_hnhryy.ysb_ddmx where djbh = #{djbh} ")
+    @Select("select a.djbh,a.dj_sn,b.goods_id_s as drugcode,a.shl,a.dj,a.je from powererp_hnhryy.ysb_ddmx a,\n" +
+            "(" +
+            "select gwbh,goods_id_s from (" +
+            "select 'HY2HNHY'||ypbh as gwbh,goods_id_s,updatetime,row_number() over (partition by ypbh order by updatetime desc) as row_num\n" +
+            " from powererp_hnhryy.jk_hy_kc_ph ) " +
+            " where row_num = 1 ) b " +
+            " where djbh = #{djbh} " +
+            " and a.drugcode like 'HY2HNHY%' " +
+            " and a.drugcode = b.gwbh " +
+            " union " +
+            " select a.djbh,a.dj_sn, a.drugcode,a.shl,a.dj,a.je from powererp_hnhryy.ysb_ddmx a " +
+            " where djbh = #{djbh} " +
+            " and a.drugcode not like 'HY2HNHY%' ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
     @Update("update powererp_hnhryy.ysb_ddhz set is_zx = '是' where is_zx = '否' and djbh = #{djbh}")
