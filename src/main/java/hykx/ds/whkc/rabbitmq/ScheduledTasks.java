@@ -73,6 +73,7 @@ import lombok.extern.slf4j.Slf4j;
         {
             khzlService.insertYZYGOODS(myGoodsEntity);
         }
+        khzlService.updateGWBH();
         System.out.println("取华源YYN批号数据:结束");
     }
 
@@ -85,6 +86,7 @@ import lombok.extern.slf4j.Slf4j;
         {
             khzlService.insertYZYGOODSP(myGoodsEntity);
         }
+        khzlService.updateGWBH();
         System.out.println("取华源YYN品种数据:结束");
     }
 }

@@ -32,6 +32,7 @@ public class KhzlService {
     public void insertYZYGOODSP(MyGoodsEntity yzygoods){
         if(khzlMapper.getYZYGOODSP(yzygoods.getYpbh())>0)
         {
+            khzlMapper.updateYZYGOODSP(yzygoods);
         }
         else {
             khzlMapper.insertYZYGOODSP(yzygoods);
@@ -53,5 +54,7 @@ public class KhzlService {
     public void updateysbddmx(ERPddmx erPddmx){
         khzlMapper.updateysbddmx(erPddmx);
     }
+
+    public void updateGWBH() { khzlMapper.updateGWBH();}
 
 }

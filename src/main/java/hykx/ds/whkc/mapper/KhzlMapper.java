@@ -31,6 +31,10 @@ public interface KhzlMapper {
             "where goods_id_s = #{id}")
     public void updateYZYGOODS(MyGoodsEntity yzygoods);
 
+    @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 1,dj = #{dj},updatetime = sysdate  " +
+            "where ypbh = #{ypbh}")
+    public void updateYZYGOODSP(MyGoodsEntity yzygoods);
+
     @Select("select * from powererp_hnhryy.ysb_ddhz where is_zx = '否' ")
     public List<ysbddhz> getysbddhzs();
 
@@ -45,5 +49,8 @@ public interface KhzlMapper {
 
     @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 0,updatetime = sysdate ")
     public void unOnSale();
+
+    @Update("update powererp_hnhryy.jk_hy_yp set gwbh = 'HY2HNHY'||ypbh where gwbh is null")
+    public void updateGWBH();
 
 }
