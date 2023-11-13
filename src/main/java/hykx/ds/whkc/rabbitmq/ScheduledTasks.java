@@ -81,7 +81,7 @@ import lombok.extern.slf4j.Slf4j;
     //@Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodity()throws Exception {
         System.out.println("取华源YYN品种数据:开始");
-        List<MyGoodsEntity> list = HttpGetYYNHYData.getHYGoodsP();
+        List<MyGoodsEntity> list = HttpGetYYNHYData.getHYGoodsP("hnhr");
         for(MyGoodsEntity myGoodsEntity:list)
         {
             khzlService.insertYZYGOODSP(myGoodsEntity);

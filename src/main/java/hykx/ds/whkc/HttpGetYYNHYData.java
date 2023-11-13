@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author tianl
@@ -15,11 +17,11 @@ public class HttpGetYYNHYData {
     //        private static final String url = "http://www.hbyyn.com:9527/hykx/getspbnewymd";  武汉库商品数据，暂不使用
     //private static final String url = "http://localhost:9527/getHYGoods";
     private static final String url = "http://www.hbyyn.com:9527/hykx/getHYGoods";
-    private static final String urlP = "http://www.hbyyn.com:9527/hykx/getHYGoodsP";
+    private static final String urlP = "http://www.hbyyn.com:9527/hykx/getHYGoodsP?customNo={customNo}";
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        System.out.println(getHYGoods());
+        System.out.println(getHYGoodsP("hnhr"));
         System.out.println("使用时长：" + (System.currentTimeMillis() - startTime));
 //        String ss = "{\"ypdm\":\"xftejn\",\"cddm\":\"bjlyzyyxgs\",\"jx\":\"胶囊剂\",\"scrq\":\"2019-08-27,2019-08-17\"," +
 //                "\"txm\":null,\"goods_id_s\":null,\"drug_common_name\":\"朗依 硝呋太尔胶囊（左通） 自营\",
@@ -50,13 +52,15 @@ public class HttpGetYYNHYData {
         return list;
     }
 
-    public static List<MyGoodsEntity> getHYGoodsP() {
+    public static List<MyGoodsEntity> getHYGoodsP(String customNo) {
         //复杂构造函数的使用
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         requestFactory.setConnectTimeout(1000 * 60 * 30);// 设置超时
         requestFactory.setReadTimeout(1000 * 60 * 30);
+        Map<String, String> params = new HashMap<>();
+        params.put("customNo", customNo);
         RestTemplate restTemplate = new RestTemplate(requestFactory);
-        ResponseEntity<String> response = restTemplate.getForEntity(urlP, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(urlP, String.class,params);
 
         String body = response.getBody();
 
