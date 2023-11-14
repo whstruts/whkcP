@@ -38,10 +38,10 @@ public interface KhzlMapper {
     @Select("select * from powererp_hnhryy.ysb_ddhz where is_zx = '否' ")
     public List<ysbddhz> getysbddhzs();
 
-    @Select("select a.djbh,a.dj_sn,b.goods_id_s as drugcode,a.shl,a.dj,a.je from powererp_hnhryy.ysb_ddmx a,\n" +
+    @Select("select a.djbh,a.dj_sn,b.goods_id_s as drugcode,a.shl,a.dj,a.je from powererp_hnhryy.ysb_ddmx a, " +
             "(" +
             "select gwbh,goods_id_s from (" +
-            "select 'HY2HNHY'||ypbh as gwbh,goods_id_s,updatetime,row_number() over (partition by ypbh order by updatetime desc) as row_num\n" +
+            "select 'HY2HNHY'||ypbh as gwbh,goods_id_s,updatetime,row_number() over (partition by ypbh order by updatetime desc) as row_num " +
             " from powererp_hnhryy.jk_hy_kc_ph ) " +
             " where row_num = 1 ) b " +
             " where djbh = #{djbh} " +
