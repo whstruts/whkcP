@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 @Slf4j
 @Component
-@RabbitListener(queues = "topic.WHKZGoodsList")
+@RabbitListener(queues = "topic.JXJZGoodsList")
 public class TopicReceiverYZYGOODSList {
     @Autowired
     private KhzlService khzlService;
