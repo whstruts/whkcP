@@ -31,10 +31,12 @@ public class KhzlService {
         {
             khzlMapper.updateYZYGOODS(yzygoods);
             khzlMapper.updateYZYGOODSFIX(yzygoods);
+            System.out.println("更新中台数据:"+yzygoods.toString());
         }
         else {
             khzlMapper.insertYZYGOODS(yzygoods);
             khzlMapper.insertYZYGOODS_FIX(yzygoods);
+            System.out.println("写入中台数据:"+yzygoods.toString());
         }
     }
 
