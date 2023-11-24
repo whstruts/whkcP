@@ -18,13 +18,13 @@ public class KhzlService {
     @Autowired
     private KhzlMapper khzlMapper;
 
-    public void updateYZYGOODS(){
-        khzlMapper.updateYZYGOODSAll();
-    }
-
-    public void deleteYZYGOODS(){
-        khzlMapper.deleteYZYGOODSAll();
-    }
+//    public void updateYZYGOODS(){
+//        khzlMapper.updateYZYGOODSAll();
+//    }
+//
+//    public void deleteYZYGOODS(){
+//        khzlMapper.deleteYZYGOODSAll();
+//    }
 
     public void insertYZYGOODS(YZYGOODS yzygoods){
         if(khzlMapper.getYZYGOODS(yzygoods.getGoods_id_s())>0)
