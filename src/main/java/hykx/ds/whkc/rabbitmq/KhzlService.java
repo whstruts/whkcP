@@ -56,8 +56,9 @@ public class KhzlService {
     }
 
     public void UpdateMateGoods(mateCode mateCode){
-      khzlMapper.updateMateGoodsA(mateCode);
-      khzlMapper.updateMateGoodsB(mateCode);
+//      khzlMapper.updateMateGoodsA(mateCode);
+//      khzlMapper.updateMateGoodsB(mateCode);
+        khzlMapper.execMateGoods(mateCode);
     }
 
 }

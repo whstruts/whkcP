@@ -64,4 +64,7 @@ public interface KhzlMapper {
     void updateMateGoodsA(mateCode mateCode);
     @Update("update YZYGOODS_FIX set erp_id= #{erpCode} where goods_sn = #{hyCode} ")
     void updateMateGoodsB(mateCode mateCode);
+
+    @Select("exec lm_mate_goods #{erpCode},#{hyCode} ")
+    void execMateGoods(mateCode mateCode);
 }
