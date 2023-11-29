@@ -31,11 +31,12 @@ public class TopicReceiverMateGoods {
             JSONObject jsonObject = JSONObject.fromObject(s_json);
             mateCode mateCode = (mateCode) JSONObject.toBean(jsonObject, mateCode.class);
             khzlService.UpdateMateGoods(mateCode);
+            System.out.println("UpdateMateGoods,"+s_json);
         }
         catch (Exception e)
         {
             System.out.println(e.toString());
-            log.error("batchUpdateMateGoods", e);
+            log.error("UpdateMateGoods", e);
         }
     }
 }
