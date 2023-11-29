@@ -55,4 +55,9 @@ public class KhzlService {
         khzlMapper.batchUpdate(list);
     }
 
+    public void UpdateMateGoods(mateCode mateCode){
+      khzlMapper.updateMateGoodsA(mateCode);
+      khzlMapper.updateMateGoodsB(mateCode);
+    }
+
 }
