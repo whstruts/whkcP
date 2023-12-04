@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-@RabbitListener(queues = "topic.WHKZGoodsListPP")
+@RabbitListener(queues = "topic.HNZHGoodsListPP")
 public class TopicReceiverYZYGOODSListPP {
     @Autowired
     private KhzlService khzlService;

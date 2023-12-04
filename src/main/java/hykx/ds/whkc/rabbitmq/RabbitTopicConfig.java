@@ -14,32 +14,32 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class RabbitTopicConfig {
 
 
-    final static String WHKZGoods = "topic.WHKZGoods"; //20230114 whstruts 康庄医药 商品数据
+    final static String HNZHGoods = "topic.HNZHGoods"; //20230114 whstruts 康庄医药 商品数据
 
 
-    final static String WHKZOrder = "topic.WHKZOrder"; //20230114 康庄医药 药师帮订单数据
+    final static String HNZHOrder = "topic.HNZHOrder"; //20230114 康庄医药 药师帮订单数据
 
-    final static String WHKZGoodsList = "topic.WHKZGoodsList"; //20230410 whstruts 康庄医药 商品数据List
+    final static String HNZHGoodsList = "topic.HNZHGoodsList"; //20230410 whstruts 康庄医药 商品数据List
 
-    final static String WHKZGoodsListPP = "topic.WHKZGoodsListPP"; //20230721 whstruts 康庄医药 爬虫数据List
+    final static String HNZHGoodsListPP = "topic.HNZHGoodsListPP"; //20230721 whstruts 康庄医药 爬虫数据List
     @Bean
-    public Queue queueWHKZOrder() {
-        return new Queue(RabbitTopicConfig.WHKZOrder);
+    public Queue queueHNZHOrder() {
+        return new Queue(RabbitTopicConfig.HNZHOrder);
     }
 
     @Bean
-    public Queue queueWHKZGoods() {
-        return new Queue(RabbitTopicConfig.WHKZGoods);
+    public Queue queueHNZHGoods() {
+        return new Queue(RabbitTopicConfig.HNZHGoods);
     }
 
     @Bean
-    public Queue queueWHKZGoodsList() {
-        return new Queue(RabbitTopicConfig.WHKZGoodsList);
+    public Queue queueHNZHGoodsList() {
+        return new Queue(RabbitTopicConfig.HNZHGoodsList);
     }
 
     @Bean
-    public Queue queueWHKZGoodsListPP() {
-        return new Queue(RabbitTopicConfig.WHKZGoodsListPP);
+    public Queue queueHNZHGoodsListPP() {
+        return new Queue(RabbitTopicConfig.HNZHGoodsListPP);
     }
 
 
@@ -55,24 +55,24 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    Binding bindingExchangeWHKZGoods(Queue queueWHKZGoods, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWHKZGoods).to(topicExchange).with("topic.WHKZGoods");
+    Binding bindingExchangeHNZHGoods(Queue queueHNZHGoods, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHNZHGoods).to(topicExchange).with("topic.HNZHGoods");
     }
 
 
     @Bean
-    Binding bindingExchangeYSBDDST(Queue queueWHKZOrder, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWHKZOrder).to(topicExchange).with("topic.WHKZOrder");
+    Binding bindingExchangeYSBDDST(Queue queueHNZHOrder, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHNZHOrder).to(topicExchange).with("topic.HNZHOrder");
     }
 
     @Bean
-    Binding bindingExchangeWHKZGoodsList(Queue queueWHKZGoodsList, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWHKZGoodsList).to(topicExchange).with("topic.WHKZGoodsList");
+    Binding bindingExchangeHNZHGoodsList(Queue queueHNZHGoodsList, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHNZHGoodsList).to(topicExchange).with("topic.HNZHGoodsList");
     }
 
     @Bean
-    Binding bindingExchangeWHKZGoodsListPP(Queue queueWHKZGoodsListPP, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueWHKZGoodsListPP).to(topicExchange).with("topic.WHKZGoodsListPP");
+    Binding bindingExchangeHNZHGoodsListPP(Queue queueHNZHGoodsListPP, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHNZHGoodsListPP).to(topicExchange).with("topic.HNZHGoodsListPP");
     }
 
 
