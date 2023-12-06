@@ -41,13 +41,13 @@ import java.util.List;
 
             String context = data.toString();
 
-            String routeKey = "topic.HNZHOrder";
+            String routeKey = "topic.HNJROrder";
 
             String exchange = "topicExchange";
 
             context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
-            System.out.println("sendHNZHOrder : " + context);
+            System.out.println("sendHNJROrder : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }

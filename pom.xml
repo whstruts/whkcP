@@ -5,7 +5,7 @@
 
     <groupId>hykx.ds</groupId>
     <artifactId>whkc</artifactId>
-    <version>lm-zh-p</version>
+    <version>lm-jr-p</version>
     <packaging>jar</packaging>
 
     <name>whkc</name>
