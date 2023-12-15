@@ -20,22 +20,30 @@ public class KhzlService {
 
 
     public void insertYZYGOODS(MyGoodsEntity yzygoods){
-        if(khzlMapper.getYZYGOODS(yzygoods.getId())>0)
-        {
-            khzlMapper.updateYZYGOODS(yzygoods);
+        try {
+            if (khzlMapper.getYZYGOODS(yzygoods.getId()) > 0) {
+                khzlMapper.updateYZYGOODS(yzygoods);
+            } else {
+                khzlMapper.insertYZYGOODS(yzygoods);
+            }
         }
-        else {
-            khzlMapper.insertYZYGOODS(yzygoods);
+        catch (Exception e)
+        {
+            System.out.println(e.toString()+yzygoods.toString());
         }
     }
 
     public void insertYZYGOODSP(MyGoodsEntity yzygoods){
-        if(khzlMapper.getYZYGOODSP(yzygoods.getYpbh())>0)
-        {
-            khzlMapper.updateYZYGOODSP(yzygoods);
+        try {
+            if (khzlMapper.getYZYGOODSP(yzygoods.getYpbh()) > 0) {
+                khzlMapper.updateYZYGOODSP(yzygoods);
+            } else {
+                khzlMapper.insertYZYGOODSP(yzygoods);
+            }
         }
-        else {
-            khzlMapper.insertYZYGOODSP(yzygoods);
+        catch (Exception e)
+        {
+            System.out.println(e.toString()+yzygoods.toString());
         }
     }
 

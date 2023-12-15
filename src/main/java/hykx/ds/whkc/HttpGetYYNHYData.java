@@ -16,8 +16,10 @@ public class HttpGetYYNHYData {
 
     //        private static final String url = "http://www.hbyyn.com:9527/hykx/getspbnewymd";  武汉库商品数据，暂不使用
     //private static final String url = "http://localhost:9527/getHYGoods";
-    private static final String url = "http://www.hbyyn.com:9527/hykx/getHYGoods";
-    private static final String urlP = "http://www.hbyyn.com:9527/hykx/getHYGoodsP?customNo={customNo}";
+    //private static final String url = "http://www.hbyyn.com:9527/hykx/getHYGoods";
+    private static final String url = "http://localhost:9527/getHYGoods";
+    //private static final String urlP = "http://www.hbyyn.com:9527/hykx/getHYGoodsP?customNo={customNo}";
+    private static final String urlP = "http://localhost:9527/getHYGoodsP?customNo={customNo}";
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();

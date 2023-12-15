@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class MyGoodsEntity {
+public class  MyGoodsEntity {
     private String goods_sn;
     private String id;
     private String goods_id;
