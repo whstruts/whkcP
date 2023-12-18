@@ -51,8 +51,13 @@ public class MiddleService {
             myGoodsEntity.setJx(ybmGoods.getJx());
             myGoodsEntity.setPzwh(ybmGoods.getPzwh());
             myGoodsEntity.setZbz(String.valueOf(ybmGoods.getZbz()));
-            myGoodsEntity.setBz(ybmGoods.getJzl());
+            myGoodsEntity.setBz(String.valueOf(ybmGoods.getBz()));
             myGoodsEntity.setIsretail(1);
+            myGoodsEntity.setPh(" ");
+            myGoodsEntity.setCddm(" ");
+            myGoodsEntity.setYpdm(" ");
+            myGoodsEntity.setTm(" ");
+            myGoodsEntity.setLsj(0.00F);
             myGoodsEntityList.add(myGoodsEntity);
         });
         return myGoodsEntityList;

@@ -13,7 +13,7 @@ public class YBMGoods {
     private String skuId;
     private String xq;
     private int zbz;
-    private String jzl;
+    private int bz;
     private double price;
     private String imgurl;
     private String pack;
