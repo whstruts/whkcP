@@ -65,4 +65,6 @@ public class KhzlService {
 
     public void updateGWBH() { khzlMapper.updateGWBH();}
 
+    public void updateXYYGWBH() { khzlMapper.updateXYYGWBH();}
+
 }
