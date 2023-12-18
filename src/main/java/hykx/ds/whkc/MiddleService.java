@@ -30,6 +30,7 @@ public class MiddleService {
     }
 
     public static List<MyGoodsEntity> GetYBMG2MGEByUser(String userName) throws Exception {
+        System.gc();
         List<MyGoodsEntity> myGoodsEntityList = new ArrayList<>();
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_YBM_URL, param);
