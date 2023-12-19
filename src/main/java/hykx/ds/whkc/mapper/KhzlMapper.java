@@ -62,10 +62,10 @@ public interface KhzlMapper {
     @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 0,updatetime = sysdate ")
     public void unOnSale();
 
-    @Update("update powererp_hnhryy.jk_hy_yp set gwbh = 'HY2HNHY'||ypbh where gwbh is null and cddm != ''")
+    @Update("update powererp_hnhryy.jk_hy_yp set gwbh = 'HY2HNHY'||ypbh where gwbh is null and length(cddm)>1 ")
     public void updateGWBH();
 
-    @Update("update powererp_hnhryy.jk_hy_yp set gwbh = ypbh where gwbh is null and cddm = '' ")
+    @Update("update powererp_hnhryy.jk_hy_yp set gwbh = ypbh where gwbh is null and cddm = ' ' ")
     public void updateXYYGWBH();
 
 }
