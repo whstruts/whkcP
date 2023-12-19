@@ -30,7 +30,6 @@ public class MiddleService {
     }
 
     public static List<MyGoodsEntity> GetYBMG2MGEByUser(String userName) throws Exception {
-        System.gc();
         List<MyGoodsEntity> myGoodsEntityList = new ArrayList<>();
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_YBM_URL, param);
@@ -38,8 +37,8 @@ public class MiddleService {
         List<YBMGoods> ybmGoodsList = jsonObject.getJSONArray("data").toJavaList(YBMGoods.class);
         ybmGoodsList.forEach(ybmGoods -> {
             MyGoodsEntity myGoodsEntity = new MyGoodsEntity();
-            myGoodsEntity.setId(ybmGoods.getSkuId()+ybmGoods.getDname()+ybmGoods.getPname()+"L");
-            myGoodsEntity.setYpbh(ybmGoods.getSkuId()+ybmGoods.getDname()+ybmGoods.getPname()+"L");
+            myGoodsEntity.setId(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
+            myGoodsEntity.setYpbh(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
             myGoodsEntity.setSl(ybmGoods.getKcsl());
             myGoodsEntity.setScrq(ybmGoods.getScrq());
             myGoodsEntity.setYxq(ybmGoods.getXq());

@@ -90,18 +90,23 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取华源YYN品种数据:结束");
     }
 
-    @Scheduled(fixedDelay = 60*60*1000)
+    @Scheduled(fixedDelay = 2*60*60*1000)
     //@Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodityXYY()throws Exception {
-        System.out.println("取药帮忙数据:开始");
-        List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("18163798584");
-        for(MyGoodsEntity myGoodsEntity:list)
-        {
-            khzlService.insertYZYGOODS(myGoodsEntity);
-            khzlService.insertYZYGOODSP(myGoodsEntity);
+        try {
+            System.out.println("取药帮忙数据:开始");
+            List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("18163798584");
+            for (MyGoodsEntity myGoodsEntity : list) {
+                khzlService.insertYZYGOODS(myGoodsEntity);
+                khzlService.insertYZYGOODSP(myGoodsEntity);
+            }
+            khzlService.updateXYYGWBH();
+            System.out.println("取药帮忙数据:结束");
         }
-        khzlService.updateXYYGWBH();
-        System.out.println("取药帮忙数据:结束");
+        catch (Exception e)
+        {
+            System.out.println("reportCurrentTimeCommodityXYY:"+e.toString());
+        }
     }
 
 }
