@@ -90,7 +90,7 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取华源YYN品种数据:结束");
     }
 
-    @Scheduled(fixedDelay = 2*60*60*1000)
+    @Scheduled(fixedDelay = 60*60*1000)
     //@Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodityXYY()throws Exception {
         try {
