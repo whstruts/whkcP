@@ -67,7 +67,7 @@ import java.util.List;
             }
             else
                 return;
-            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
+            khzlService.updatexyyddhz(ddhz.getDjbh());//更新订单汇总状态
 
             JSONObject data = JSONObject.fromObject(dd);
 

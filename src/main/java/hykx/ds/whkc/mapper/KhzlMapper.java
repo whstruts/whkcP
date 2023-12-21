@@ -41,7 +41,7 @@ public interface KhzlMapper {
     @Select("select * from ysb_ddmx where djbh = #{djbh} ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
-    @Select("select order_no as djbh,pay_amount as je,merchant_name as drugstoreName from xyy_seller_order_info where is_run = 0 ")
+    @Select("select order_no as djbh,pay_amount as je,merchant_name as drugstoreName,CONVERT(varchar(10),order_create_time,121) as rq,CONVERT(varchar(10),order_create_time,24) as ontime from xyy_seller_order_info where is_run = 0 ")
     public List<ysbddhz> getxyyddhzs();
 
     @Select("select order_no as djbh,id as dj_sn,erp_code as drugCode,sku_pay_price as dj,purchase_num as shl,pay_amount as je from xyy_seller_order_detail where order_no = #{djbh} ")
@@ -50,7 +50,7 @@ public interface KhzlMapper {
     @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 
-    @Update("update xyy_seller_order_info set is_run_hy = 1 where is_run_hy = 0 and order_no = #{djbh}")
+    @Update("update xyy_seller_order_info set is_run = 1 where is_run = 0 and order_no = #{djbh}")
     public void updatexyyddhz(String djbh);
 
     @Update("update YZYGOODS set is_on_sale = 0,updatetime = GETDATE() ")
