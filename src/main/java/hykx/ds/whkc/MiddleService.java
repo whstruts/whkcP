@@ -66,6 +66,6 @@ public class MiddleService {
 
     public static void main(String[] args) throws Exception {
         //GetMyGoodsEntityByUse("18573102130");
-        GetYBMG2MGEByUser("18163798584");
+        GetYBMG2MGEByUser("HNHR");
     }
 }
