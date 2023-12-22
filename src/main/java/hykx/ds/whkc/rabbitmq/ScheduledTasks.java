@@ -107,4 +107,15 @@ import java.util.List;
             log.error("更新ERP_ID到MX", e);
         }
     }
+
+    @Scheduled(fixedDelay = 60*1000)
+    private void UpdateXYYDDMX(){
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            khzlService.UpdateXYYDDMX();
+            System.out.println(df.format(new Date()));
+        }catch (Exception e) {
+            log.error("更新ERP_ID到XYY_MX", e);
+        }
+    }
 }
