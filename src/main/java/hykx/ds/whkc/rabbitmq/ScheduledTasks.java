@@ -63,8 +63,8 @@ import lombok.extern.slf4j.Slf4j;
             log.error("全部华源商品下架", e);
         }
     }
-    @Scheduled(fixedDelay = 60*60*1000)
-    //@Scheduled(fixedDelay = 1000)
+    //@Scheduled(fixedDelay = 60*60*1000)
+    @Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodityYBM()throws Exception {
         System.out.println("取中台数据:开始");
         List<MyGoodsEntity> list = MiddleService.GetMyGoodsEntityByUse("HNWH");

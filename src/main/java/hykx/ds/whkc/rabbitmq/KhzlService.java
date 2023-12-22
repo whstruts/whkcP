@@ -38,10 +38,12 @@ public class KhzlService {
         {
             khzlMapper.updateYZYGOODS(yzygoods);
             khzlMapper.updateYZYGOODSFIX(yzygoods);
+            System.out.println("更新ERP数据:"+yzygoods.toString());
         }
         else {
             khzlMapper.insertYZYGOODS(yzygoods);
             khzlMapper.insertYZYGOODS_FIX(yzygoods);
+            System.out.println("新增ERP数据:"+yzygoods.toString());
         }
     }
 
