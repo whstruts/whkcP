@@ -75,4 +75,7 @@ public interface KhzlMapper {
     @Update("update a set a.spid = b.erp_id from xyy_seller_order_detail a,YZYGOODS_FIX b where  a.erp_code = b.goods_sn and a.erp_code like 'YSB%' and LEN(b.erp_id)>0 and a.spid is null ")
     void UpdateXYYDDMX();
 
+    @Update("update b set b.erp_id = a.spid from spkfk a,YZYGOODS_FIX b where  a.pizhwh=b.PZWH and a.shpgg=b.GG and a.dw=b.DW and b.erp_id is null ")
+    void UpdateSPID();
+
 }

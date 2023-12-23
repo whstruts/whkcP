@@ -65,4 +65,6 @@ public class KhzlService {
 
     public void UpdateXYYDDMX() { khzlMapper.UpdateXYYDDMX();}
 
+    public void UpdateSPID() { khzlMapper.UpdateSPID();}
+
 }
