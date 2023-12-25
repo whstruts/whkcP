@@ -123,10 +123,10 @@ import java.util.List;
     private void UpdateSPID(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            khzlService.UpdateXYYDDMX();
+            khzlService.UpdateSPID();
             System.out.println(df.format(new Date()));
         }catch (Exception e) {
-            log.error("更新ERP_ID到XYY_MX", e);
+            log.error("更新ERP_ID到YZYGOODS_FIX", e);
         }
     }
 }
