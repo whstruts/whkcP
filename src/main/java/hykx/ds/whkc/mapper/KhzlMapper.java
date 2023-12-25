@@ -59,4 +59,7 @@ public interface KhzlMapper {
             "</foreach>" +
             "</script>"})
     void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
+
+    @Update("update c set c.erp_id = a.spid from spkfk a,YZYGOODS_FIX b,YZYGOODS_FIX c  where a.yspbh = b.goods_sn and b.ypbh = c.ypbh and c.erp_id is null ")
+    void UpdateSPID();
 }
