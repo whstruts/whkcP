@@ -64,6 +64,17 @@ import java.util.List;
         }
 
     @Scheduled(fixedDelay = 60*1000)
+    private void UpdateYSBDDMX(){
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            khzlService.UpdateYSBDDMX();
+            System.out.println(df.format(new Date()));
+        }catch (Exception e) {
+            log.error("更新ERP_ID到MX", e);
+        }
+    }
+
+    @Scheduled(fixedDelay = 60*1000)
     private void UpdateSPID(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
