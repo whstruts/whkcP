@@ -3,6 +3,7 @@ package hykx.ds.whkc.rabbitmq;
 
 import hykx.ds.whkc.bean.ERPddhz;
 import hykx.ds.whkc.bean.ERPddmx;
+import hykx.ds.whkc.entity.MyGoodsEntity;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -17,41 +18,18 @@ public class KhzlService {
     @Autowired
     private KhzlMapper khzlMapper;
 
-    public void ysb_kh2erp() {
-        khzlMapper.ysb_kh2erp();
-    }
-    public void ysb_kh2erp_x() {
-        khzlMapper.ysb_kh2erp_x();
-    }
 
-    public void updateYZYGOODS(){
-        khzlMapper.updateYZYGOODSAll();
-    }
-
-    public void deleteYZYGOODS(){
-        khzlMapper.deleteYZYGOODSAll();
-    }
-
-    public void insertYZYGOODS(YZYGOODS yzygoods){
-        if(khzlMapper.getYZYGOODS(yzygoods.getGoods_id_s())>0)
+    public void insertYZYGOODS(MyGoodsEntity myGoodsEntity){
+        if(khzlMapper.getYZYGOODS(myGoodsEntity.getId())>0)
         {
-            khzlMapper.updateYZYGOODS(yzygoods);
-            khzlMapper.updateYZYGOODSFIX(yzygoods);
+            khzlMapper.updateYZYGOODS(myGoodsEntity);
+            khzlMapper.updateYZYGOODSFIX(myGoodsEntity);
         }
         else {
-            khzlMapper.insertYZYGOODS(yzygoods);
-            khzlMapper.insertYZYGOODS_FIX(yzygoods);
+            khzlMapper.insertYZYGOODS(myGoodsEntity);
+            khzlMapper.insertYZYGOODS_FIX(myGoodsEntity);
         }
     }
-
-    public void insertYZYGOODS_FIX(YZYGOODS yzygoods){
-        khzlMapper.insertYZYGOODS_FIX(yzygoods);
-    }
-
-    public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn){
-        return khzlMapper.getYZYGOODS_FIX(goods_sn);
-    }
-
 
     public void updateysbddhz(String djbh) { khzlMapper.updateysbddhz(djbh);}
 
@@ -64,28 +42,5 @@ public class KhzlService {
     }
 
     public void unOnSale() { khzlMapper.unOnSale();}
-
-    public void batchUpdate(List<YZYGOODS> list){
-      //  khzlMapper.batchUpdate(list);
-    }
-    public void ItoDDHZs(ERPddhz ddhz){
-        khzlMapper.insertDDHZ(ddhz);
-    }
-    public void ItoDDMXs(ERPddmx ddmx){
-        khzlMapper.insertDDMX(ddmx);
-    }
-    public void updateysbddmx(ERPddmx erPddmx){
-        khzlMapper.updateysbddmx(erPddmx);
-    }
-
-    public void insertysbddmxbak(ERPddmx erPddmx){
-        khzlMapper.insertysbddmxbak(erPddmx);
-    }
-
-    public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh) {
-        khzlMapper.DoERPDD(kpbh,cgjhbh,xsjhbh);
-    }
-
-    public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
 
 }

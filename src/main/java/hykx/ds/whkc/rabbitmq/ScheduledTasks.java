@@ -1,5 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
+import hykx.ds.whkc.MiddleService;
+import hykx.ds.whkc.entity.MyGoodsEntity;
 import hykx.ds.whkc.entity.ysbdd;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -25,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
+            ddhz.setUserName("HNYZT");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -42,13 +45,13 @@ import lombok.extern.slf4j.Slf4j;
 
             String context = data.toString();
 
-            String routeKey = "topic.HBLZOrder";
+            String routeKey = "topic.MIDOrder";
 
             String exchange = "topicExchange";
 
             context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
-            System.out.println("sendHBLZOrder : " + context);
+            System.out.println("sendMIDOrder : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
@@ -63,4 +66,21 @@ import lombok.extern.slf4j.Slf4j;
             log.error("全部华源商品下架", e);
         }
     }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityXYY()throws Exception {
+        try {
+            System.out.println("取药帮忙数据:开始");
+            List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("HNHR");
+            for (MyGoodsEntity myGoodsEntity : list) {
+                khzlService.insertYZYGOODS(myGoodsEntity);
+            }
+            System.out.println("取药帮忙数据:结束");
+        }
+        catch (Exception e)
+        {
+            System.out.println("reportCurrentTimeCommodityXYY:"+e.toString());
+        }
+    }
+
 }
