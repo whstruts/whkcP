@@ -71,7 +71,7 @@ import lombok.extern.slf4j.Slf4j;
     public void reportCurrentTimeCommodityXYY()throws Exception {
         try {
             System.out.println("取药帮忙数据:开始");
-            List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("HNHR");
+            List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("HNYZT");
             for (MyGoodsEntity myGoodsEntity : list) {
                 khzlService.insertYZYGOODS(myGoodsEntity);
             }
