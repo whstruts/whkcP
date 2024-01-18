@@ -39,7 +39,10 @@ public class MiddleService {
             MyGoodsEntity myGoodsEntity = new MyGoodsEntity();
             myGoodsEntity.setId(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
             myGoodsEntity.setYpbh(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
-            myGoodsEntity.setSl(ybmGoods.getKcsl());
+            if(0<ybmGoods.getKcsl_xg()&&ybmGoods.getKcsl_xg()<ybmGoods.getKcsl())
+                myGoodsEntity.setSl(ybmGoods.getKcsl_xg());
+            else
+                myGoodsEntity.setSl(ybmGoods.getKcsl());
             myGoodsEntity.setScrq(ybmGoods.getScrq());
             myGoodsEntity.setYxq(ybmGoods.getXq());
             myGoodsEntity.setUpdateTime(ybmGoods.getUpdatedate());
@@ -50,7 +53,10 @@ public class MiddleService {
             myGoodsEntity.setDw(ybmGoods.getPack());
             myGoodsEntity.setJx(ybmGoods.getJx());
             myGoodsEntity.setPzwh(ybmGoods.getPzwh());
-            myGoodsEntity.setZbz(String.valueOf(ybmGoods.getZbz()));
+            if(ybmGoods.getKcsl_qg()>ybmGoods.getZbz())
+                myGoodsEntity.setZbz(String.valueOf(ybmGoods.getKcsl_qg()));
+            else
+                myGoodsEntity.setZbz(String.valueOf(ybmGoods.getZbz()));
             myGoodsEntity.setBz(String.valueOf(ybmGoods.getBz()));
             myGoodsEntity.setIsretail(1);
             myGoodsEntity.setPh(" ");
