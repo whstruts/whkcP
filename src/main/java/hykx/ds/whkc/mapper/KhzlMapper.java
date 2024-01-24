@@ -65,4 +65,33 @@ public interface KhzlMapper {
 
     @Update("update c set c.erp_id = a.spid from spkfk a,YZYGOODS_FIX b,YZYGOODS_FIX c  where a.yspbh = b.goods_sn and b.ypbh = c.ypbh and c.erp_id is null ")
     void UpdateSPID();
+
+    @Insert({"<script>" +
+            "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +
+            "INSERT INTO YZYGOODS_TMP(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
+            " VALUES(#{item.goods_sn},#{item.goods_name},#{item.goods_number},#{item.market_price},#{item.shop_price_st},#{item.is_on_sale},#{item.YPDM},#{item.CDMC},#{item.CDDM},#{item.GG},#{item.TXM},#{item.DW},#{item.JX},"+
+            " #{item.PZWH},#{item.BZ},#{item.ZBZ},#{item.YXQ},#{item.PH},#{item.ISRETAIL},#{item.PCH},#{item.SCRQ},#{item.goods_id_s},'0',#{item.ypbh},GETDATE()) "+
+            "</foreach>" +
+            "</script>"})
+    void batchInsert(@Param("goodsList") List<YZYGOODS> goodsList);
+
+    @Delete("DELETE FROM YZYGOODS_TMP")
+    void deleteGoodsTmp();
+
+    @Insert("INSERT INTO YZYGOODS(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,spbh,is_sy,ypbh,erp_id,updatetime) " +
+            "SELECT goods_sn,goods_name,goods_number,market_price,shop_price,1,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,spbh,is_sy,ypbh,erp_id,updatetime " +
+            "FROM YZYGOODS_TMP a WHERE NOT EXISTS (SELECT 1 FROM YZYGOODS b WHERE a.goods_id_s = b.goods_id_s)")
+    void insertTMP2YZYGOODS();
+
+    @Insert("INSERT INTO YZYGOODS_FIX(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,spbh,is_sy,ypbh,erp_id,updatetime) " +
+            "SELECT goods_sn,goods_name,goods_number,market_price,shop_price,1,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,spbh,is_sy,ypbh,erp_id,updatetime " +
+            "FROM YZYGOODS_TMP a WHERE NOT EXISTS (SELECT 1 FROM YZYGOODS_FIX b WHERE a.goods_id_s = b.goods_id_s)")
+    void insertTMP2FIX();
+
+    @Update("UPDATE YZYGOODS " +
+            "SET YZYGOODS.goods_number = YZYGOODS_TMP.goods_number,YZYGOODS.shop_price = YZYGOODS_TMP.shop_price,YZYGOODS.updatetime = GETDATE() " +
+            "FROM YZYGOODS " +
+            "INNER JOIN YZYGOODS_TMP " +
+            "ON YZYGOODS.goods_id_s = YZYGOODS_TMP.goods_id_s ")
+    void updateTMP2YZYGOODS();
 }

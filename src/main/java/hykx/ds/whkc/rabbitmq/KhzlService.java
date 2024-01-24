@@ -57,4 +57,23 @@ public class KhzlService {
 
     public void UpdateYSBDDMX() { khzlMapper.UpdateYSBDDMX();}
     public void UpdateSPID() { khzlMapper.UpdateSPID();}
+
+    public void batchInsert(List<YZYGOODS> list){
+        khzlMapper.batchInsert(list);
+    }
+
+    public void deleteGoodsTmp(){
+        khzlMapper.deleteGoodsTmp();
+    }
+
+    public void insertTMP2YZYGOODS(){
+        khzlMapper.insertTMP2YZYGOODS();
+    }
+    public void insertTMP2FIX(){
+        khzlMapper.insertTMP2FIX();
+    }
+    public void updateTMP2YZYGOODS(){
+        khzlMapper.updateTMP2YZYGOODS();
+    }
+
 }

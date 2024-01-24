@@ -1,9 +1,11 @@
 package hykx.ds.whkc.rabbitmq;
 
 
+import hykx.ds.whkc.HYService;
 import hykx.ds.whkc.bean.*;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,8 +20,9 @@ import java.util.List;
         private AmqpTemplate rabbitTemplate;
         @Autowired
         private KhzlService khzlService;
+        private static final int pageSize = 50;
         private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        @Scheduled(fixedDelay = 60*1000)
+        //@Scheduled(fixedDelay = 60*1000)
         public void reportCurrentTime()throws Exception {
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
@@ -52,7 +55,7 @@ import java.util.List;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-        @Scheduled(cron="0 0 3 * * ?")
+        //@Scheduled(cron="0 0 3 * * ?")
         private void DownDrug(){
             try{
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -63,7 +66,7 @@ import java.util.List;
             }
         }
 
-    @Scheduled(fixedDelay = 60*1000)
+    //@Scheduled(fixedDelay = 60*1000)
     private void UpdateYSBDDMX(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -74,7 +77,7 @@ import java.util.List;
         }
     }
 
-    @Scheduled(fixedDelay = 60*1000)
+    //@Scheduled(fixedDelay = 60*1000)
     private void UpdateSPID(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -82,6 +85,43 @@ import java.util.List;
             System.out.println(df.format(new Date()));
         }catch (Exception e) {
             log.error("更新ERP_ID到YZYGOODS_FIX", e);
+        }
+    }
+
+    @Scheduled(fixedDelay = 1000)
+    private void GetHYGoods(){
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            khzlService.deleteGoodsTmp();
+            List<YZYGOODS> goodsList = HYService.GetHYGoods();
+            int listSize = goodsList.size();
+            while (goodsList.size() > 0) {
+                log.info("直取华源数据剩余数据{}条，总数{}", goodsList.size(), listSize);
+                if (goodsList.size() >= pageSize) {
+                    try {
+                        khzlService.batchInsert(goodsList.subList(0, pageSize));
+                    } catch (Exception e) {
+                        log.info("直取华源数据批量写入库存异常",
+                                String.format("直取华源数据剩余数据%d条，总数%d条\n", goodsList.size(), listSize) + ExceptionUtils.getStackTrace(e));
+                    }
+                    goodsList.subList(0, pageSize).clear();
+                } else {
+                    try {
+                        khzlService.batchInsert(goodsList);
+                    } catch (Exception e) {
+                        log.info("直取华源数据批量写入库存异常",
+                                String.format("直取华源数据剩余数据%d条，总数%d条\n", goodsList.size(), listSize) + ExceptionUtils.getStackTrace(e));
+                    }
+                    goodsList.clear();
+                    break;
+                }
+            }
+            khzlService.insertTMP2YZYGOODS();
+            khzlService.insertTMP2FIX();
+            khzlService.updateTMP2YZYGOODS();
+            System.out.println(df.format(new Date()));
+        }catch (Exception e) {
+            log.error("直接取华源数据:", e);
         }
     }
 }
