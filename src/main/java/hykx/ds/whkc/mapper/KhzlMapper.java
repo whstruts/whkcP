@@ -59,4 +59,9 @@ public interface KhzlMapper {
             "</foreach>" +
             "</script>"})
     void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
+    @Update("update ysb_ddmx set cg_dj = #{cgdj},cg_je = #{cgje} where djbh = #{djbh} and drugcode = #{drugcode}")
+    public void updateddmx(ysbddmx ddmx);
+
+    @Update("update ysb_ddhz set status = '已锁定' where djbh = #{djbh} ")
+    public void updateddhz(ysbddhz ddhz);
 }

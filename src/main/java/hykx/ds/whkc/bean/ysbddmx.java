@@ -1,86 +1,9 @@
 package hykx.ds.whkc.bean;
 
+import lombok.Data;
+
+@Data
 public class ysbddmx {
-    public String getDjbh() {
-        return djbh;
-    }
-
-    public void setDjbh(String djbh) {
-        this.djbh = djbh;
-    }
-
-    public String getDj_sn() {
-        return dj_sn;
-    }
-
-    public void setDj_sn(String dj_sn) {
-        this.dj_sn = dj_sn;
-    }
-
-    public String getDrugcode() {
-        return drugcode;
-    }
-
-    public void setDrugcode(String drugcode) {
-        this.drugcode = drugcode;
-    }
-
-    public double getShl() {
-        return shl;
-    }
-
-    public void setShl(double shl) {
-        this.shl = shl;
-    }
-
-    public double getDj() {
-        return dj;
-    }
-
-    public void setDj(double dj) {
-        this.dj = dj;
-    }
-
-    public double getJe() {
-        return je;
-    }
-
-    public void setJe(double je) {
-        this.je = je;
-    }
-
-    public String getBatchnum() {
-        return batchnum;
-    }
-
-    public void setBatchnum(String batchnum) {
-        this.batchnum = batchnum;
-    }
-
-    public String getValidity() {
-        return validity;
-    }
-
-    public void setValidity(String validity) {
-        this.validity = validity;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getIs_zx() {
-        return is_zx;
-    }
-
-    public void setIs_zx(String is_zx) {
-        this.is_zx = is_zx;
-    }
-
     private String djbh;
     private String dj_sn;
     private String drugcode;
@@ -88,8 +11,21 @@ public class ysbddmx {
     private double dj;
     private double je;
     private String batchnum;
+    private String proddate;
     private String validity;
-    private String status;
+    private int status;
     private String is_zx;
-
+    private String HY_ID;
+    private String beizhu;
+    private String ypmc;
+    private String cdmc;
+    private String gg;
+    private String ph;
+    private String yxq;
+    private String pzwh;
+    private String scrq;
+    private double cgdj;
+    private double cgje;
+    private String ypbh;
+    private String dw;
 }
