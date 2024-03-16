@@ -64,4 +64,14 @@ public interface KhzlMapper {
 
     @Update("update ysb_ddhz set status = '已锁定' where djbh = #{djbh} ")
     public void updateddhz(ysbddhz ddhz);
+
+    @Update("UPDATE c SET c.erp_id = a.goodscode FROM yzygoods c " +
+            " join goodsdoc a on a.GoodsName = c.goods_name  " +
+            " JOIN GOODSattr b ON a.GoodsId = b.goodsid  " +
+            " WHERE " +
+            " a.GoodsSpec = c.gg  " +
+            " AND a.Manufacturer = c.cdmc  " +
+            " AND b.ApprovalNo = c.pzwh  " +
+            " AND c.erp_id IS NULL")
+    public void unERPid();
 }

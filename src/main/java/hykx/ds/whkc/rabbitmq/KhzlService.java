@@ -55,4 +55,6 @@ public class KhzlService {
         khzlMapper.batchUpdate(list);
     }
 
+    public void unERPid() { khzlMapper.unERPid();}
+
 }
