@@ -68,7 +68,7 @@ import java.util.List;
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             khzlService.unERPid();
-            System.out.println(df.format(new Date()));
+            System.out.println(df.format(new Date())+"updateERPID");
         }catch (Exception e) {
             log.error("updateERPID", e);
         }
