@@ -53,26 +53,26 @@ import lombok.extern.slf4j.Slf4j;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-    @Scheduled(cron="0 0 1 * * ?")
-    private void DownDrug(){
-        try{
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            khzlService.unOnSale();
-            System.out.println(df.format(new Date()));
-        }catch (Exception e) {
-            log.error("全部华源商品下架", e);
-        }
-    }
-    @Scheduled(fixedDelay = 60*60*1000)
-    //@Scheduled(fixedDelay = 1000)
-    public void reportCurrentTimeCommodityYBM()throws Exception {
-        System.out.println("取中台数据:开始");
-        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("18692180722");
-        System.out.println("取到中台数据:"+list.size()+"行");
-        for(YZYGOODS yzygoods:list)
-        {
-            khzlService.insertYZYGOODS(yzygoods);
-        }
-        System.out.println("取中台数据:结束");
-    }
+//    @Scheduled(cron="0 0 1 * * ?")
+//    private void DownDrug(){
+//        try{
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            khzlService.unOnSale();
+//            System.out.println(df.format(new Date()));
+//        }catch (Exception e) {
+//            log.error("全部华源商品下架", e);
+//        }
+//    }
+//    @Scheduled(fixedDelay = 60*60*1000)
+//    //@Scheduled(fixedDelay = 1000)
+//    public void reportCurrentTimeCommodityYBM()throws Exception {
+//        System.out.println("取中台数据:开始");
+//        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("18692180722");
+//        System.out.println("取到中台数据:"+list.size()+"行");
+//        for(YZYGOODS yzygoods:list)
+//        {
+//            khzlService.insertYZYGOODS(yzygoods);
+//        }
+//        System.out.println("取中台数据:结束");
+//    }
 }
