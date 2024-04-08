@@ -68,6 +68,7 @@ import lombok.extern.slf4j.Slf4j;
     public void reportCurrentTimeCommodityYBM()throws Exception {
         System.out.println("取中台华源诺希数据:开始");
         List<YZYGOODS> list = MiddleService.GetNCGoods("JXRH");
+
         System.out.println("取中台华源诺希数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
