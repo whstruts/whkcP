@@ -65,6 +65,11 @@ public interface KhzlMapper {
     void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
 
 
-    @Select("select * from ysb_ddhz where  is_run_hy = 0 or is_run_hy is null ")
+    @Select("select " +
+            " rtrim(a.GoodsCode) as drugCode, isnull(a.GoodsName,'') as drugName,  isnull(a.GoodsSpec,'') as pack, isnull(a.Manufacturer,'') as factory, isnull(c.unit,'') as unit, isnull(a.barcode,'') as barcode, isnull(b.ApprovalNo,'') as approval, isnull(b.GCategory,'') as busiType," +
+            " isnull(d.stornum,0) as stock, isnull(b.Ysb_Price,9999 )  as price,  1 as step , " +
+            " a.rate as taxRate , 1 as midPack , isnull(c2.Meas,0)  as wholePack,  isnull(b.Ysb_Price,9999 ) as recommendedPrice " +
+            " from GOODSDOC a join GOODSATTR b on a.GoodsId=b.GoodsId left join PGPRICE c on a.GoodsId=c.GoodsId and IsBase='Y' left join PGPRICE c2 on a.GoodsId=c2.GoodsId and c2.IsWmsPack='Y' left join EGBalance d on a.GoodsId=d.GoodsId" +
+            " where b.IsCloseB = 'N'  and a.goodscode not like '%kx%' and d.stornum > 0 and b.Ysb_Price > 0")
     public List<ERP2MIDGoods> getERPGoods();
 }
