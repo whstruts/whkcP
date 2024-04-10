@@ -23,12 +23,12 @@ public class RabbitTopicConfig {
 //
 //    final static String HNWHGoodsAll = "topic.HNWHGoodsAll"; //20230607 whstruts 湖北朗志 全量商品数据
 
-    final static String HNWHGoodsAllPP = "topic.HNWHGoodsAllPP"; //20230805 whstruts 湖北朗志 全量爬虫商品数据
+    final static String ERP2MIDGoods = "topic.ERP2MIDGoods"; //20240411 whstruts 中台服务 ERP商品同步到中台
 
 
 //    @Bean
-//    public Queue queueHNWHOrder() {
-//        return new Queue(RabbitTopicConfig.HNWHOrder);
+//    public Queue queueERP2MIDGoods() {
+//        return new Queue(RabbitTopicConfig.ERP2MIDGoods);
 //    }
 //
 //    @Bean
@@ -47,8 +47,8 @@ public class RabbitTopicConfig {
 //    }
 
     @Bean
-    public Queue queueHNWHGoodsAllPP() {
-        return new Queue(RabbitTopicConfig.HNWHGoodsAllPP);
+    public Queue queueERP2MIDGoods() {
+        return new Queue(RabbitTopicConfig.ERP2MIDGoods);
     }
 
 
@@ -74,8 +74,8 @@ public class RabbitTopicConfig {
 //    }
 
     @Bean
-    Binding bindingExchangeHNWHGoodsAllPP(Queue queueHNWHGoodsAllPP, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHNWHGoodsAllPP).to(topicExchange).with("topic.HNWHGoodsAllPP");
+    Binding bindingExchangeERP2MIDGoods(Queue queueERP2MIDGoods, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueERP2MIDGoods).to(topicExchange).with("topic.ERP2MIDGoods");
     }
 
 

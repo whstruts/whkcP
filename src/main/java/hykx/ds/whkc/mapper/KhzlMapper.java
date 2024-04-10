@@ -1,5 +1,6 @@
 package hykx.ds.whkc.mapper;
 
+import hykx.ds.whkc.entity.ERP2MIDGoods;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -62,4 +63,8 @@ public interface KhzlMapper {
             "</foreach>" +
             "</script>"})
     void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
+
+
+    @Select("select * from ysb_ddhz where  is_run_hy = 0 or is_run_hy is null ")
+    public List<ERP2MIDGoods> getERPGoods();
 }

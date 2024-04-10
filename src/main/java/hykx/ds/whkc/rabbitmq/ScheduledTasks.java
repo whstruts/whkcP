@@ -76,4 +76,21 @@ import lombok.extern.slf4j.Slf4j;
         }
         System.out.println("取中台华源诺希数据:结束");
     }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeERP2M()throws Exception {
+        List<ERP2MIDGoods> erp2MIDGoodsList = khzlService.getERPGoods();
+        for (int i = 0; i < erp2MIDGoodsList.size(); i++) {
+            ERP2MIDGoods erp2MIDGoods = erp2MIDGoodsList.get(i);
+            erp2MIDGoods.setPName("HXYY");
+            JSONObject data = JSONObject.fromObject(erp2MIDGoods);
+            System.out.println("ERP2M,data:" + data.toString());
+            String context = data.toString();
+            String routeKey = "topic.ERP2MIDGoods";
+            String exchange = "topicExchange";
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+            System.out.println("sendERP2M : " + context);
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
 }
