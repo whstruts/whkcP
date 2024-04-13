@@ -75,4 +75,19 @@ import lombok.extern.slf4j.Slf4j;
         }
         System.out.println("取中台数据:结束");
     }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    //@Scheduled(fixedDelay = 1000)
+    public void reportCurrentTimeCommodityHY()throws Exception {
+        System.out.println("取中台华源诺希数据:开始");
+        List<YZYGOODS> list = MiddleService.GetNCGoods("YYKR");
+
+        System.out.println("取中台华源诺希数据:"+list.size()+"行");
+        for(YZYGOODS yzygoods:list)
+        {
+            khzlService.insertYZYGOODS(yzygoods);
+        }
+        System.out.println("取中台华源诺希数据:结束");
+    }
+
 }

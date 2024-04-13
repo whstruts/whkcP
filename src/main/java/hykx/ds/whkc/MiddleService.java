@@ -13,9 +13,17 @@ import java.util.List;
 @Service
 public class MiddleService {
     public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetYZYGOODSByUser";
+    public static final String MID_SYN_NC_KC_URL = "http://116.62.46.187:10018/GetNCGoods";
     public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
+        JSONObject jsonObject = JSONObject.parseObject(res);
+        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
+        return yzygoodsList;
+    }
+    public static List<YZYGOODS> GetNCGoods(String userName) throws Exception {
+        String param = "userName=" + userName;
+        String res = HttpUtils.sendGet(MID_SYN_NC_KC_URL, param);
         JSONObject jsonObject = JSONObject.parseObject(res);
         List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
         return yzygoodsList;
