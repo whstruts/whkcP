@@ -71,6 +71,6 @@ public class MiddleService {
 
 
     public static void main(String[] args) throws Exception {
-        GetYBMGoodsByUser("HNYZT");
+        GetYBMG2MGEByUser("HNYZT");
     }
 }
