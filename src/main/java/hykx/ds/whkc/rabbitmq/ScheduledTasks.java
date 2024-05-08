@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("YYKR");
+            ddhz.setUserName("HNYS");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -63,28 +63,39 @@ import lombok.extern.slf4j.Slf4j;
             log.error("全部华源商品下架", e);
         }
     }
-    @Scheduled(fixedDelay = 60*60*1000)
-    //@Scheduled(fixedDelay = 1000)
-    public void reportCurrentTimeCommodityYBM()throws Exception {
-        System.out.println("取中台数据:开始");
-        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("18692180722");
-        System.out.println("取到中台数据:"+list.size()+"行");
-        for(YZYGOODS yzygoods:list)
-        {
-            khzlService.insertYZYGOODS(yzygoods);
-        }
-        System.out.println("取中台数据:结束");
-    }
+//    @Scheduled(fixedDelay = 60*60*1000)
+//    //@Scheduled(fixedDelay = 1000)
+//    public void reportCurrentTimeCommodityYBM()throws Exception {
+//        System.out.println("取中台数据:开始");
+//        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("18692180722");
+//        System.out.println("取到中台数据:"+list.size()+"行");
+//        for(YZYGOODS yzygoods:list)
+//        {
+//            khzlService.insertYZYGOODS(yzygoods);
+//        }
+//        System.out.println("取中台数据:结束");
+//    }
 
     @Scheduled(fixedDelay = 60*60*1000)
     //@Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodityHY()throws Exception {
         System.out.println("取中台华源诺希数据:开始");
-        List<YZYGOODS> list = MiddleService.GetNCGoods("YYKR");
+        List<YZYGOODS> list = MiddleService.GetNCGoods("HNYS");
 
         System.out.println("取中台华源诺希数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
+            if(yzygoods.getPCH()==null) continue;
+            if(yzygoods.getTXM()==null) continue;
+            if(yzygoods.getOtc()==null) continue;
+            if(yzygoods.getYPDM()==null) continue;
+            if(yzygoods.getJX()==null) continue;
+            if(yzygoods.getPZWH()==null) continue;
+            if(yzygoods.getCDDM()==null) continue;
+            if(yzygoods.getPH()==null) continue;
+            if(yzygoods.getYXQ()==null) continue;
+            if(yzygoods.getSCRQ()==null) continue;
+            if(yzygoods.getGG()==null) continue;
             khzlService.insertYZYGOODS(yzygoods);
         }
         System.out.println("取中台华源诺希数据:结束");
