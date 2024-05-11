@@ -85,17 +85,17 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取中台华源诺希数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
-            if(yzygoods.getPCH()==null) continue;
-            if(yzygoods.getTXM()==null) continue;
-            if(yzygoods.getOtc()==null) continue;
-            if(yzygoods.getYPDM()==null) continue;
-            if(yzygoods.getJX()==null) continue;
-            if(yzygoods.getPZWH()==null) continue;
-            if(yzygoods.getCDDM()==null) continue;
-            if(yzygoods.getPH()==null) continue;
-            if(yzygoods.getYXQ()==null) continue;
-            if(yzygoods.getSCRQ()==null) continue;
-            if(yzygoods.getGG()==null) continue;
+            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
+            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+            if(yzygoods.getJX()==null) yzygoods.setJX("");
+            if(yzygoods.getPZWH()==null) yzygoods.setPZWH("");
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+            if(yzygoods.getPH()==null) yzygoods.setPH("");
+            if(yzygoods.getYXQ()==null) yzygoods.setYXQ("");
+            if(yzygoods.getSCRQ()==null) yzygoods.setSCRQ("");
+            if(yzygoods.getGG()==null) yzygoods.setGG("");
             khzlService.insertYZYGOODS(yzygoods);
         }
         System.out.println("取中台华源诺希数据:结束");
