@@ -47,6 +47,12 @@ public interface KhzlMapper {
     @Update("update ysb_ddhz set is_run_hy = 1 where djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 
+    @Update("update ysb_ddhz set is_run_hy = #{is_run} where djbh = #{djbh}")
+    public void updateysbddhz(ysbddhz ysbddhz);
+
+    @Update("update ysb_ddmx set cg_dj = #{cgdj},cg_je = #{cgje} where djbh = #{djbh}")
+    public void updateysbddmx(ysbddmx ysbddmx);
+
     @Update("update YZYGOODS set is_on_sale = 0")
     public void unOnSale();
 
