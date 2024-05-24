@@ -48,7 +48,7 @@ public interface KhzlMapper {
      public void updateysbddhz(String djbh);
 
     @Update("update ysb_ddhz set is_run_hy = #{is_run} where djbh = #{djbh}")
-    public void updateysbddhz(ysbddhz ysbddhz);
+    public void updateysbddhz2(ysbddhz ysbddhz);
 
     @Update("update ysb_ddmx set cg_dj = #{cgdj},cg_je = #{cgje} where djbh = #{djbh}")
     public void updateysbddmx(ysbddmx ysbddmx);
@@ -68,4 +68,8 @@ public interface KhzlMapper {
             "</foreach>" +
             "</script>"})
     void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
+
+    @Update("update ysb_ddhz set is_run_hy = 2 where djbh not in ( " +
+            "select distinct djbh from ysb_ddmx where drugcode like 'HNYS%') and is_run_hy = 1 ")
+    public void updateNotHYOrder();
 }

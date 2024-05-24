@@ -62,6 +62,8 @@ public class KhzlService {
       //  khzlMapper.batchUpdate(list);
     }
 
-    public void updateysbddhz(ysbddhz hz) { khzlMapper.updateysbddhz(hz);}
+    public void updateysbddhz2(ysbddhz hz) { khzlMapper.updateysbddhz2(hz);}
     public void updateysbddmx(ysbddmx mx) { khzlMapper.updateysbddmx(mx);}
+
+    public void updateNotHYOrder() {khzlMapper.updateNotHYOrder();}
 }

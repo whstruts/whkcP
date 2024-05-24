@@ -31,7 +31,7 @@ public class MiddleService {
         return yzygoodsList;
     }
     public static List<ysbdd> GetOrderForBackWrite(String userName) throws Exception {
-        String param = "userName=" + userName;
+        String param = "user=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_NC_ORDER_BACK_WRITE_URL, param);
         JSONObject jsonObject = JSONObject.parseObject(res);
         List<ysbdd> ysbdds = jsonObject.getJSONArray("data").toJavaList(ysbdd.class);

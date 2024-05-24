@@ -106,7 +106,7 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取中台华源诺希订单数据:开始");
         List<ysbdd> list = MiddleService.GetOrderForBackWrite("HNYS");
         list.forEach(dd -> {
-            khzlService.updateysbddhz(dd.getYsbddhz());
+            khzlService.updateysbddhz2(dd.getYsbddhz());
             dd.getYsbddmxes().forEach(mx->{
                 khzlService.updateysbddmx(mx);
             });
@@ -114,6 +114,8 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取中台华源诺希订单数据:"+list.size()+"行");
 
         System.out.println("取中台华源诺希订单数据:结束");
+        khzlService.updateNotHYOrder();
+        System.out.println("更新ERP非华源订单状态:结束");
     }
 
 
