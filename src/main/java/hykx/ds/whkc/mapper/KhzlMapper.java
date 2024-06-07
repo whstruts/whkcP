@@ -23,12 +23,12 @@ public interface KhzlMapper {
     void deleteYZYGOODSAll();
     @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,CDMC,GG,DW,JX,PZWH,BZ,ZBZ,YXQ,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
             " VALUES(#{id},#{ypmc},#{sl},#{lsj},#{dj},1,#{cdmc},#{gg},#{dw},#{jx},"+
-            " #{pzwh},#{bz},#{zbz},#{yxq},#{isretail},#{pch},#{scrq},#{id},#{ypbh},sysdate)")
+            " #{pzwh},300,#{zbz},#{yxq},#{isretail},#{pch},#{scrq},#{id},#{ypbh},sysdate)")
     void insertYZYGOODS(MyGoodsEntity yzygoods);
 
     @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,CDMC,GG,DW,JX,PZWH,BZ,ZBZ,YXQ,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
             " VALUES(#{id},#{ypmc},#{sl},#{lsj},#{dj},1,#{cdmc},#{gg},#{dw},#{jx},"+
-            " #{pzwh},#{bz},#{zbz},#{yxq},#{isretail},#{pch},#{scrq},#{id},#{ypbh},sysdate)")
+            " #{pzwh},300,#{zbz},#{yxq},#{isretail},#{pch},#{scrq},#{id},#{ypbh},sysdate)")
     void insertYZYGOODS_FIX(MyGoodsEntity yzygoods);
 
 
