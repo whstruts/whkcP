@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("HNYS");
+            ddhz.setUserName("HNMY");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -76,46 +76,57 @@ import lombok.extern.slf4j.Slf4j;
 //        System.out.println("取中台数据:结束");
 //    }
 
-    @Scheduled(fixedDelay = 60*60*1000)
-    //@Scheduled(fixedDelay = 1000)
-    public void reportCurrentTimeCommodityHY()throws Exception {
-        System.out.println("取中台华源诺希数据:开始");
-        List<YZYGOODS> list = MiddleService.GetNCGoods("HNYS");
+//    @Scheduled(fixedDelay = 60*60*1000)
+//    //@Scheduled(fixedDelay = 1000)
+//    public void reportCurrentTimeCommodityHY()throws Exception {
+//        System.out.println("取中台华源诺希数据:开始");
+//        List<YZYGOODS> list = MiddleService.GetNCGoods("HNYS");
+//
+//        System.out.println("取中台华源诺希数据:"+list.size()+"行");
+//        for(YZYGOODS yzygoods:list)
+//        {
+//            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+//            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
+//            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+//            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+//            if(yzygoods.getJX()==null) yzygoods.setJX("");
+//            if(yzygoods.getPZWH()==null) yzygoods.setPZWH("");
+//            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+//            if(yzygoods.getPH()==null) yzygoods.setPH("");
+//            if(yzygoods.getYXQ()==null) yzygoods.setYXQ("");
+//            if(yzygoods.getSCRQ()==null) yzygoods.setSCRQ("");
+//            if(yzygoods.getGG()==null) yzygoods.setGG("");
+//            khzlService.insertYZYGOODS(yzygoods);
+//        }
+//        System.out.println("取中台华源诺希数据:结束");
+//    }
 
-        System.out.println("取中台华源诺希数据:"+list.size()+"行");
-        for(YZYGOODS yzygoods:list)
-        {
-            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
-            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
-            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
-            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
-            if(yzygoods.getJX()==null) yzygoods.setJX("");
-            if(yzygoods.getPZWH()==null) yzygoods.setPZWH("");
-            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
-            if(yzygoods.getPH()==null) yzygoods.setPH("");
-            if(yzygoods.getYXQ()==null) yzygoods.setYXQ("");
-            if(yzygoods.getSCRQ()==null) yzygoods.setSCRQ("");
-            if(yzygoods.getGG()==null) yzygoods.setGG("");
-            khzlService.insertYZYGOODS(yzygoods);
-        }
-        System.out.println("取中台华源诺希数据:结束");
-    }
-
-    @Scheduled(fixedDelay = 5*60*1000)
+//    @Scheduled(fixedDelay = 5*60*1000)
+//    public void reportCurrentTimeCommodityHYOrder()throws Exception {
+//        System.out.println("取中台华源诺希订单数据:开始");
+//        List<ysbdd> list = MiddleService.GetOrderForBackWrite("HNYS");
+//        list.forEach(dd -> {
+//            khzlService.updateysbddhz2(dd.getYsbddhz());
+//            dd.getYsbddmxes().forEach(mx->{
+//                khzlService.updateysbddmx(mx);
+//            });
+//        });
+//        System.out.println("取中台华源诺希订单数据:"+list.size()+"行");
+//
+//        System.out.println("取中台华源诺希订单数据:结束");
+//        khzlService.updateNotHYOrder();
+//        System.out.println("更新ERP非华源订单状态:结束");
+//    }
+    @Scheduled(fixedDelay = 30*60*1000)
     public void reportCurrentTimeCommodityHYOrder()throws Exception {
-        System.out.println("取中台华源诺希订单数据:开始");
-        List<ysbdd> list = MiddleService.GetOrderForBackWrite("HNYS");
-        list.forEach(dd -> {
-            khzlService.updateysbddhz2(dd.getYsbddhz());
-            dd.getYsbddmxes().forEach(mx->{
-                khzlService.updateysbddmx(mx);
-            });
+        System.out.println("取中台小药药商品数据:开始");
+        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HNMY");
+        list.forEach(yzygoods -> {
+            if(yzygoods.getYPDM().isEmpty())
+                yzygoods.setYPDM("");
+            khzlService.insertYZYGOODS(yzygoods);
         });
-        System.out.println("取中台华源诺希订单数据:"+list.size()+"行");
-
-        System.out.println("取中台华源诺希订单数据:结束");
-        khzlService.updateNotHYOrder();
-        System.out.println("更新ERP非华源订单状态:结束");
+        System.out.println("取中台小药药商品数据:"+list.size()+"行");
     }
 
 

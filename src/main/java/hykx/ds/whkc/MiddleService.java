@@ -40,7 +40,7 @@ public class MiddleService {
 
 
     public static void main(String[] args) throws Exception {
-        //GetYZYGOODSByUser("18692180722");
-        GetOrderForBackWrite("HNYS");
+        GetYZYGOODSByUser("HNMY");
+        //GetOrderForBackWrite("HNYS");
     }
 }
