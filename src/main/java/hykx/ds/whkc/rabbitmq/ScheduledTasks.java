@@ -117,13 +117,21 @@ import lombok.extern.slf4j.Slf4j;
 //        khzlService.updateNotHYOrder();
 //        System.out.println("更新ERP非华源订单状态:结束");
 //    }
-    @Scheduled(fixedDelay = 30*60*1000)
-    public void reportCurrentTimeCommodityHYOrder()throws Exception {
+    @Scheduled(fixedDelay = 5*60*1000)
+    public void reportCurrentTimeZTData()throws Exception {
         System.out.println("取中台小药药商品数据:开始");
         List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HNMY");
         list.forEach(yzygoods -> {
-            if(yzygoods.getYPDM().isEmpty())
+            if(yzygoods.getYPDM()==null)
                 yzygoods.setYPDM("");
+            if(yzygoods.getCDDM()==null)
+                yzygoods.setCDDM("");
+            if(yzygoods.getTXM()==null)
+                yzygoods.setTXM("");
+            if(yzygoods.getPCH()==null)
+                yzygoods.setPCH("");
+            if(yzygoods.getPH()==null)
+                yzygoods.setPH("");
             khzlService.insertYZYGOODS(yzygoods);
         });
         System.out.println("取中台小药药商品数据:"+list.size()+"行");

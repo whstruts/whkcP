@@ -20,6 +20,7 @@ public class MiddleService {
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
         JSONObject jsonObject = JSONObject.parseObject(res);
+        //System.out.println("取中台小药药商品数据:"+res);
         List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
         return yzygoodsList;
     }
