@@ -61,15 +61,17 @@ import lombok.extern.slf4j.Slf4j;
             ysbddhz ddhz = listysbddhz.get(i);
             ddhz.setUserName("YYKR");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
-            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
             {
                 dd.setYsbddhz(ddhz);
                 dd.setYsbddmxes(listDDMX);
             }
-            else
+            else {
+                khzlService.updateysbddhz(ddhz.getDjbh());
                 continue;
+            }
+            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
             MiddleService.saveOrder2GY(dd);
         }
     }
