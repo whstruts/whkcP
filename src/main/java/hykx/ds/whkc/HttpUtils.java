@@ -166,7 +166,7 @@ public class HttpUtils
     {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         requestFactory.setConnectTimeout(1000 * 60 * 30);// 设置超时
         requestFactory.setReadTimeout(1000 * 60 * 30);
         RestTemplate restTemplate = new RestTemplate(requestFactory);
