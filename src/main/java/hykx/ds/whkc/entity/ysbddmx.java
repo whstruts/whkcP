@@ -13,7 +13,7 @@ public class ysbddmx {
     private String batchnum;
     private String proddate;
     private String validity;
-    private int status;
+    private String status;
     private String is_zx;
     private String HY_ID;
     private String beizhu;
