@@ -24,7 +24,7 @@ public class KhzlService {
 //    }
 
     public void insertYZYGOODS(YZYGOODS yzygoods){
-        if(khzlMapper.getYZYGOODS(yzygoods.getGoods_id_s())>0)
+        if(khzlMapper.getYZYGOODS(yzygoods.getYpbh())>0)
         {
             khzlMapper.updateYZYGOODS(yzygoods);
             khzlMapper.updateYZYGOODSFIX(yzygoods);
