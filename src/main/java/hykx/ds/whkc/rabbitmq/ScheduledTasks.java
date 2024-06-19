@@ -50,7 +50,7 @@ import lombok.extern.slf4j.Slf4j;
             log.error("全部华源商品下架", e);
         }
     }
-    @Scheduled(fixedDelay = 60*60*1000)
+    @Scheduled(fixedDelay = 30*60*1000)
     public void reportCurrentTimeCommodityHYGY()throws Exception {
         System.out.println("取中台华源工业公司数据:开始");
         List<YZYGOODS> list = MiddleService.GetHYGYGoods("HBNAT");
