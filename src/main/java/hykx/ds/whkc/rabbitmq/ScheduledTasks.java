@@ -140,7 +140,7 @@ import lombok.extern.slf4j.Slf4j;
 //        System.out.println("更新ERP非华源订单状态:结束");
 //    }
 
-    @Scheduled(fixedDelay = 60*60*1000)
+    @Scheduled(fixedDelay = 30*60*1000)
     public void reportCurrentTimeCommodityHYGY()throws Exception {
         System.out.println("取中台华源工业公司数据:开始");
         List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYS");
@@ -148,6 +148,9 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取中台华源工业公司数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM(" ");
+            if(yzygoods.getPCH()==null) yzygoods.setPCH(" ");
+            if(yzygoods.getYpbh()==null) yzygoods.setYpbh(" ");
             khzlService.insertYZYGOODS(yzygoods);
         }
         System.out.println("取中台华源工业公司数据:结束");
