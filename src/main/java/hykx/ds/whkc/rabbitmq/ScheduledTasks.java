@@ -36,6 +36,7 @@ import lombok.extern.slf4j.Slf4j;
             }
             khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
             MiddleService.saveOrder2GY(dd);
+            System.out.println(dd.toString());
         }
     }
 
