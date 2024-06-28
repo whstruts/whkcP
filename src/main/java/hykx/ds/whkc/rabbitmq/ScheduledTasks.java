@@ -71,6 +71,10 @@ import lombok.extern.slf4j.Slf4j;
             List<MyGoodsEntity> list = MiddleService.GetMyGoodsEntityByUse("HNWH");
             for(MyGoodsEntity myGoodsEntity:list)
             {
+                if(myGoodsEntity.getJx()==null)
+                    myGoodsEntity.setJx("");
+                if(myGoodsEntity.getBz()==null)
+                    myGoodsEntity.setBz("300");
                 khzlService.insertYZYGOODS(myGoodsEntity);
             }
             System.out.println("取中台数据:结束");
