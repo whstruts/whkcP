@@ -155,4 +155,20 @@ import lombok.extern.slf4j.Slf4j;
         }
         System.out.println("取中台华源工业公司数据:结束");
     }
+
+    @Scheduled(fixedDelay = 60*1000)
+    public void reportCurrentTimeUpdateYSBDDHZ()throws Exception {
+        System.out.println("更新ERP订单状态:开始");
+        List<ysbddhz> list = khzlService.getysbddhzsx();
+        System.out.println("更新ERP订单状态:"+list.size()+"行");
+        for(ysbddhz ysbddhz:list)
+        {
+           if(khzlService.getddmx(ysbddhz.getDjbh())== khzlService.getddmxx(ysbddhz.getDjbh()))
+           {
+               ysbddhz.setIs_run(2);
+               khzlService.updateysbddhz2(ysbddhz);
+           }
+        }
+        System.out.println("更新ERP订单状态:结束");
+    }
 }

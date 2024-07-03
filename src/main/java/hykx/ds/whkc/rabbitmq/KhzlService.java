@@ -66,4 +66,9 @@ public class KhzlService {
     public void updateysbddmx(ysbddmx mx) { khzlMapper.updateysbddmx(mx);}
 
     public void updateNotHYOrder() {khzlMapper.updateNotHYOrder();}
+
+    public List<ysbddhz> getysbddhzsx(){ return khzlMapper.getysbddhzsx();}
+
+    public int getddmx(String djbh){ return khzlMapper.getddmx(djbh);}
+    public int getddmxx(String djbh){ return khzlMapper.getddmxx(djbh);}
 }

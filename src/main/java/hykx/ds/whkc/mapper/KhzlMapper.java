@@ -72,4 +72,13 @@ public interface KhzlMapper {
     @Update("update ysb_ddhz set is_run_hy = 2 where djbh not in ( " +
             "select distinct djbh from ysb_ddmx where drugcode like 'HNYS%') and is_run_hy = 1 ")
     public void updateNotHYOrder();
+
+    @Select("select * from ysb_ddhz a where exists ( " +
+            "select 1 from ysb_ddmx b where b.drugcode < '400000' and a.djbh = b.djbh and a.is_run_hy = 1) ")
+    public List<ysbddhz> getysbddhzsx();
+
+    @Select("select count(*) from ysb_ddmx where djbh = #{djbh}")
+    public int getddmx(String djbh);
+    @Select("select count(*) from ysb_ddmx where djbh = #{djbh} and drugcode < '400000'")
+    public int getddmxx(String djbh);
 }
