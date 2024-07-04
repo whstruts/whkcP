@@ -13,10 +13,10 @@ import java.util.List;
 public class MiddleService {
     public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetYZYGOODSByUser";
     public static final String MID_SYN_NC_KC_URL = "http://116.62.46.187:10018/GetNCGoods";
-    public static final String MID_SYN_HYGY_KC_URL = "http://111.173.116.31:9020/GetHYGYAllWithSN";
+    public static final String MID_SYN_HYGY_KC_URL = "http://112.124.67.70:9023/GetHYGYAllWithSN";
 
     //public static final String MID_SYN_HYGY_ORDER_URL = "http://localhost:9020/saveOrderGY";
-    public static final String MID_SYN_HYGY_ORDER_URL = "http://111.173.116.31:9020/saveOrderGY";
+    public static final String MID_SYN_HYGY_ORDER_URL = "http://112.124.67.70:9023/saveOrderGY";
     public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
