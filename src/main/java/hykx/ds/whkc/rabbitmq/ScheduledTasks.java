@@ -21,7 +21,7 @@ import java.util.List;
         private static final int pageSize = 50;
         private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedDelay = 60*60*1000)
+    @Scheduled(fixedDelay = 30*60*1000)
     private void GetHYGoods(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
