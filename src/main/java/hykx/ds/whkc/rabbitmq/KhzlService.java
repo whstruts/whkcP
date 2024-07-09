@@ -30,4 +30,6 @@ public class KhzlService {
         khzlMapper.updateTMP2YZYGOODS();
     }
 
+    public void unOnSale() { khzlMapper.unOnSale();}
+
 }

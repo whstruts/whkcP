@@ -57,4 +57,14 @@ import java.util.List;
             log.error("直接取华源数据:", e);
         }
     }
+    @Scheduled(cron="0 0 1 * * ?")
+    private void DownDrug(){
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            khzlService.unOnSale();
+            System.out.println(df.format(new Date()));
+        }catch (Exception e) {
+            log.error("全部华源商品下架", e);
+        }
+    }
 }
