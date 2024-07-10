@@ -89,7 +89,7 @@ public interface KhzlMapper {
     void insertTMP2FIX();
 
     @Update("UPDATE YZYGOODS " +
-            "SET YZYGOODS.goods_number = YZYGOODS_TMP.goods_number,YZYGOODS.shop_price = YZYGOODS_TMP.shop_price,YZYGOODS.updatetime = GETDATE() " +
+            "SET YZYGOODS.goods_number = YZYGOODS_TMP.goods_number,YZYGOODS.shop_price = YZYGOODS_TMP.shop_price,YZYGOODS.is_on_sale = 1,YZYGOODS.updatetime = GETDATE() " +
             "FROM YZYGOODS " +
             "INNER JOIN YZYGOODS_TMP " +
             "ON YZYGOODS.goods_id_s = YZYGOODS_TMP.goods_id_s ")
