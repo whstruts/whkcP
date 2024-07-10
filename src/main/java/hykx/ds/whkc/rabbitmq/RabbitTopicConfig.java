@@ -24,7 +24,7 @@ public class RabbitTopicConfig {
 //    final static String HNWHGoodsAll = "topic.HNWHGoodsAll"; //20230607 whstruts 湖北朗志 全量商品数据
 
     final static String HNWHGoodsAllPP = "topic.HNWHGoodsAllPP"; //20230805 whstruts 湖北朗志 全量爬虫商品数据
-
+    final static String HBNATOrderBack = "topic.HBNATOrderBack";
 
 //    @Bean
 //    public Queue queueHNWHOrder() {
@@ -51,7 +51,10 @@ public class RabbitTopicConfig {
         return new Queue(RabbitTopicConfig.HNWHGoodsAllPP);
     }
 
-
+    @Bean
+    public Queue queueHBNATOrderBack() {
+        return new Queue(RabbitTopicConfig.HBNATOrderBack);
+    }
 
     /**
      * 交换机(Exchange) 描述：接收消息并且转发到绑定的队列，交换机不存储消息
@@ -76,6 +79,11 @@ public class RabbitTopicConfig {
     @Bean
     Binding bindingExchangeHNWHGoodsAllPP(Queue queueHNWHGoodsAllPP, TopicExchange topicExchange) {
         return BindingBuilder.bind(queueHNWHGoodsAllPP).to(topicExchange).with("topic.HNWHGoodsAllPP");
+    }
+
+    @Bean
+    Binding bindingExchangeHBNATOrderBack(Queue queueHBNATOrderBack, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHBNATOrderBack).to(topicExchange).with("topic.HBNATOrderBack");
     }
 
 
