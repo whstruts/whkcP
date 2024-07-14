@@ -27,7 +27,6 @@ public class TopicReceiverDD {
         s_json = message.substring(i_pos);
         JSONObject jsonObject = JSONObject.fromObject(s_json);
         ERPDD dd = (ERPDD) JSONObject.toBean(jsonObject,ERPDD.class);
-        //khzlService.ItoDDHZs(dd.getYsbddhz());
         String aa = jsonObject.get("ysbddmxes").toString();
         JSONArray array = JSONArray.fromObject(aa);
         for(int i=0;i<array.size();i++)
