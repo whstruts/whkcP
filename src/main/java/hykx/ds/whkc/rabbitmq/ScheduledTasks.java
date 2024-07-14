@@ -1,9 +1,12 @@
 package hykx.ds.whkc.rabbitmq;
 
+import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbdd;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
+import hykx.ds.whkc.service.HYService;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -63,4 +66,19 @@ import lombok.extern.slf4j.Slf4j;
             log.error("全部华源商品下架", e);
         }
     }
+
+    @Scheduled(fixedDelay = 30*60*1000)
+    private void GetHYGoods(){
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            List<YZYGOODS> goodsList = HYService.GetHYGoods();
+            goodsList.forEach(yzygoods -> {
+                khzlService.insertYZYGOODS(yzygoods);
+            });
+            System.out.println(df.format(new Date()));
+        }catch (Exception e) {
+            log.error("直接取华源数据:", e);
+        }
+    }
+
 }
