@@ -14,41 +14,41 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class RabbitTopicConfig {
 
 
-    final static String HBLZGoods = "topic.HBLZGoods"; //20230607 whstruts 湖北朗志 商品数据
+    final static String JSSYGoods = "topic.JSSYGoods"; //20230607 whstruts 湖北朗志 商品数据
 
 
-    final static String HBLZOrder = "topic.HBLZOrder"; //20230607 湖北朗志 药师帮订单数据
+    final static String JSSYOrder = "topic.JSSYOrder"; //20230607 湖北朗志 药师帮订单数据
 
-    final static String HBLZOrderBack = "topic.HBLZOrderBack"; //20230607 湖北朗志 药师帮订单数据回写
+    final static String JSSYOrderBack = "topic.JSSYOrderBack"; //20230607 湖北朗志 药师帮订单数据回写
 
-    final static String HBLZGoodsAll = "topic.HBLZGoodsAll"; //20230607 whstruts 湖北朗志 全量商品数据
+    final static String JSSYGoodsAll = "topic.JSSYGoodsAll"; //20230607 whstruts 湖北朗志 全量商品数据
 
-    final static String HBLZGoodsAllPP = "topic.HBLZGoodsAllPP"; //20230805 whstruts 湖北朗志 全量爬虫商品数据
+    final static String JSSYGoodsAllPP = "topic.JSSYGoodsAllPP"; //20230805 whstruts 湖北朗志 全量爬虫商品数据
 
 
     @Bean
-    public Queue queueHBLZOrder() {
-        return new Queue(RabbitTopicConfig.HBLZOrder);
+    public Queue queueJSSYOrder() {
+        return new Queue(RabbitTopicConfig.JSSYOrder);
     }
 
     @Bean
-    public Queue queueHBLZOrderBack() {
-        return new Queue(RabbitTopicConfig.HBLZOrderBack);
+    public Queue queueJSSYOrderBack() {
+        return new Queue(RabbitTopicConfig.JSSYOrderBack);
     }
 
     @Bean
-    public Queue queueHBLZGoods() {
-        return new Queue(RabbitTopicConfig.HBLZGoods);
+    public Queue queueJSSYGoods() {
+        return new Queue(RabbitTopicConfig.JSSYGoods);
     }
 
     @Bean
-    public Queue queueHBLZGoodsAll() {
-        return new Queue(RabbitTopicConfig.HBLZGoodsAll);
+    public Queue queueJSSYGoodsAll() {
+        return new Queue(RabbitTopicConfig.JSSYGoodsAll);
     }
 
     @Bean
-    public Queue queueHBLZGoodsAllPP() {
-        return new Queue(RabbitTopicConfig.HBLZGoodsAllPP);
+    public Queue queueJSSYGoodsAllPP() {
+        return new Queue(RabbitTopicConfig.JSSYGoodsAllPP);
     }
 
 
@@ -64,30 +64,30 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    Binding bindingExchangeHBLZGoods(Queue queueHBLZGoods, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZGoods).to(topicExchange).with("topic.HBLZGoods");
+    Binding bindingExchangeJSSYGoods(Queue queueJSSYGoods, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJSSYGoods).to(topicExchange).with("topic.JSSYGoods");
     }
 
     @Bean
-    Binding bindingExchangeHBLZGoodsAll(Queue queueHBLZGoodsAll, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZGoodsAll).to(topicExchange).with("topic.HBLZGoodsAll");
+    Binding bindingExchangeJSSYGoodsAll(Queue queueJSSYGoodsAll, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJSSYGoodsAll).to(topicExchange).with("topic.JSSYGoodsAll");
     }
 
     @Bean
-    Binding bindingExchangeHBLZGoodsAllPP(Queue queueHBLZGoodsAllPP, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZGoodsAllPP).to(topicExchange).with("topic.HBLZGoodsAllPP");
-    }
-
-
-    @Bean
-    Binding bindingExchangeYSBDDLZ(Queue queueHBLZOrder, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZOrder).to(topicExchange).with("topic.HBLZOrder");
+    Binding bindingExchangeJSSYGoodsAllPP(Queue queueJSSYGoodsAllPP, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJSSYGoodsAllPP).to(topicExchange).with("topic.JSSYGoodsAllPP");
     }
 
 
     @Bean
-    Binding bindingExchangeYSBDDBACK(Queue queueHBLZOrderBack, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZOrderBack).to(topicExchange).with("topic.HBLZOrderBack");
+    Binding bindingExchangeYSBDDLZ(Queue queueJSSYOrder, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJSSYOrder).to(topicExchange).with("topic.JSSYOrder");
+    }
+
+
+    @Bean
+    Binding bindingExchangeYSBDDBACK(Queue queueJSSYOrderBack, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueJSSYOrderBack).to(topicExchange).with("topic.JSSYOrderBack");
     }
 
 

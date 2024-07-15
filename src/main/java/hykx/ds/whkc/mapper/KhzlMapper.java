@@ -16,32 +16,32 @@ public interface KhzlMapper {
 
     @Select("call ysb_kh2erp_x()")
     public void ysb_kh2erp_x();
-    @Update("update jk_hy_kc set is_on_sale = 0 ")
+    @Update("update yzygoods set is_on_sale = 0 ")
     void updateYZYGOODSAll();
-    @Delete("DELETE FROM jk_hy_kc where is_on_sale = 0")
+    @Delete("DELETE FROM yzygoods where is_on_sale = 0")
     void deleteYZYGOODSAll();
-    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+    @Insert("INSERT INTO yzygoods(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
     void insertYZYGOODS(YZYGOODS yzygoods);
 
-    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+    @Insert("INSERT INTO yzygoods_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
     void insertYZYGOODS_FIX(YZYGOODS yzygoods);
 
 
-    @Select("select * from jk_hy_kc_fix where goods_sn = #{goods_sn}")
+    @Select("select * from yzygoods_fix where goods_sn = #{goods_sn}")
     public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn);
 
-    @Select("select count(*) from jk_hy_kc where goods_id_s = #{goods_id_s}")
+    @Select("select count(*) from yzygoods where goods_id_s = #{goods_id_s}")
     public int getYZYGOODS(String goods_id_s);
 
-    @Update("update jk_hy_kc set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
+    @Update("update yzygoods set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODS(YZYGOODS yzygoods);
 
-    @Update("update jk_hy_kc_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
+    @Update("update yzygoods_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
@@ -62,13 +62,13 @@ public interface KhzlMapper {
             " sysdate,1,#{cgdj},#{cgje},1,#{beizhu})")
     public void insertysbddmxbak(ERPddmx erPddmx);
 
-    @Update("update jk_hy_kc set is_on_sale = 0,updatetime = sysdate ")
+    @Update("update yzygoods set is_on_sale = 0,updatetime = sysdate ")
     public void unOnSale();
 
     @Update({"<script>" +
             "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +
             " UPDATE" +
-            " jk_hy_kc" +
+            " yzygoods" +
             "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
             "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
             "  is_on_sale = 1, " +
