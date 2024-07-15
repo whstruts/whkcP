@@ -32,4 +32,14 @@ public class KhzlService {
 
     public void unOnSale() { khzlMapper.unOnSale();}
 
+    public void updateysbddhz(String djbh) { khzlMapper.updateysbddhz(djbh);}
+
+    public List<ysbddhz> getysbddhzs() {
+        return  khzlMapper.getysbddhzs();
+    }
+
+    public List<ysbddmx> getysbddmxbydjbh(String djbh) {
+        return  khzlMapper.getysbddmxbydjbh(djbh);
+    }
+
 }

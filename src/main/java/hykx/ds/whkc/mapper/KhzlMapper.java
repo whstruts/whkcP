@@ -35,13 +35,13 @@ public interface KhzlMapper {
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
-    @Select("select * from ysb_ddhz where is_run_hy = 0 ")
+    @Select("select * from ysb_ddhz where is_run = 0 ")
     public List<ysbddhz> getysbddhzs();
 
     @Select("select * from ysb_ddmx where djbh = #{djbh} ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
-    @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
+    @Update("update ysb_ddhz set is_run = 1 where is_run = 0 and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 
     @Update("update YZYGOODS set is_on_sale = 0,updatetime = GETDATE() ")
