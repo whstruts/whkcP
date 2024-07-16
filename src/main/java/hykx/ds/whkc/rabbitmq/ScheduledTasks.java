@@ -79,6 +79,7 @@ import java.util.List;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
+            System.out.println("GetDjbh:" + ddhz.getDjbh());
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -87,7 +88,7 @@ import java.util.List;
                 dd.setYsbddmxes(listDDMX);
             }
             else
-                return;
+                continue;
             khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
 
             JSONObject data = JSONObject.fromObject(dd);
