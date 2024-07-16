@@ -35,7 +35,8 @@ public interface KhzlMapper {
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
-    @Select("select * from ysb_ddhz where is_run = 0 ")
+    @Select("select a.* from ysb_ddhz a,ysb_ddmx b " +
+            "where a.djbh = b.djbh and a.is_run = 0 and b.drugCode like 'YSB%' ")
     public List<ysbddhz> getysbddhzs();
 
     @Select("select * from ysb_ddmx where djbh = #{djbh} ")
