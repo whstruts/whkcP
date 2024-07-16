@@ -22,12 +22,12 @@ public interface KhzlMapper {
     void deleteYZYGOODSAll();
     @Insert("INSERT INTO yzygoods(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},GetDate())")
     void insertYZYGOODS(YZYGOODS yzygoods);
 
     @Insert("INSERT INTO yzygoods_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},GetDate())")
     void insertYZYGOODS_FIX(YZYGOODS yzygoods);
 
 
@@ -37,11 +37,11 @@ public interface KhzlMapper {
     @Select("select count(*) from yzygoods where goods_id_s = #{goods_id_s}")
     public int getYZYGOODS(String goods_id_s);
 
-    @Update("update yzygoods set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
+    @Update("update yzygoods set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = GetDate() " +
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODS(YZYGOODS yzygoods);
 
-    @Update("update yzygoods_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
+    @Update("update yzygoods_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = GetDate() " +
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
@@ -59,10 +59,10 @@ public interface KhzlMapper {
 
     @Insert("INSERT INTO ysb_ddmx_bak(djbh,dj_sn,drugcode,erp_code,shl,dj,je,batchnum,proddate,validity,status,wholesale_type,is_zx,factkprq,sfhy,cg_dj,cg_je,hy_fkxx_flag,hy_fkxx_msg) "+
             " VALUES(#{djbh},#{dj_sn},#{drugcode},'',#{shl},#{dj},#{shl}*#{dj},#{batchnum},#{proddate},#{validity},#{status},1,'否',"+
-            " sysdate,1,#{cgdj},#{cgje},1,#{beizhu})")
+            " GetDate(),1,#{cgdj},#{cgje},1,#{beizhu})")
     public void insertysbddmxbak(ERPddmx erPddmx);
 
-    @Update("update yzygoods set is_on_sale = 0,updatetime = sysdate ")
+    @Update("update yzygoods set is_on_sale = 0,updatetime = GetDate() ")
     public void unOnSale();
 
     @Update({"<script>" +
@@ -72,7 +72,7 @@ public interface KhzlMapper {
             "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
             "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
             "  is_on_sale = 1, " +
-            "  updatetime = sysdate " +
+            "  updatetime = GetDate() " +
             "   where goods_id_s = #{item.goods_id_s,jdbcType=VARCHAR} " +
             "</foreach>" +
             "</script>"})
@@ -82,7 +82,7 @@ public interface KhzlMapper {
     void insertDDHZ(ERPddhz ddhz);
     @Insert("INSERT INTO jk_cgddmxb(kpbh,ywxh,spmc,spgg,spcd,unit,pzwh,amount,factprice,xfactprice,batchnumber,yxqz,validdate,productdate,fhdd,kprq,factkprq) "+
             " VALUES(#{djbh},SQ_ZT_YWLX.NextVal,#{ypmc},#{gg},#{cdmc},#{dw},#{pzwh},#{shl},#{cgdj},#{dj},#{ph},"+
-            " #{validity},to_date(#{yxq},'yyyymmdd'),to_date(RPAD(#{scrq},10,'-15'),'yyyy-mm-dd'),2,sysdate,sysdate)")
+            " #{validity},to_date(#{yxq},'yyyymmdd'),to_date(RPAD(#{scrq},10,'-15'),'yyyy-mm-dd'),2,GetDate(),GetDate())")
     void insertDDMX(ERPddmx ddmx);
 
     @Select("call proc_of_jk_cgdd(#{kpbh},#{cgjhbh},#{xsjhbh}) ")
