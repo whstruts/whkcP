@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RabbitListener(queues = "topic.HBLZOrderBack")
+@RabbitListener(queues = "topic.HYNXOrderBack")
 public class TopicReceiverDD {
     @Autowired
     private KhzlService khzlService;

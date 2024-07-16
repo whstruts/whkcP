@@ -14,41 +14,41 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 public class RabbitTopicConfig {
 
 
-    final static String HBLZGoods = "topic.HBLZGoods"; //20230607 whstruts 湖北朗志 商品数据
+    final static String HYNXGoods = "topic.HYNXGoods"; //20230607 whstruts 湖北朗志 商品数据
 
 
-    final static String HBLZOrder = "topic.HBLZOrder"; //20230607 湖北朗志 药师帮订单数据
+    final static String HYNXOrder = "topic.HYNXOrder"; //20230607 湖北朗志 药师帮订单数据
 
-    final static String HBLZOrderBack = "topic.HBLZOrderBack"; //20230607 湖北朗志 药师帮订单数据回写
+    final static String HYNXOrderBack = "topic.HYNXOrderBack"; //20230607 湖北朗志 药师帮订单数据回写
 
-    final static String HBLZGoodsAll = "topic.HBLZGoodsAll"; //20230607 whstruts 湖北朗志 全量商品数据
+    final static String HYNXGoodsAll = "topic.HYNXGoodsAll"; //20230607 whstruts 湖北朗志 全量商品数据
 
-    final static String HBLZGoodsAllPP = "topic.HBLZGoodsAllPP"; //20230805 whstruts 湖北朗志 全量爬虫商品数据
+    final static String HYNXGoodsAllPP = "topic.HYNXGoodsAllPP"; //20230805 whstruts 湖北朗志 全量爬虫商品数据
 
 
     @Bean
-    public Queue queueHBLZOrder() {
-        return new Queue(RabbitTopicConfig.HBLZOrder);
+    public Queue queueHYNXOrder() {
+        return new Queue(RabbitTopicConfig.HYNXOrder);
     }
 
     @Bean
-    public Queue queueHBLZOrderBack() {
-        return new Queue(RabbitTopicConfig.HBLZOrderBack);
+    public Queue queueHYNXOrderBack() {
+        return new Queue(RabbitTopicConfig.HYNXOrderBack);
     }
 
     @Bean
-    public Queue queueHBLZGoods() {
-        return new Queue(RabbitTopicConfig.HBLZGoods);
+    public Queue queueHYNXGoods() {
+        return new Queue(RabbitTopicConfig.HYNXGoods);
     }
 
     @Bean
-    public Queue queueHBLZGoodsAll() {
-        return new Queue(RabbitTopicConfig.HBLZGoodsAll);
+    public Queue queueHYNXGoodsAll() {
+        return new Queue(RabbitTopicConfig.HYNXGoodsAll);
     }
 
     @Bean
-    public Queue queueHBLZGoodsAllPP() {
-        return new Queue(RabbitTopicConfig.HBLZGoodsAllPP);
+    public Queue queueHYNXGoodsAllPP() {
+        return new Queue(RabbitTopicConfig.HYNXGoodsAllPP);
     }
 
 
@@ -64,30 +64,30 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    Binding bindingExchangeHBLZGoods(Queue queueHBLZGoods, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZGoods).to(topicExchange).with("topic.HBLZGoods");
+    Binding bindingExchangeHYNXGoods(Queue queueHYNXGoods, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHYNXGoods).to(topicExchange).with("topic.HYNXGoods");
     }
 
     @Bean
-    Binding bindingExchangeHBLZGoodsAll(Queue queueHBLZGoodsAll, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZGoodsAll).to(topicExchange).with("topic.HBLZGoodsAll");
+    Binding bindingExchangeHYNXGoodsAll(Queue queueHYNXGoodsAll, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHYNXGoodsAll).to(topicExchange).with("topic.HYNXGoodsAll");
     }
 
     @Bean
-    Binding bindingExchangeHBLZGoodsAllPP(Queue queueHBLZGoodsAllPP, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZGoodsAllPP).to(topicExchange).with("topic.HBLZGoodsAllPP");
-    }
-
-
-    @Bean
-    Binding bindingExchangeYSBDDLZ(Queue queueHBLZOrder, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZOrder).to(topicExchange).with("topic.HBLZOrder");
+    Binding bindingExchangeHYNXGoodsAllPP(Queue queueHYNXGoodsAllPP, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHYNXGoodsAllPP).to(topicExchange).with("topic.HYNXGoodsAllPP");
     }
 
 
     @Bean
-    Binding bindingExchangeYSBDDBACK(Queue queueHBLZOrderBack, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZOrderBack).to(topicExchange).with("topic.HBLZOrderBack");
+    Binding bindingExchangeYSBDDLZ(Queue queueHYNXOrder, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHYNXOrder).to(topicExchange).with("topic.HYNXOrder");
+    }
+
+
+    @Bean
+    Binding bindingExchangeYSBDDBACK(Queue queueHYNXOrderBack, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHYNXOrderBack).to(topicExchange).with("topic.HYNXOrderBack");
     }
 
 

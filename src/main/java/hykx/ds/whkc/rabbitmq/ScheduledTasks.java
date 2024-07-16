@@ -45,13 +45,13 @@ import lombok.extern.slf4j.Slf4j;
 //
 //            String context = data.toString();
 //
-//            String routeKey = "topic.HBLZOrder";
+//            String routeKey = "topic.HYNXOrder";
 //
 //            String exchange = "topicExchange";
 //
 //            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 //
-//            System.out.println("sendHBLZOrder : " + context);
+//            System.out.println("sendHYNXOrder : " + context);
 //
 //            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
 //        }
