@@ -17,7 +17,7 @@ public class RabbitTopicConfig {
     final static String HBLZGoods = "topic.HBLZGoods"; //20230607 whstruts 湖北朗志 商品数据
 
 
-    final static String HBLZOrder = "topic.HBLZOrder"; //20230607 湖北朗志 药师帮订单数据
+    final static String HBLZOrderX = "topic.HBLZOrderX"; //20230607 湖北朗志 药师帮订单数据
 
     final static String HBLZOrderBack = "topic.HBLZOrderBack"; //20230607 湖北朗志 药师帮订单数据回写
 
@@ -27,8 +27,8 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    public Queue queueHBLZOrder() {
-        return new Queue(RabbitTopicConfig.HBLZOrder);
+    public Queue queueHBLZOrderX() {
+        return new Queue(RabbitTopicConfig.HBLZOrderX);
     }
 
     @Bean
@@ -80,8 +80,8 @@ public class RabbitTopicConfig {
 
 
     @Bean
-    Binding bindingExchangeYSBDDLZ(Queue queueHBLZOrder, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queueHBLZOrder).to(topicExchange).with("topic.HBLZOrder");
+    Binding bindingExchangeYSBDDLZX(Queue queueHBLZOrderX, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueHBLZOrderX).to(topicExchange).with("topic.HBLZOrderX");
     }
 
 
