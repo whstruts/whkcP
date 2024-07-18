@@ -45,13 +45,13 @@ public interface KhzlMapper {
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
-    @Select("select * from ysb_ddhz where is_run_hy = 0 ")
+    @Select("select order_id as djbh,to_char(created,'YYYY-MM-DD') as rq,to_char(created,'HH24:MI:SS') as ontime,payment as je,'否' as is_zx,receiver_name as customerName from  YW_DSDJHZB where  is_run_hy = 0 ")
     public List<ysbddhz> getysbddhzs();
 
-    @Select("select * from ysb_ddmx where djbh = #{djbh} ")
+    @Select("select order_id as \"djbh\",OUTER_IID as \"drugCode\",shl as \"shl\" ,price as \"dj\",TOTAL_FEE as \"je\" from yw_dsdjmxb  where order_id =  #{djbh} ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
-    @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
+    @Update("update YW_DSDJHZB set is_run_hy = 1 where is_run_hy = 0 and order_id = #{djbh}")
      public void updateysbddhz(String djbh);
 
     @Update("update ysb_ddmx set hy_fkxx_flag = #{status},hy_fkxx_msg = #{beizhu},cg_je = #{cgje},cg_dj = #{cgdj} where djbh = #{djbh} and dj_sn = #{dj_sn}")
