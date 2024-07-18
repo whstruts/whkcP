@@ -45,7 +45,7 @@ public interface KhzlMapper {
             "where goods_id_s = #{goods_id_s}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
-    @Select("select order_id as djbh,to_char(created,'YYYY-MM-DD') as rq,to_char(created,'HH24:MI:SS') as ontime,payment as je,'否' as is_zx,receiver_name as customerName from  YW_DSDJHZB where  is_run_hy = 0 ")
+    @Select("select order_id as \"djbh\",to_char(created,'YYYY-MM-DD') as \"rq\",to_char(created,'HH24:MI:SS') as \"ontime\",'已锁定' as \"status\",payment as \"je\",'否' as \"is_zx\",receiver_name as \"customerName\" from  YW_DSDJHZB where  is_run_hy = 0 and order_id is not null")
     public List<ysbddhz> getysbddhzs();
 
     @Select("select order_id as \"djbh\",OUTER_IID as \"drugCode\",shl as \"shl\" ,price as \"dj\",TOTAL_FEE as \"je\" from yw_dsdjmxb  where order_id =  #{djbh} ")
