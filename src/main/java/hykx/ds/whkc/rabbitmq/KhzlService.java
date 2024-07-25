@@ -3,10 +3,7 @@ package hykx.ds.whkc.rabbitmq;
 
 import hykx.ds.whkc.bean.ERPddhz;
 import hykx.ds.whkc.bean.ERPddmx;
-import hykx.ds.whkc.entity.MyGoodsEntity;
-import hykx.ds.whkc.entity.YZYGOODS;
-import hykx.ds.whkc.entity.ysbddhz;
-import hykx.ds.whkc.entity.ysbddmx;
+import hykx.ds.whkc.entity.*;
 import hykx.ds.whkc.mapper.KhzlMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +32,10 @@ public class KhzlService {
 
     public List<ysbddhz> getysbddhzs() {
         return  khzlMapper.getysbddhzs();
+    }
+
+    public List<erpsp> getERPSP() {
+        return  khzlMapper.getERPSP();
     }
 
     public List<ysbddmx> getysbddmxbydjbh(String djbh) {

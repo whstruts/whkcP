@@ -1,10 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
 import hykx.ds.whkc.MiddleService;
-import hykx.ds.whkc.entity.MyGoodsEntity;
-import hykx.ds.whkc.entity.ysbdd;
-import hykx.ds.whkc.entity.ysbddhz;
-import hykx.ds.whkc.entity.ysbddmx;
+import hykx.ds.whkc.entity.*;
 import net.sf.json.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +49,30 @@ import lombok.extern.slf4j.Slf4j;
             context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
             System.out.println("sendMIDOrder : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
+
+    @Scheduled(fixedDelay = 30*60*1000)
+    public void reportCurrentTimeERPSP()throws Exception {
+        List<erpsp> erpsps = khzlService.getERPSP();
+        for (int i = 0; i < erpsps.size(); i++) {
+            erpsp sp = erpsps.get(i);
+
+            JSONObject data = JSONObject.fromObject(sp);
+
+            System.out.println("GetYZTERPGoods,Data:" + data.toString());
+
+            String context = data.toString();
+
+            String routeKey = "topic.YZTERPGoods";
+
+            String exchange = "topicExchange";
+
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+            System.out.println("sendYZTERPGoods : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
