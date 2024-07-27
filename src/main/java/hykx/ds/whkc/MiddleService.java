@@ -14,9 +14,9 @@ import java.util.List;
 @Slf4j
 @Service
 public class MiddleService {
-    public static final String MID_SYN_KC_URL = "http://121.40.203.59:9020/GetMyGoodsEntityByUser";
-    public static final String MID_SYN_KC_YBM_URL = "http://121.40.203.59:9020/GetYBMGoodsByUser";
-    public static final String MID_SYN_HYGY_KC_URL = "http://112.124.67.70:9022/GetHYGYAllWithSN";
+    public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetMyGoodsEntityByUser";
+    public static final String MID_SYN_KC_YBM_URL = "http://116.62.46.187:10018/GetYBMGoodsByUser";
+    public static final String MID_SYN_HYGY_KC_URL = "http://121.40.203.59:9020/GetHYGYAllWithSN";
     public static final String MID_SYN_HYGY_ORDER_URL = "http://121.40.203.59:9020/saveOrderGY";
 
     public static List<MyGoodsEntity> GetMyGoodsEntityByUse(String userName) throws Exception {

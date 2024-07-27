@@ -134,10 +134,14 @@ import lombok.extern.slf4j.Slf4j;
         List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYZT");
 
         System.out.println("取中台华源工业公司数据:"+list.size()+"行");
-        if(list.size()>10000)
-            khzlService.unOnSale();
+//        if(list.size()>10000)
+//            khzlService.unOnSale();
         for(YZYGOODS yzygoods:list)
         {
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+            if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
             khzlService.insertYZYGOODSGY(yzygoods);
         }
         System.out.println("取中台华源工业公司数据:结束");
