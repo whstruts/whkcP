@@ -28,6 +28,18 @@ public class KhzlService {
         }
     }
 
+    public void insertYZYGOODSGY(YZYGOODS myGoodsEntity){
+        if(khzlMapper.getYZYGOODSGY(myGoodsEntity.getGoods_sn())>0)
+        {
+            khzlMapper.updateYZYGOODSGY(myGoodsEntity);
+            khzlMapper.updateYZYGOODSFIXGY(myGoodsEntity);
+        }
+        else {
+            khzlMapper.insertYZYGOODSGY(myGoodsEntity);
+            khzlMapper.insertYZYGOODS_FIXGY(myGoodsEntity);
+        }
+    }
+
     public void updateysbddhz(String djbh) { khzlMapper.updateysbddhz(djbh);}
 
     public List<ysbddhz> getysbddhzs() {

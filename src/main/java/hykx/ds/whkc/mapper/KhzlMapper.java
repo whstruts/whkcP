@@ -1,9 +1,6 @@
 package hykx.ds.whkc.mapper;
 
-import hykx.ds.whkc.entity.MyGoodsEntity;
-import hykx.ds.whkc.entity.erpsp;
-import hykx.ds.whkc.entity.ysbddhz;
-import hykx.ds.whkc.entity.ysbddmx;
+import hykx.ds.whkc.entity.*;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -30,6 +27,37 @@ public interface KhzlMapper {
     @Update("update hydeeif.yzygoods_fix set goods_sn = #{id},goods_name = #{ypmc},goods_number = #{sl},market_price = #{lsj},shop_price = #{dj},is_on_sale = 1,CDMC = #{cdmc},GG = #{gg},DW = #{dw},JX = #{jx},PZWH = #{pzwh},BZ = #{bz},ZBZ = #{zbz},YXQ = #{yxq}, ISRETAIL = #{isretail},PCH = #{pch},SCRQ = #{scrq},ypbh = #{ypbh},updatetime = sysdate  " +
             "where goods_id_s = #{id}")
     public void updateYZYGOODSFIX(MyGoodsEntity yzygoods);
+
+
+    @Insert("INSERT INTO hydeeif.YZYGOODS(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},GETDATE())")
+    void insertYZYGOODSGY(YZYGOODS yzygoods);
+
+    @Insert("INSERT INTO hydeeif.YZYGOODS_FIX(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},GETDATE())")
+    void insertYZYGOODS_FIXGY(YZYGOODS yzygoods);
+
+
+    @Select("select * from hydeeif.YZYGOODS_FIX where goods_sn = #{goods_sn}")
+    public List<YZYGOODS> getYZYGOODS_FIXGY(String goods_sn);
+
+    @Select("select count(*) from hydeeif.YZYGOODS where goods_sn = #{goods_sn}")
+    public int getYZYGOODSGY(String goods_id_s);
+
+    @Update("update hydeeif.YZYGOODS set goods_id_s = #{goods_id_s},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = GETDATE() " +
+            "where goods_sn = #{goods_sn}")
+    public void updateYZYGOODSGY(YZYGOODS yzygoods);
+
+    @Update("update hydeeif.YZYGOODS_FIX set goods_id_s = #{goods_id_s},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = GETDATE() " +
+            "where goods_sn = #{goods_sn}")
+    public void updateYZYGOODSFIXGY(YZYGOODS yzygoods);
+
+
+
+
+
 
     @Select("select * from hydeeif.ysb_ddhz where is_run_hy = 0 ")
     public List<ysbddhz> getysbddhzs();
