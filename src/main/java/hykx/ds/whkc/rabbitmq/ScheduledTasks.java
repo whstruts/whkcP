@@ -97,6 +97,7 @@ import lombok.extern.slf4j.Slf4j;
             System.out.println("取药帮忙数据:开始");
             List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("HNHR");
             for (MyGoodsEntity myGoodsEntity : list) {
+                if(myGoodsEntity.getJx()==null) myGoodsEntity.setJx("");
                 khzlService.insertYZYGOODS(myGoodsEntity);
                 khzlService.insertYZYGOODSP(myGoodsEntity);
             }
