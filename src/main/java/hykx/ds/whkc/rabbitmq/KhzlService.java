@@ -42,4 +42,7 @@ public class KhzlService {
         return  khzlMapper.getysbddmxbydjbh(djbh);
     }
 
+    public void UpdateAllDown() { khzlMapper.UpdateAllDown();}
+    public void UpdateDownByIsUpdate() { khzlMapper.UpdateDownByIsUpdate();}
+
 }
