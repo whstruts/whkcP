@@ -91,5 +91,24 @@ public class ysbddmx {
     private String validity;
     private String status;
     private String is_zx;
+    private double cgdj;
+
+    public double getCgdj() {
+        return cgdj;
+    }
+
+    public void setCgdj(double cgdj) {
+        this.cgdj = cgdj;
+    }
+
+    public double getCgje() {
+        return cgje;
+    }
+
+    public void setCgje(double cgje) {
+        this.cgje = cgje;
+    }
+
+    private double cgje;
 
 }
