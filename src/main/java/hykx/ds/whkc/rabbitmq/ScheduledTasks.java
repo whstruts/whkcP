@@ -72,7 +72,25 @@ import lombok.extern.slf4j.Slf4j;
                 continue;
             }
             khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
-            MiddleService.saveOrder2GY(dd);
+            //MiddleService.saveOrder2GY(dd);
+            //System.out.println("saveOrder2GY,Data:" + dd.toString());
+            //            JSONObject data = JSONObject.fromObject(dd);
+
+            JSONObject data = JSONObject.fromObject(dd);
+
+            System.out.println("GetDD,Name:" + data.toString());
+
+            String context = data.toString();
+
+            String routeKey = "topic.YZTERPOrder";
+
+            String exchange = "topicExchange";
+
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+            System.out.println("sendYZTERPOrder : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
 

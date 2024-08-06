@@ -72,7 +72,7 @@ public interface KhzlMapper {
             " where a.drugcode = b.WARECODE and a.drugcode = c.drugcode and a.drugcode = d.warecode")
     public List<erpsp> getERPSP();
 
-    @Select("select * from hydeeif.ysb_ddmx where djbh = #{djbh} ")
+    @Select("select b.goods_id_s as hy_id,a.* from hydeeif.ysb_ddmx a,hydeeif.yzygoods b where a.djbh = #{djbh} and a.drugcode = b.goods_sn")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
     @Update("update hydeeif.ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
