@@ -53,6 +53,43 @@ import lombok.extern.slf4j.Slf4j;
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
+
+
+    @Scheduled(fixedDelay = 60*1000)
+    public void reportCurrentTimeTest()throws Exception {
+        List<ysbddhz> listysbddhz = khzlService.getysbddhzsTest();
+        for (int i = 0; i < listysbddhz.size(); i++) {
+            ysbddhz ddhz = listysbddhz.get(i);
+            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbhTest(ddhz.getDjbh());
+            ysbdd dd = new ysbdd();
+            if(listDDMX.size()>0)
+            {
+                dd.setYsbddhz(ddhz);
+                dd.setYsbddmxes(listDDMX);
+            }
+            else
+                return;
+            khzlService.updateysbddhzTest(ddhz.getDjbh());//更新订单汇总状态
+
+            JSONObject data = JSONObject.fromObject(dd);
+
+            System.out.println("GetDD,Name:" + data.toString());
+
+            String context = data.toString();
+
+            String routeKey = "topic.JSSYOrder";
+
+            String exchange = "topicExchange";
+
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+            System.out.println("sendJSSYOrder : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+        }
+    }
+
+
     @Scheduled(cron="0 0 1 * * ?")
     private void DownDrug(){
         try{
