@@ -24,4 +24,5 @@ public class erpsp {
     private String validity;
     private String proddate;
     private String setwhlPrice1;
+    private String ownerName;
 }
