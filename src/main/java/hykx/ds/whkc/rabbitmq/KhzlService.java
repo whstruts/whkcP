@@ -56,4 +56,7 @@ public class KhzlService {
 
     public void unOnSale() { khzlMapper.unOnSale();}
 
+    public void updateddmx(ysbddmx mx){khzlMapper.updateddmx(mx);}
+    public void updateddhz(ysbddhz hz){khzlMapper.updateddhz(hz);}
+
 }

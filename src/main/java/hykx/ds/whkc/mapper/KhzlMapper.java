@@ -54,6 +54,12 @@ public interface KhzlMapper {
             "where goods_sn = #{goods_sn}")
     public void updateYZYGOODSFIXGY(YZYGOODS yzygoods);
 
+    @Update("update hydeeif.ysb_ddmx set cg_dj = #{cgdj},cg_je = #{cgje} where djbh = #{djbh} and drugcode = #{drugcode}")
+    public void updateddmx(ysbddmx ddmx);
+
+    @Update("update hydeeif.ysb_ddhz set status = '已锁定' where djbh = #{djbh} ")
+    public void updateddhz(ysbddhz ddhz);
+
 
 
 
