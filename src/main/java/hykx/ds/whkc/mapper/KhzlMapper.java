@@ -89,4 +89,16 @@ public interface KhzlMapper {
     @Update("update hydeeif.yzygoods set is_on_sale = 0,updatetime = sysdate ")
     public void unOnSale();
 
+
+    @Select("select count(*) from hydeeif.ysb_ddhz where djbh = #{djbh}")
+    public int getDDByBH(String djbh);
+
+    @Insert("INSERT INTO hydeeif.ysb_ddhz(djbh,rq,ontime,customerid,status,je,is_zx,is_run_hy) "+
+            " VALUES(#djbh,#rq,#ontime,#customerId,'已提交',#je,'否',1)")
+    void insertYSBDDHZ(ysbddhz ddhz);
+
+    @Insert("INSERT INTO hydeeif.ysb_ddmx(djbh,dj_sn,drugcode,shl,dj,je,is_zx,cg_dj,cg_je) "+
+            " VALUES(#djbh,#dj_sn,#drugcode,#shl,#dj,#je,'否',#cgdj,#cgje)")
+    void insertYSBDDMX(ysbddmx ddmx);
+
 }

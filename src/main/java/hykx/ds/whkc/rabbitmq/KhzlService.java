@@ -59,4 +59,13 @@ public class KhzlService {
     public void updateddmx(ysbddmx mx){khzlMapper.updateddmx(mx);}
     public void updateddhz(ysbddhz hz){khzlMapper.updateddhz(hz);}
 
+    public int getDDByBH(String djbh){return khzlMapper.getDDByBH(djbh);}
+
+    public void insertYSBDDHZ(ysbddhz ddhz){khzlMapper.insertYSBDDHZ(ddhz);}
+
+    public void insertYSBDDMX(ysbddmx ddmx){khzlMapper.insertYSBDDMX(ddmx);}
+
+
+
+
 }
