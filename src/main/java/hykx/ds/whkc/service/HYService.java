@@ -18,8 +18,8 @@ public class HYService {
         List<YZYGOODS> goodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
         return goodsList;
     }
-    public static void main(String[] args) throws Exception {
-        GetHYGoods();
-    }
+//    public static void main(String[] args) throws Exception {
+//        GetHYGoods();
+//    }
 }
 
