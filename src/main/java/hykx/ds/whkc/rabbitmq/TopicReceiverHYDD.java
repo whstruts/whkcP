@@ -29,7 +29,7 @@ public class TopicReceiverHYDD {
         ysbdd dd = (ysbdd) JSONObject.toBean(jsonObject, ysbdd.class);
         String aa = jsonObject.get("ysbddmxes").toString();
         JSONArray array = JSONArray.fromObject(aa);
-        if(khzlService.getDDByBH(dd.getYsbddhz().getDjbh())>0)
+        if(khzlService.getDDByBH(dd.getYsbddhz().getDjbh())==0)
         {
             for(int i=0;i<array.size();i++)
             {

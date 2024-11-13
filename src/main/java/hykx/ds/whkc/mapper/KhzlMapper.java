@@ -94,11 +94,11 @@ public interface KhzlMapper {
     public int getDDByBH(String djbh);
 
     @Insert("INSERT INTO hydeeif.ysb_ddhz(djbh,rq,ontime,customerid,status,je,is_zx,is_run_hy) "+
-            " VALUES(#djbh,#rq,#ontime,#customerId,'已提交',#je,'否',1)")
+            " VALUES(#{djbh},#{rq},#{ontime},#{customerId},#{status},#{je},#{is_zx},1)")
     void insertYSBDDHZ(ysbddhz ddhz);
 
     @Insert("INSERT INTO hydeeif.ysb_ddmx(djbh,dj_sn,drugcode,shl,dj,je,is_zx,cg_dj,cg_je) "+
-            " VALUES(#djbh,#dj_sn,#drugcode,#shl,#dj,#je,'否',#cgdj,#cgje)")
+            " VALUES(#{djbh},#{dj_sn},#{drugcode},#{shl},#{dj},#{je},#{is_zx},#{cgdj},#{cgje})")
     void insertYSBDDMX(ysbddmx ddmx);
 
 }
