@@ -31,6 +31,7 @@ import java.util.List;
     private void GetHYGoods(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            log.info("直接取华源数据开始！");
             khzlService.deleteGoodsTmp();
             List<YZYGOODS> goodsList = HYService.GetHYGoods();
             int listSize = goodsList.size();
@@ -60,6 +61,7 @@ import java.util.List;
             khzlService.insertTMP2FIX();//同时更新新标识字段值
             khzlService.updateTMP2YZYGOODS();//同时更新新标识字段值
             khzlService.UpdateDownByIsUpdate();//根据更新标识字段值是否有变化来更新对应商品的是否在售的字段值
+            log.info("直接取华源数据结束！");
             System.out.println(df.format(new Date()));
         }catch (Exception e) {
             log.error("直接取华源数据:", e);
