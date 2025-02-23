@@ -70,4 +70,25 @@ import lombok.extern.slf4j.Slf4j;
             log.error("reportCurrentTimeCommodityHYGY", e);
         }
     }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityPP()throws Exception {
+        try{
+            System.out.println("取爬虫数据:开始");
+            List<YZYGOODS> list = MiddleService.GetPPGoods("HBNAT");
+
+            System.out.println("取爬虫数据:"+list.size()+"行");
+
+            for(YZYGOODS yzygoods:list)
+            {
+                khzlService.insertYZYGOODS(yzygoods);
+            }
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            System.out.println(df.format(new Date()));
+            System.out.println("取爬虫数据:结束");
+        }catch (Exception e) {
+            log.error("reportCurrentTimeCommodityPP", e);
+        }
+    }
+
 }
