@@ -83,6 +83,7 @@ public class MiddleService {
 //        dd.setYsbddhz(hz);
 //        dd.setYsbddmxes(list);
 //        saveOrder2GY(dd);
-        GetHYGYGoods("HNYS");
+//        GetHYGYGoods("HNYS");
+        GetYZYGOODSByUser("HNDBT");
     }
 }

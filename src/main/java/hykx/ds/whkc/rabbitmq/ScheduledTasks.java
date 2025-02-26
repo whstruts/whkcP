@@ -19,47 +19,12 @@ import lombok.extern.slf4j.Slf4j;
         private AmqpTemplate rabbitTemplate;
         @Autowired
         private KhzlService khzlService;
-//    @Scheduled(fixedDelay = 60*1000)
-//    public void reportCurrentTime()throws Exception {
-//        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
-//        for (int i = 0; i < listysbddhz.size(); i++) {
-//            ysbddhz ddhz = listysbddhz.get(i);
-//            ddhz.setUserName("YYKR");
-//            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
-//            ysbdd dd = new ysbdd();
-//            if(listDDMX.size()>0)
-//            {
-//                dd.setYsbddhz(ddhz);
-//                dd.setYsbddmxes(listDDMX);
-//            }
-//            else
-//                return;
-//            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
-//
-//            JSONObject data = JSONObject.fromObject(dd);
-//
-//            System.out.println("GetDD,Name:" + data.toString());
-//
-//            String context = data.toString();
-//
-//            String routeKey = "topic.MIDOrder";
-//
-//            String exchange = "topicExchange";
-//
-//            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
-//
-//            System.out.println("sendMIDOrder : " + context);
-//
-//            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-//        }
-//    }
-
     @Scheduled(fixedDelay = 60*1000)
-    public void reportCurrentTimeGY()throws Exception {
+    public void reportCurrentTime()throws Exception {
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("HNYS");
+            ddhz.setUserName("HNDBT");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -67,14 +32,49 @@ import lombok.extern.slf4j.Slf4j;
                 dd.setYsbddhz(ddhz);
                 dd.setYsbddmxes(listDDMX);
             }
-            else {
-                khzlService.updateysbddhz(ddhz.getDjbh());
-                continue;
-            }
+            else
+                return;
             khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
-            MiddleService.saveOrder2GY(dd);
+
+            JSONObject data = JSONObject.fromObject(dd);
+
+            System.out.println("GetDD,Name:" + data.toString());
+
+            String context = data.toString();
+
+            String routeKey = "topic.MIDOrder";
+
+            String exchange = "topicExchange";
+
+            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+            System.out.println("sendMIDOrder : " + context);
+
+            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
+
+//    @Scheduled(fixedDelay = 60*1000)
+//    public void reportCurrentTimeGY()throws Exception {
+//        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
+//        for (int i = 0; i < listysbddhz.size(); i++) {
+//            ysbddhz ddhz = listysbddhz.get(i);
+//            ddhz.setUserName("HNYS");
+//            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
+//            ysbdd dd = new ysbdd();
+//            if(listDDMX.size()>0)
+//            {
+//                dd.setYsbddhz(ddhz);
+//                dd.setYsbddmxes(listDDMX);
+//            }
+//            else {
+//                khzlService.updateysbddhz(ddhz.getDjbh());
+//                continue;
+//            }
+//            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
+//            MiddleService.saveOrder2GY(dd);
+//        }
+//    }
     @Scheduled(cron="0 0 1 * * ?")
     private void DownDrug(){
         try{
@@ -85,18 +85,18 @@ import lombok.extern.slf4j.Slf4j;
             log.error("全部华源商品下架", e);
         }
     }
-//    @Scheduled(fixedDelay = 60*60*1000)
-//    //@Scheduled(fixedDelay = 1000)
-//    public void reportCurrentTimeCommodityYBM()throws Exception {
-//        System.out.println("取中台数据:开始");
-//        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("18692180722");
-//        System.out.println("取到中台数据:"+list.size()+"行");
-//        for(YZYGOODS yzygoods:list)
-//        {
-//            khzlService.insertYZYGOODS(yzygoods);
-//        }
-//        System.out.println("取中台数据:结束");
-//    }
+    @Scheduled(fixedDelay = 60*60*1000)
+    //@Scheduled(fixedDelay = 1000)
+    public void reportCurrentTimeCommodityYBM()throws Exception {
+        System.out.println("取中台数据:开始");
+        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HNDBT");
+        System.out.println("取到中台数据:"+list.size()+"行");
+        for(YZYGOODS yzygoods:list)
+        {
+            khzlService.insertYZYGOODS(yzygoods);
+        }
+        System.out.println("取中台数据:结束");
+    }
 
 //    @Scheduled(fixedDelay = 60*60*1000)
 //    //@Scheduled(fixedDelay = 1000)
@@ -140,35 +140,35 @@ import lombok.extern.slf4j.Slf4j;
 //        System.out.println("更新ERP非华源订单状态:结束");
 //    }
 
-    @Scheduled(fixedDelay = 30*60*1000)
-    public void reportCurrentTimeCommodityHYGY()throws Exception {
-        System.out.println("取中台华源工业公司数据:开始");
-        List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYS");
+//    @Scheduled(fixedDelay = 30*60*1000)
+//    public void reportCurrentTimeCommodityHYGY()throws Exception {
+//        System.out.println("取中台华源工业公司数据:开始");
+//        List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYS");
+//
+//        System.out.println("取中台华源工业公司数据:"+list.size()+"行");
+//        for(YZYGOODS yzygoods:list)
+//        {
+//            if(yzygoods.getCDDM()==null) yzygoods.setCDDM(" ");
+//            if(yzygoods.getPCH()==null) yzygoods.setPCH(" ");
+//            if(yzygoods.getYpbh()==null) yzygoods.setYpbh(" ");
+//            khzlService.insertYZYGOODS(yzygoods);
+//        }
+//        System.out.println("取中台华源工业公司数据:结束");
+//    }
 
-        System.out.println("取中台华源工业公司数据:"+list.size()+"行");
-        for(YZYGOODS yzygoods:list)
-        {
-            if(yzygoods.getCDDM()==null) yzygoods.setCDDM(" ");
-            if(yzygoods.getPCH()==null) yzygoods.setPCH(" ");
-            if(yzygoods.getYpbh()==null) yzygoods.setYpbh(" ");
-            khzlService.insertYZYGOODS(yzygoods);
-        }
-        System.out.println("取中台华源工业公司数据:结束");
-    }
-
-    @Scheduled(fixedDelay = 60*1000)
-    public void reportCurrentTimeUpdateYSBDDHZ()throws Exception {
-        System.out.println("更新ERP订单状态:开始");
-        List<ysbddhz> list = khzlService.getysbddhzsx();
-        System.out.println("更新ERP订单状态:"+list.size()+"行");
-        for(ysbddhz ysbddhz:list)
-        {
-           if(khzlService.getddmx(ysbddhz.getDjbh())== khzlService.getddmxx(ysbddhz.getDjbh()))
-           {
-               ysbddhz.setIs_run(2);
-               khzlService.updateysbddhz2(ysbddhz);
-           }
-        }
-        System.out.println("更新ERP订单状态:结束");
-    }
+//    @Scheduled(fixedDelay = 60*1000)
+//    public void reportCurrentTimeUpdateYSBDDHZ()throws Exception {
+//        System.out.println("更新ERP订单状态:开始");
+//        List<ysbddhz> list = khzlService.getysbddhzsx();
+//        System.out.println("更新ERP订单状态:"+list.size()+"行");
+//        for(ysbddhz ysbddhz:list)
+//        {
+//           if(khzlService.getddmx(ysbddhz.getDjbh())== khzlService.getddmxx(ysbddhz.getDjbh()))
+//           {
+//               ysbddhz.setIs_run(2);
+//               khzlService.updateysbddhz2(ysbddhz);
+//           }
+//        }
+//        System.out.println("更新ERP订单状态:结束");
+//    }
 }
