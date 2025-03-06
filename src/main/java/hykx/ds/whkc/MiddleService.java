@@ -29,6 +29,6 @@ public class MiddleService {
         return yzygoodsList;
     }
     public static void main(String[] args) throws Exception {
-        GetYZYGOODSByUser("19079530276");
+        GetYZYGOODSByUser("HBHDYY");
     }
 }

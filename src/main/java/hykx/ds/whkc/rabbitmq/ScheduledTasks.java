@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("JXYMYS");
+            ddhz.setUserName("HBHDYY");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -67,7 +67,7 @@ import lombok.extern.slf4j.Slf4j;
     //@Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodityYBM()throws Exception {
         System.out.println("取中台数据:开始");
-        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("19079530276");
+        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HBHDYY");
         System.out.println("取到中台数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
