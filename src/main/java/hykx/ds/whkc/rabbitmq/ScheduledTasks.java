@@ -1,6 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
 
+import hykx.ds.whkc.MiddleService;
 import hykx.ds.whkc.bean.*;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
@@ -128,5 +129,18 @@ import java.util.List;
         }catch (Exception e) {
             log.error("更新ERP_ID到YZYGOODS_FIX", e);
         }
+    }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityPGBY()throws Exception {
+        System.out.println("取批购包邮数据:开始");
+//        List<YZYGOODS> list = MiddleService.GetHYGYGoods("YYKR");
+//
+//        System.out.println("取批购包邮数据:"+list.size()+"行");
+//        for(YZYGOODS yzygoods:list)
+//        {
+//            khzlService.insertYZYGOODS(yzygoods);
+//        }
+        System.out.println("取批购包邮数据:结束");
     }
 }
