@@ -78,4 +78,17 @@ public interface KhzlMapper {
     @Update("update b set b.erp_id = a.spid from spkfk a,YZYGOODS_FIX b where  a.pizhwh=b.PZWH and a.shpgg=b.GG and a.dw=b.DW and b.erp_id is null ")
     void UpdateSPID();
 
+    @Insert({"<script>",
+            "INSERT INTO YZYGOODS_P (goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) ",
+            "VALUES ",
+            "<foreach collection=\"goodsList\" item=\"item\" separator=\",\">",
+            "(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},\"+\n" +
+                    "            \" #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},GETDATE())",
+            "</foreach>",
+            "</script>"})
+    void batchInsert(@Param("goodsList") List<YZYGOODS> goodsList);
+
+    @Delete("DELETE FROM YZYGOODS_P where is_on_sale = 0")
+    void deleteYZYGOODSAllP();
+
 }

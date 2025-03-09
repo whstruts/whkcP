@@ -67,4 +67,12 @@ public class KhzlService {
 
     public void UpdateSPID() { khzlMapper.UpdateSPID();}
 
+    public void batchInsert(List<YZYGOODS> list){
+        khzlMapper.batchInsert(list);
+    }
+
+    public void deleteYZYGOODSP(){
+        khzlMapper.deleteYZYGOODSAllP();
+    }
+
 }
