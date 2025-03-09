@@ -137,7 +137,11 @@ import java.util.List;
         List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HNYJ");
         int list_size = list.size();
         if(list_size>0) khzlService.deleteYZYGOODSP();
-        khzlService.batchInsert(list);
+        //khzlService.batchInsert(list);
+        list.forEach(yzygoods -> {
+            System.out.println("批购包邮数据:" + yzygoods);
+            khzlService.insertYZYGOODSP(yzygoods);
+        });
         System.out.println("取批购包邮数据:结束");
     }
 }

@@ -79,7 +79,7 @@ public interface KhzlMapper {
     void UpdateSPID();
 
     @Insert({"<script>",
-            "INSERT INTO YZYGOODS_P (goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) ",
+            "INSERT INTO YZYGOODS_P(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) ",
             "VALUES ",
             "<foreach collection=\"goodsList\" item=\"item\" separator=\",\">",
             "(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},\"+\n" +
@@ -90,5 +90,10 @@ public interface KhzlMapper {
 
     @Delete("DELETE FROM YZYGOODS_P where is_on_sale = 0")
     void deleteYZYGOODSAllP();
+
+    @Insert("INSERT INTO YZYGOODS_P(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
+            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},GETDATE())")
+    void insertYZYGOODSP(YZYGOODS yzygoods);
 
 }

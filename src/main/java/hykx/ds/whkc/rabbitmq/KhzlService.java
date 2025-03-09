@@ -74,5 +74,7 @@ public class KhzlService {
     public void deleteYZYGOODSP(){
         khzlMapper.deleteYZYGOODSAllP();
     }
-
+    public void insertYZYGOODSP(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODSP(yzygoods);
+    }
 }
