@@ -72,4 +72,13 @@ public interface KhzlMapper {
     @Update("update ysb_ddhz set is_run_hy = 2 where djbh not in ( " +
             "select distinct djbh from ysb_ddmx where drugcode like 'HNYS%') and is_run_hy = 1 ")
     public void updateNotHYOrder();
+
+    @Delete("DELETE FROM YZYGOODS_P")
+    void deleteYZYGOODSAllP();
+
+    @Insert("INSERT INTO YZYGOODS_P(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
+            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},GETDATE())")
+    void insertYZYGOODSP(YZYGOODS yzygoods);
+
 }

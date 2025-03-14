@@ -66,4 +66,12 @@ public class KhzlService {
     public void updateysbddmx(ysbddmx mx) { khzlMapper.updateysbddmx(mx);}
 
     public void updateNotHYOrder() {khzlMapper.updateNotHYOrder();}
+
+
+    public void deleteYZYGOODSP(){
+        khzlMapper.deleteYZYGOODSAllP();
+    }
+    public void insertYZYGOODSP(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODSP(yzygoods);
+    }
 }
