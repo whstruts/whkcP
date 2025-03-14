@@ -77,4 +77,17 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取中台华源工业公司数据:结束");
     }
 
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityPGBY()throws Exception {
+        System.out.println("取批购包邮数据:开始");
+        List<YZYGOODS> list = MiddleService.GetPGBY("YYKR");
+        int list_size = list.size();
+        if(list_size>0) khzlService.deleteYZYGOODSP();
+        list.forEach(yzygoods -> {
+            System.out.println("批购包邮数据:" + yzygoods);
+            khzlService.insertYZYGOODSP(yzygoods);
+        });
+        System.out.println("取批购包邮数据:结束");
+    }
+
 }
