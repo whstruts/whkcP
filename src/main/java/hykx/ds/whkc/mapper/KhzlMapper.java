@@ -90,4 +90,12 @@ public interface KhzlMapper {
 
     @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
     public void updateERPDD(String kpbh);
+
+    @Delete("DELETE FROM jk_hy_kc_p")
+    void deleteYZYGOODSAllP();
+
+    @Insert("INSERT INTO jk_hy_kc_p(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
+            " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},GETDATE())")
+    void insertYZYGOODSP(YZYGOODS yzygoods);
 }

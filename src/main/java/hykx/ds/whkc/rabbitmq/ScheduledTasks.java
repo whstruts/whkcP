@@ -1,5 +1,7 @@
 package hykx.ds.whkc.rabbitmq;
 
+import hykx.ds.whkc.MiddleService;
+import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbdd;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -62,5 +64,18 @@ import lombok.extern.slf4j.Slf4j;
         }catch (Exception e) {
             log.error("全部华源商品下架", e);
         }
+    }
+
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityPGBY()throws Exception {
+        System.out.println("取批购包邮数据:开始");
+        List<YZYGOODS> list = MiddleService.GetPGBY("HBLZ");
+        int list_size = list.size();
+        if(list_size>0) khzlService.deleteYZYGOODSP();
+        list.forEach(yzygoods -> {
+            System.out.println("批购包邮数据:" + yzygoods);
+            khzlService.insertYZYGOODSP(yzygoods);
+        });
+        System.out.println("取批购包邮数据:结束");
     }
 }
