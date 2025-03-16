@@ -97,5 +97,10 @@ public class KhzlService {
     }
 
     public void updateERPDD(String kpbh) { khzlMapper.updateERPDD(kpbh);}
-
+    public void deleteYZYGOODSP(){
+        khzlMapper.deleteYZYGOODSAllP();
+    }
+    public void insertYZYGOODSP(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODSP(yzygoods);
+    }
 }
