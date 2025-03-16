@@ -101,10 +101,10 @@ public interface KhzlMapper {
             " VALUES(#{djbh},#{dj_sn},#{drugcode},#{shl},#{dj},#{je},#{is_zx},#{cgdj},#{cgje})")
     void insertYSBDDMX(ysbddmx ddmx);
 
-    @Delete("DELETE FROM YZYGOODS_P")
+    @Delete("DELETE FROM hydeeif.yzygoods_p")
     void deleteYZYGOODSAllP();
 
-    @Insert("INSERT INTO YZYGOODS_P(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
+    @Insert("INSERT INTO hydeeif.yzygoods_p(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},sysdate)")
     void insertYZYGOODSP(YZYGOODS yzygoods);
