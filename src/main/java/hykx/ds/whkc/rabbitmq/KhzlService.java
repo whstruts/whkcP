@@ -65,7 +65,12 @@ public class KhzlService {
 
     public void insertYSBDDMX(ysbddmx ddmx){khzlMapper.insertYSBDDMX(ddmx);}
 
-
+    public void deleteYZYGOODSP(){
+        khzlMapper.deleteYZYGOODSAllP();
+    }
+    public void insertYZYGOODSP(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODSP(yzygoods);
+    }
 
 
 }
