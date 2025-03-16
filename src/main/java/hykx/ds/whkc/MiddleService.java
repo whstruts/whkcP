@@ -108,6 +108,6 @@ public class MiddleService {
 
 
     public static void main(String[] args) throws Exception {
-        GetYBMG2MGEByUser("HNYZT");
+        GetPGBY("HNYZT");
     }
 }
