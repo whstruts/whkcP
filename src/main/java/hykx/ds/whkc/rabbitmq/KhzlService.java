@@ -64,4 +64,10 @@ public class KhzlService {
     public void batchUpdate(List<YZYGOODS> list){
       //  khzlMapper.batchUpdate(list);
     }
+    public void deleteYZYGOODSP(){
+        khzlMapper.deleteYZYGOODSAllP();
+    }
+    public void insertYZYGOODSP(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODSP(yzygoods);
+    }
 }
