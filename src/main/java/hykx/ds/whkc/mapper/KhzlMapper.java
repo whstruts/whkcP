@@ -80,7 +80,7 @@ public interface KhzlMapper {
     public List<erpsp> getERPSP();
 
     @Select("select b.goods_id_s as hy_id,a.* from hydeeif.ysb_ddmx a,hydeeif.yzygoods b where a.djbh = #{djbh} and a.drugcode = b.goods_sn" +
-            "union " +
+            " union " +
             "select b.goods_id_s as hy_id,a.* from hydeeif.ysb_ddmx a,hydeeif.yzygoods_p b where a.djbh = #{djbh} and a.drugcode = b.goods_sn")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
