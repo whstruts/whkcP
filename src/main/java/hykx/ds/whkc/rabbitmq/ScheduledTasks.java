@@ -174,6 +174,7 @@ import lombok.extern.slf4j.Slf4j;
         list.forEach(yzygoods -> {
             System.out.println("批购包邮数据:" + yzygoods);
             khzlService.insertYZYGOODSP(yzygoods);
+            khzlService.insertYZYGOODSPGBY(yzygoods);
         });
         System.out.println("取批购包邮数据:结束");
     }

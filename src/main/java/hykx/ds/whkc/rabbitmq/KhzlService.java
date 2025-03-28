@@ -72,5 +72,16 @@ public class KhzlService {
         khzlMapper.insertYZYGOODSP(yzygoods);
     }
 
+    public void insertYZYGOODSPGBY(YZYGOODS myGoodsEntity){
+        if(khzlMapper.getYZYGOODSGY(myGoodsEntity.getGoods_sn())>0)
+        {
+            khzlMapper.updateYZYGOODSGY(myGoodsEntity);
+            khzlMapper.updateYZYGOODSFIXGY(myGoodsEntity);
+        }
+        else {
+            khzlMapper.insertYZYGOODSPGBY(myGoodsEntity);
+            khzlMapper.insertYZYGOODS_FIXPGBY(myGoodsEntity);
+        }
+    }
 
 }
