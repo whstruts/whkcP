@@ -169,8 +169,7 @@ import lombok.extern.slf4j.Slf4j;
     public void reportCurrentTimeCommodityPGBY()throws Exception {
         System.out.println("取批购包邮数据:开始");
         List<YZYGOODS> list = MiddleService.GetPGBY("HNYZT");
-        int list_size = list.size();
-        if(list_size>0) khzlService.deleteYZYGOODSP();
+        khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
             System.out.println("批购包邮数据:" + yzygoods);
             khzlService.insertYZYGOODSP(yzygoods);
