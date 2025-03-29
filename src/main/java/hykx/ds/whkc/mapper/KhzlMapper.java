@@ -34,15 +34,15 @@ public interface KhzlMapper {
     @Select("select * from jk_hy_kc_fix where goods_sn = #{goods_sn}")
     public List<YZYGOODS> getYZYGOODS_FIX(String goods_sn);
 
-    @Select("select count(*) from jk_hy_kc where goods_id_s = #{goods_id_s}")
-    public int getYZYGOODS(String goods_id_s);
+    @Select("select count(*) from jk_hy_kc where goods_sn = #{goods_sn}")
+    public int getYZYGOODS(String goods_sn);
 
     @Update("update jk_hy_kc set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
-            "where goods_id_s = #{goods_id_s}")
+            "where goods_sn = #{goods_sn}")
     public void updateYZYGOODS(YZYGOODS yzygoods);
 
     @Update("update jk_hy_kc_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
-            "where goods_id_s = #{goods_id_s}")
+            "where goods_sn = #{goods_sn}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
     @Select("select * from ysb_ddhz where is_run_hy = 0 ")
