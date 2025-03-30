@@ -21,7 +21,7 @@ public class KhzlService {
     }
 
     public void insertYZYGOODS(YZYGOODS yzygoods){
-        if(khzlMapper.getYZYGOODS(yzygoods.getGoods_id_s())>0)
+        if(khzlMapper.getYZYGOODS(yzygoods.getGoods_sn())>0)
             khzlMapper.updateYZYGOODS(yzygoods);
         else
             khzlMapper.insertYZYGOODS(yzygoods);
@@ -76,5 +76,12 @@ public class KhzlService {
     }
     public void insertYZYGOODSP(YZYGOODS yzygoods){
         khzlMapper.insertYZYGOODSP(yzygoods);
+    }
+
+    public void insertYZYGOODSPGBY(YZYGOODS yzygoods){
+        if(khzlMapper.getYZYGOODS(yzygoods.getGoods_sn())>0)
+            khzlMapper.updateYZYGOODS(yzygoods);
+        else
+            khzlMapper.insertYZYGOODSPGBY(yzygoods);
     }
 }

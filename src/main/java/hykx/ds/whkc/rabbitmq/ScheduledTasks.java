@@ -135,12 +135,11 @@ import java.util.List;
     public void reportCurrentTimeCommodityPGBY()throws Exception {
         System.out.println("取批购包邮数据:开始");
         List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HNYJ");
-        int list_size = list.size();
-        if(list_size>0) khzlService.deleteYZYGOODSP();
-        //khzlService.batchInsert(list);
+        khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
             System.out.println("批购包邮数据:" + yzygoods);
             khzlService.insertYZYGOODSP(yzygoods);
+            khzlService.insertYZYGOODSPGBY(yzygoods);
         });
         System.out.println("取批购包邮数据:结束");
     }
