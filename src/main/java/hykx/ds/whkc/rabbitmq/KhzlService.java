@@ -82,6 +82,8 @@ public class KhzlService {
         if(khzlMapper.getYZYGOODS(yzygoods.getGoods_sn())>0)
             khzlMapper.updateYZYGOODS(yzygoods);
         else
+        {
             khzlMapper.insertYZYGOODSPGBY(yzygoods);
+            khzlMapper.insertYZYGOODS_FIX(yzygoods);}
     }
 }
