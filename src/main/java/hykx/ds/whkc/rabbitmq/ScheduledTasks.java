@@ -89,7 +89,7 @@ import lombok.extern.slf4j.Slf4j;
     //@Scheduled(fixedDelay = 1000)
     public void reportCurrentTimeCommodityYBM()throws Exception {
         System.out.println("取中台数据:开始");
-        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("HNDBT");
+        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("JSDFYY");
         System.out.println("取到中台数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {

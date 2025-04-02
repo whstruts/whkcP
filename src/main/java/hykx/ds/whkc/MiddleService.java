@@ -84,6 +84,6 @@ public class MiddleService {
 //        dd.setYsbddmxes(list);
 //        saveOrder2GY(dd);
 //        GetHYGYGoods("HNYS");
-        GetYZYGOODSByUser("HNDBT");
+        GetYZYGOODSByUser("JSDFYY");
     }
 }
