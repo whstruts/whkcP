@@ -61,14 +61,10 @@ public class KhzlService {
     public void batchUpdate(List<YZYGOODS> list){
       //  khzlMapper.batchUpdate(list);
     }
-
-    public void updateysbddhz2(ysbddhz hz) { khzlMapper.updateysbddhz2(hz);}
-    public void updateysbddmx(ysbddmx mx) { khzlMapper.updateysbddmx(mx);}
-
-    public void updateNotHYOrder() {khzlMapper.updateNotHYOrder();}
-
-    public List<ysbddhz> getysbddhzsx(){ return khzlMapper.getysbddhzsx();}
-
-    public int getddmx(String djbh){ return khzlMapper.getddmx(djbh);}
-    public int getddmxx(String djbh){ return khzlMapper.getddmxx(djbh);}
+    public void deleteYZYGOODSP(){
+        khzlMapper.deleteYZYGOODSAllP();
+    }
+    public void insertYZYGOODSP(YZYGOODS yzygoods){
+        khzlMapper.insertYZYGOODSP(yzygoods);
+    }
 }
