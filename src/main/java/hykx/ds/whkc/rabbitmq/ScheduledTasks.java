@@ -95,8 +95,7 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取中台裂变数据:开始");
         List<YZYGOODS> list = MiddleService.GetPGBYByUser("19079530276");
         System.out.println("取中台裂变数据:"+list.size()+"行");
-        int list_size = list.size();
-        if(list_size>0) khzlService.deleteYZYGOODSP();
+        khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
             System.out.println("取中台裂变数据:" + yzygoods);
             khzlService.insertYZYGOODSP(yzygoods);
