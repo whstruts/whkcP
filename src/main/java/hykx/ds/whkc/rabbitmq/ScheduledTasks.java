@@ -94,6 +94,17 @@ import lombok.extern.slf4j.Slf4j;
         khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
             System.out.println("取中台裂变数据:" + yzygoods);
+            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
+            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+            if(yzygoods.getJX()==null) yzygoods.setJX("");
+            if(yzygoods.getPZWH()==null) yzygoods.setPZWH("");
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+            if(yzygoods.getPH()==null) yzygoods.setPH("");
+            if(yzygoods.getYXQ()==null) yzygoods.setYXQ("");
+            if(yzygoods.getSCRQ()==null) yzygoods.setSCRQ("");
+            if(yzygoods.getGG()==null) yzygoods.setGG("");
             khzlService.insertYZYGOODSP(yzygoods);
         });
         System.out.println("取中台裂变数据:结束");
