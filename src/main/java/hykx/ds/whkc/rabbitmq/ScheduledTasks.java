@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("HNDBT");
+            ddhz.setUserName("CQHQYY");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
@@ -67,7 +67,7 @@ import lombok.extern.slf4j.Slf4j;
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityYBM()throws Exception {
         System.out.println("取中台数据:开始");
-        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("JSDFYY");
+        List<YZYGOODS> list = MiddleService.GetYZYGOODSByUser("CQHQYY");
         System.out.println("取到中台数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
@@ -89,7 +89,7 @@ import lombok.extern.slf4j.Slf4j;
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityPGBY()throws Exception {
         System.out.println("取中台裂变数据:开始");
-        List<YZYGOODS> list = MiddleService.GetPGBYByUser("JSDFYY");
+        List<YZYGOODS> list = MiddleService.GetPGBYByUser("CQHQYY");
         System.out.println("取中台裂变数据:"+list.size()+"行");
         khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
