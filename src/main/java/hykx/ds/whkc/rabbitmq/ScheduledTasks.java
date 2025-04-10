@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("HNDBT");
+            ddhz.setUserName("JSDFYY");
             List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
             ysbdd dd = new ysbdd();
             if(listDDMX.size()>0)
