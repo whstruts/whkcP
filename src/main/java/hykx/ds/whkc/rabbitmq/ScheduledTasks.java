@@ -44,53 +44,17 @@ import lombok.extern.slf4j.Slf4j;
 
             String context = data.toString();
 
-            String routeKey = "topic.JSSYOrder";
+            String routeKey = "topic.HBQJOrder";
 
             String exchange = "topicExchange";
 
             context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
-            System.out.println("sendJSSYOrder : " + context);
+            System.out.println("sendHBQJOrder : " + context);
 
             this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
         }
     }
-
-
-    @Scheduled(fixedDelay = 60*1000)
-    public void reportCurrentTimeTest()throws Exception {
-        List<ysbddhz> listysbddhz = khzlService.getysbddhzsTest();
-        for (int i = 0; i < listysbddhz.size(); i++) {
-            ysbddhz ddhz = listysbddhz.get(i);
-            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbhTest(ddhz.getDjbh());
-            ysbdd dd = new ysbdd();
-            if(listDDMX.size()>0)
-            {
-                dd.setYsbddhz(ddhz);
-                dd.setYsbddmxes(listDDMX);
-            }
-            else
-                return;
-            khzlService.updateysbddhzTest(ddhz.getDjbh());//更新订单汇总状态
-
-            JSONObject data = JSONObject.fromObject(dd);
-
-            System.out.println("GetDD,Name:" + data.toString());
-
-            String context = data.toString();
-
-            String routeKey = "topic.JSSYOrder";
-
-            String exchange = "topicExchange";
-
-            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
-
-            System.out.println("sendJSSYOrder : " + context);
-
-            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-        }
-    }
-
 
     @Scheduled(cron="0 0 1 * * ?")
     private void DownDrug(){
@@ -103,15 +67,15 @@ import lombok.extern.slf4j.Slf4j;
         }
     }
 
-    @Scheduled(fixedDelay = 60*60*1000)
-    public void reportCurrentTimeCommodityPGBY()throws Exception {
-        System.out.println("取批购包邮数据:开始");
-        List<YZYGOODS> list = MiddleService.GetPGBY("JSSY");
-        khzlService.deleteYZYGOODSP();
-        list.forEach(yzygoods -> {
-            System.out.println("批购包邮数据:" + yzygoods);
-            khzlService.insertYZYGOODSP(yzygoods);
-        });
-        System.out.println("取批购包邮数据:结束");
-    }
+//    @Scheduled(fixedDelay = 60*60*1000)
+//    public void reportCurrentTimeCommodityPGBY()throws Exception {
+//        System.out.println("取批购包邮数据:开始");
+//        List<YZYGOODS> list = MiddleService.GetPGBY("HBQJ");
+//        khzlService.deleteYZYGOODSP();
+//        list.forEach(yzygoods -> {
+//            System.out.println("批购包邮数据:" + yzygoods);
+//            khzlService.insertYZYGOODSP(yzygoods);
+//        });
+//        System.out.println("取批购包邮数据:结束");
+//    }
 }

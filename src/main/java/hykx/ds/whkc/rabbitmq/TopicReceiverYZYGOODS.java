@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 @Slf4j
 @Component
-@RabbitListener(queues = "topic.JSSYGoods")
+@RabbitListener(queues = "topic.HBQJGoods")
 public class TopicReceiverYZYGOODS {
     @Autowired
     private KhzlService khzlService;
@@ -50,7 +50,7 @@ public class TopicReceiverYZYGOODS {
             catch (Exception e)
             {
                 System.out.println(e.toString());
-                log.error("topic.JSSYGoods", e);
+                log.error("topic.HBQJGoods", e);
             }
         }
     }

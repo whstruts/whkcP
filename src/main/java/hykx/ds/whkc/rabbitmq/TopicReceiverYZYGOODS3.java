@@ -16,7 +16,7 @@
 //
 //@Slf4j
 //@Component
-//@RabbitListener(queues = "topic.JSSYGoods")
+//@RabbitListener(queues = "topic.HBQJGoods")
 //public class TopicReceiverYZYGOODS3 {
 //    @Autowired
 //    private KhzlService khzlService;
@@ -49,7 +49,7 @@
 //            catch (Exception e)
 //            {
 //                System.out.println(e.toString());
-//                log.error("topic.JSSYGoods", e);
+//                log.error("topic.HBQJGoods", e);
 //            }
 //        }
 //    }

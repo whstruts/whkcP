@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RabbitListener(queues = "topic.JSSYOrderBack")
+@RabbitListener(queues = "topic.HBQJOrderBack")
 public class TopicReceiverDD {
     @Autowired
     private KhzlService khzlService;
@@ -27,7 +27,6 @@ public class TopicReceiverDD {
         s_json = message.substring(i_pos);
         JSONObject jsonObject = JSONObject.fromObject(s_json);
         ERPDD dd = (ERPDD) JSONObject.toBean(jsonObject,ERPDD.class);
-        //khzlService.ItoDDHZs(dd.getYsbddhz());
         String aa = jsonObject.get("ysbddmxes").toString();
         JSONArray array = JSONArray.fromObject(aa);
         for(int i=0;i<array.size();i++)
@@ -37,15 +36,9 @@ public class TopicReceiverDD {
                   mx.setStatus(0);
               else
                   mx.setStatus(1);
-              khzlService.updateysbddmx(mx);
-            if(dd.getYsbddhz().getIs_run() == 5)
-            {
-                //khzlService.insertysbddmxbak(mx);
-            }
+              //khzlService.updateysbddmx(mx);
         }
 
-        //khzlService.DoERPDD(dd.getYsbddhz().getDjbh(),"","");
-        //khzlService.updateERPDD(dd.getYsbddhz().getDjbh());
         System.out.println("接收者 TopicReceiverDD,"+s_json);
         Thread.sleep(10000);
     }

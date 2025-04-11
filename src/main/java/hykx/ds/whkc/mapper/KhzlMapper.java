@@ -1,7 +1,5 @@
 package hykx.ds.whkc.mapper;
 
-import hykx.ds.whkc.bean.ERPddhz;
-import hykx.ds.whkc.bean.ERPddmx;
 import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
@@ -10,12 +8,6 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface KhzlMapper {
-
-    @Select("call ysb_kh2erp()")
-    public void ysb_kh2erp();
-
-    @Select("call ysb_kh2erp_x()")
-    public void ysb_kh2erp_x();
     @Update("update yzygoods set is_on_sale = 0 ")
     void updateYZYGOODSAll();
     @Delete("DELETE FROM yzygoods where is_on_sale = 0")
@@ -48,60 +40,14 @@ public interface KhzlMapper {
     @Select("select * from ysb_ddhz where is_run_hy = 0 ")
     public List<ysbddhz> getysbddhzs();
 
-    @Select("select * from test_ysb_ddhz where is_run_hy = 0 ")
-    public List<ysbddhz> getysbddhzsTest();
-
     @Select("select * from ysb_ddmx where djbh = #{djbh} ")
     public List<ysbddmx> getysbddmxbydjbh(String djbh);
-
-    @Select("select * from test_ysb_ddmx where djbh = #{djbh} ")
-    public List<ysbddmx> getysbddmxbydjbhTest(String djbh);
 
     @Update("update ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
      public void updateysbddhz(String djbh);
 
-    @Update("update test_ysb_ddhz set is_run_hy = 1 where is_run_hy = 0 and djbh = #{djbh}")
-    public void updateysbddhzTest(String djbh);
-
-//    @Update("update ysb_ddmx set hy_fkxx_flag = #{status},hy_fkxx_msg = #{beizhu},cg_je = #{cgje},cg_dj = #{cgdj} where djbh = #{djbh} and dj_sn = #{dj_sn}")
-//    public void updateysbddmx(ERPddmx erPddmx);
-
-    @Update("update ysb_ddmx set status = #{status},cg_je = #{cgje},cg_dj = #{cgdj} where djbh = #{djbh} and dj_sn = #{dj_sn}")
-    public void updateysbddmx(ERPddmx erPddmx);
-
-    @Insert("INSERT INTO ysb_ddmx_bak(djbh,dj_sn,drugcode,erp_code,shl,dj,je,batchnum,proddate,validity,status,wholesale_type,is_zx,factkprq,sfhy,cg_dj,cg_je,status) "+
-            " VALUES(#{djbh},#{dj_sn},#{drugcode},'',#{shl},#{dj},#{shl}*#{dj},#{batchnum},#{proddate},#{validity},#{status},1,'否',"+
-            " GetDate(),1,#{cgdj},#{cgje},1)")
-    public void insertysbddmxbak(ERPddmx erPddmx);
-
     @Update("update yzygoods set is_on_sale = 0,updatetime = GetDate() ")
     public void unOnSale();
-
-    @Update({"<script>" +
-            "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +
-            " UPDATE" +
-            " yzygoods" +
-            "  SET goods_number = #{item.goods_number, jdbcType=INTEGER}, " +
-            "  shop_price = #{item.shop_price_st, jdbcType=DOUBLE}, " +
-            "  is_on_sale = 1, " +
-            "  updatetime = GetDate() " +
-            "   where goods_id_s = #{item.goods_id_s,jdbcType=VARCHAR} " +
-            "</foreach>" +
-            "</script>"})
-    void batchUpdate(@Param("goodsList") List<YZYGOODS> goodsList);
-
-    @Insert("INSERT INTO jk_cgddzb(kpbh,kprq,khcode,khmc,soft,dsfddh,hyzbddh,provide) VALUES(#{djbh},to_date(#{rq},'yyyy-mm-dd'),#{customerId},#{customerName},4,#{xgdjbh},#{hydjbh},'0015')")
-    void insertDDHZ(ERPddhz ddhz);
-    @Insert("INSERT INTO jk_cgddmxb(kpbh,ywxh,spmc,spgg,spcd,unit,pzwh,amount,factprice,xfactprice,batchnumber,yxqz,validdate,productdate,fhdd,kprq,factkprq) "+
-            " VALUES(#{djbh},SQ_ZT_YWLX.NextVal,#{ypmc},#{gg},#{cdmc},#{dw},#{pzwh},#{shl},#{cgdj},#{dj},#{ph},"+
-            " #{validity},to_date(#{yxq},'yyyymmdd'),to_date(RPAD(#{scrq},10,'-15'),'yyyy-mm-dd'),2,GetDate(),GetDate())")
-    void insertDDMX(ERPddmx ddmx);
-
-    @Select("call proc_of_jk_cgdd(#{kpbh},#{cgjhbh},#{xsjhbh}) ")
-    public void DoERPDD(String kpbh,String cgjhbh,String xsjhbh);
-
-    @Update("update jk_cgddzb set is_run = 1 where is_run = 0 and kpbh = #{kpbh}")
-    public void updateERPDD(String kpbh);
 
     @Delete("DELETE FROM YZYGOODS_P")
     void deleteYZYGOODSAllP();

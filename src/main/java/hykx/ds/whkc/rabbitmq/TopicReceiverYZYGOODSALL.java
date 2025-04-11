@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Component
-@RabbitListener(queues = "topic.JSSYGoodsAll")
+@RabbitListener(queues = "topic.HBQJGoodsAll")
 public class TopicReceiverYZYGOODSALL {
     @Autowired
     private KhzlService khzlService;
