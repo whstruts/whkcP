@@ -61,6 +61,8 @@ public class KhzlService {
 
     public int getDDByBH(String djbh){return khzlMapper.getDDByBH(djbh);}
 
+    public int getMX(ysbddmx ddmx){return khzlMapper.getMX(ddmx);}
+
     public void insertYSBDDHZ(ysbddhz ddhz){khzlMapper.insertYSBDDHZ(ddhz);}
 
     public void insertYSBDDMX(ysbddmx ddmx){khzlMapper.insertYSBDDMX(ddmx);}

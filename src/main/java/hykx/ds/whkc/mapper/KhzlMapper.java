@@ -95,6 +95,9 @@ public interface KhzlMapper {
     @Select("select count(*) from hydeeif.ysb_ddhz where djbh = #{djbh}")
     public int getDDByBH(String djbh);
 
+    @Select("select count(*) from hydeeif.ysb_ddmx where djbh = #{djbh} and drugcode = #{drugcode}")
+    public int getMX(ysbddmx ddmx);
+
     @Insert("INSERT INTO hydeeif.ysb_ddhz(djbh,rq,ontime,customerid,status,je,is_zx,is_run_hy) "+
             " VALUES(#{djbh},#{rq},#{ontime},#{customerId},#{status},#{je},#{is_zx},1)")
     void insertYSBDDHZ(ysbddhz ddhz);

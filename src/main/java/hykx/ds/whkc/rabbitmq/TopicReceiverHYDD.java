@@ -31,6 +31,7 @@ public class TopicReceiverHYDD {
         JSONArray array = JSONArray.fromObject(aa);
         if(khzlService.getDDByBH(dd.getYsbddhz().getDjbh())==0)
         {
+            System.out.println("YSBDDMX count"+array.size());
             for(int i=0;i<array.size();i++)
             {
                 ysbddmx mx = (ysbddmx) JSONObject.toBean(JSONObject.fromObject(array.get(i)), ysbddmx.class);
@@ -38,19 +39,30 @@ public class TopicReceiverHYDD {
                 mx.setCgje(mx.getCgje());
                 total = total + mx.getCgje();
                 khzlService.insertYSBDDMX(mx);
+                System.out.println("insertYSBDDMX,"+mx.toString());
             }
             khzlService.insertYSBDDHZ(dd.getYsbddhz());
+            System.out.println("insertYSBDDHZ," + dd.getYsbddhz().toString());
         }
         else {
+            System.out.println("YSBDDMX count"+array.size());
             for(int i=0;i<array.size();i++)
             {
                 ysbddmx mx = (ysbddmx) JSONObject.toBean(JSONObject.fromObject(array.get(i)), ysbddmx.class);
                 mx.setCgdj(mx.getCgdj());
                 mx.setCgje(mx.getCgje());
                 total = total + mx.getCgje();
-                khzlService.updateddmx(mx);
+                if(khzlService.getMX(mx)==0) {
+                    khzlService.insertYSBDDMX(mx);
+                    System.out.println("insertYSBDDMX,"+mx.toString());
+                }
+                else {
+                    khzlService.updateddmx(mx);
+                    System.out.println("updateddmx," + mx.toString());
+                }
             }
             khzlService.updateddhz(dd.getYsbddhz());
+            System.out.println("updateddhz," + dd.getYsbddhz().toString());
 
         }
 

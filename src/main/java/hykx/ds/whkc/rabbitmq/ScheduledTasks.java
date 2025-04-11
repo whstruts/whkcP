@@ -19,41 +19,6 @@ import lombok.extern.slf4j.Slf4j;
         private AmqpTemplate rabbitTemplate;
         @Autowired
         private KhzlService khzlService;
-//    @Scheduled(fixedDelay = 60*1000)
-//    public void reportCurrentTime()throws Exception {
-//        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
-//        for (int i = 0; i < listysbddhz.size(); i++) {
-//            ysbddhz ddhz = listysbddhz.get(i);
-//            ddhz.setUserName("HNYZT");
-//            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
-//            ysbdd dd = new ysbdd();
-//            if(listDDMX.size()>0)
-//            {
-//                dd.setYsbddhz(ddhz);
-//                dd.setYsbddmxes(listDDMX);
-//            }
-//            else
-//                return;
-//            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
-//
-//            JSONObject data = JSONObject.fromObject(dd);
-//
-//            System.out.println("GetDD,Name:" + data.toString());
-//
-//            String context = data.toString();
-//
-//            String routeKey = "topic.MIDOrder";
-//
-//            String exchange = "topicExchange";
-//
-//            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
-//
-//            System.out.println("sendMIDOrder : " + context);
-//
-//            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
-//        }
-//    }
-
     @Scheduled(fixedDelay = 60*1000)
     public void reportCurrentTimeGY()throws Exception {
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
@@ -72,9 +37,6 @@ import lombok.extern.slf4j.Slf4j;
                 continue;
             }
             khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
-            //MiddleService.saveOrder2GY(dd);
-            //System.out.println("saveOrder2GY,Data:" + dd.toString());
-            //            JSONObject data = JSONObject.fromObject(dd);
 
             JSONObject data = JSONObject.fromObject(dd);
 
@@ -152,8 +114,7 @@ import lombok.extern.slf4j.Slf4j;
         List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYZT");
 
         System.out.println("取中台华源工业公司数据:"+list.size()+"行");
-//        if(list.size()>10000)
-//            khzlService.unOnSale();
+
         for(YZYGOODS yzygoods:list)
         {
             if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
