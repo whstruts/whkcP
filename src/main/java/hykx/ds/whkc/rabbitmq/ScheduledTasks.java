@@ -108,78 +108,27 @@ import lombok.extern.slf4j.Slf4j;
         }
         System.out.println("取中台数据:结束");
     }
-
-//    @Scheduled(fixedDelay = 60*60*1000)
-//    //@Scheduled(fixedDelay = 1000)
-//    public void reportCurrentTimeCommodityHY()throws Exception {
-//        System.out.println("取中台华源诺希数据:开始");
-//        List<YZYGOODS> list = MiddleService.GetNCGoods("HNYS");
-//
-//        System.out.println("取中台华源诺希数据:"+list.size()+"行");
-//        for(YZYGOODS yzygoods:list)
-//        {
-//            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
-//            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
-//            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
-//            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
-//            if(yzygoods.getJX()==null) yzygoods.setJX("");
-//            if(yzygoods.getPZWH()==null) yzygoods.setPZWH("");
-//            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
-//            if(yzygoods.getPH()==null) yzygoods.setPH("");
-//            if(yzygoods.getYXQ()==null) yzygoods.setYXQ("");
-//            if(yzygoods.getSCRQ()==null) yzygoods.setSCRQ("");
-//            if(yzygoods.getGG()==null) yzygoods.setGG("");
-//            khzlService.insertYZYGOODS(yzygoods);
-//        }
-//        System.out.println("取中台华源诺希数据:结束");
-//    }
-
-//    @Scheduled(fixedDelay = 5*60*1000)
-//    public void reportCurrentTimeCommodityHYOrder()throws Exception {
-//        System.out.println("取中台华源诺希订单数据:开始");
-//        List<ysbdd> list = MiddleService.GetOrderForBackWrite("HNYS");
-//        list.forEach(dd -> {
-//            khzlService.updateysbddhz2(dd.getYsbddhz());
-//            dd.getYsbddmxes().forEach(mx->{
-//                khzlService.updateysbddmx(mx);
-//            });
-//        });
-//        System.out.println("取中台华源诺希订单数据:"+list.size()+"行");
-//
-//        System.out.println("取中台华源诺希订单数据:结束");
-//        khzlService.updateNotHYOrder();
-//        System.out.println("更新ERP非华源订单状态:结束");
-//    }
-
-//    @Scheduled(fixedDelay = 30*60*1000)
-//    public void reportCurrentTimeCommodityHYGY()throws Exception {
-//        System.out.println("取中台华源工业公司数据:开始");
-//        List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYS");
-//
-//        System.out.println("取中台华源工业公司数据:"+list.size()+"行");
-//        for(YZYGOODS yzygoods:list)
-//        {
-//            if(yzygoods.getCDDM()==null) yzygoods.setCDDM(" ");
-//            if(yzygoods.getPCH()==null) yzygoods.setPCH(" ");
-//            if(yzygoods.getYpbh()==null) yzygoods.setYpbh(" ");
-//            khzlService.insertYZYGOODS(yzygoods);
-//        }
-//        System.out.println("取中台华源工业公司数据:结束");
-//    }
-
-//    @Scheduled(fixedDelay = 60*1000)
-//    public void reportCurrentTimeUpdateYSBDDHZ()throws Exception {
-//        System.out.println("更新ERP订单状态:开始");
-//        List<ysbddhz> list = khzlService.getysbddhzsx();
-//        System.out.println("更新ERP订单状态:"+list.size()+"行");
-//        for(ysbddhz ysbddhz:list)
-//        {
-//           if(khzlService.getddmx(ysbddhz.getDjbh())== khzlService.getddmxx(ysbddhz.getDjbh()))
-//           {
-//               ysbddhz.setIs_run(2);
-//               khzlService.updateysbddhz2(ysbddhz);
-//           }
-//        }
-//        System.out.println("更新ERP订单状态:结束");
-//    }
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityPGBY()throws Exception {
+        System.out.println("取中台裂变数据:开始");
+        List<YZYGOODS> list = MiddleService.GetPGBYByUser("HNZXZH");
+        System.out.println("取中台裂变数据:"+list.size()+"行");
+        khzlService.deleteYZYGOODSP();
+        list.forEach(yzygoods -> {
+            System.out.println("取中台裂变数据:" + yzygoods);
+            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
+            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+            if(yzygoods.getJX()==null) yzygoods.setJX("");
+            if(yzygoods.getPZWH()==null) yzygoods.setPZWH("");
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+            if(yzygoods.getPH()==null) yzygoods.setPH("");
+            if(yzygoods.getYXQ()==null) yzygoods.setYXQ("");
+            if(yzygoods.getSCRQ()==null) yzygoods.setSCRQ("");
+            if(yzygoods.getGG()==null) yzygoods.setGG("");
+            khzlService.insertYZYGOODSP(yzygoods);
+        });
+        System.out.println("取中台裂变数据:结束");
+    }
 }
