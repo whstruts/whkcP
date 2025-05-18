@@ -1,7 +1,9 @@
 package hykx.ds.whkc.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true) // 忽略未知字段
 public class YZYGOODS {
    private String YPDM;
    private int BZ;

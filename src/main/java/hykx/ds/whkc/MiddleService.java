@@ -1,12 +1,13 @@
 package hykx.ds.whkc;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hykx.ds.whkc.entity.*;
+import hykx.ds.whkc.tools.CompressionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -19,56 +20,74 @@ public class MiddleService {
     public static final String MID_SYN_HYGY_ORDER_URL = "http://112.124.67.70:9023/saveOrderGY";
     public static final String MID_SYN_PGBY_KC_URL = "http://112.124.67.70:9023/GetAllPGBY";
     public static final String MID_SYN_PGBY_KC_URL_X = "http://112.124.67.70:9023/GetAllPGBY_X";
-    public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
-        String param = "userName=" + userName;
-        String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
-        JSONObject jsonObject = JSONObject.parseObject(res);
-        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
-        return yzygoodsList;
-    }
-    public static List<YZYGOODS> GetNCGoods(String userName) throws Exception {
-        String param = "userName=" + userName;
-        String res = HttpUtils.sendGet(MID_SYN_NC_KC_URL, param);
-        JSONObject jsonObject = JSONObject.parseObject(res);
-        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
-        return yzygoodsList;
-    }
-    public static List<YZYGOODS> GetHYGYGoods(String userName) throws Exception {
-        String param = "userName=" + userName;
-        String res = HttpUtils.sendGet(MID_SYN_HYGY_KC_URL, param);
-        JSONObject jsonObject = JSONObject.parseObject(res);
-        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
-        return yzygoodsList;
-    }
+//    public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
+//        String param = "userName=" + userName;
+//        String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
+//        JSONObject jsonObject = JSONObject.parseObject(res);
+//        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
+//        return yzygoodsList;
+//    }
+//    public static List<YZYGOODS> GetNCGoods(String userName) throws Exception {
+//        String param = "userName=" + userName;
+//        String res = HttpUtils.sendGet(MID_SYN_NC_KC_URL, param);
+//        JSONObject jsonObject = JSONObject.parseObject(res);
+//        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
+//        return yzygoodsList;
+//    }
+//    public static List<YZYGOODS> GetHYGYGoods(String userName) throws Exception {
+//        String param = "userName=" + userName;
+//        String res = HttpUtils.sendGet(MID_SYN_HYGY_KC_URL, param);
+//        JSONObject jsonObject = JSONObject.parseObject(res);
+//        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
+//        return yzygoodsList;
+//    }
 
 
-    public static JSONObject saveOrder2GY(ysbdd order) throws Exception {
-        try{
-            String res = HttpUtils.getByBody(MID_SYN_HYGY_ORDER_URL,JSONObject.toJSONString(order));
-            JSONObject jsonObject = JSONObject.parseObject(res);
-            return jsonObject;
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-
-    }
+//    public static JSONObject saveOrder2GY(ysbdd order) throws Exception {
+//        try{
+//            String res = HttpUtils.getByBody(MID_SYN_HYGY_ORDER_URL,JSONObject.toJSONString(order));
+//            JSONObject jsonObject = JSONObject.parseObject(res);
+//            return jsonObject;
+//        }
+//        catch (Exception e)
+//        {
+//            return null;
+//        }
+//
+//    }
 
     public static List<YZYGOODS> GetPGBY(String userName) throws Exception {
-        String param = "userName=" + userName;
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> param = new HashMap<>();
+        param.put("userName", userName); // 键为"userName"，值为userName变量
         String res = HttpUtils.sendGet(MID_SYN_PGBY_KC_URL, param);
         JSONObject jsonObject = JSONObject.parseObject(res);
-        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
-        return yzygoodsList;
+        // 4. 解压缩数据
+        String decompressedJson = CompressionUtils.decompress(jsonObject.getBytes("data"));
+
+        // 反序列化为List<YZYGOODS>
+        List<YZYGOODS> goodsList = mapper.readValue(
+                decompressedJson,
+                mapper.getTypeFactory().constructCollectionType(List.class, YZYGOODS.class)
+        );
+        return goodsList;
     }
 
     public static List<YZYGOODS> GetPGBY_X(String userName) throws Exception {
-        String param = "userName=" + userName;
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> param = new HashMap<>();
+        param.put("userName", userName); // 键为"userName"，值为userName变量
         String res = HttpUtils.sendGet(MID_SYN_PGBY_KC_URL_X, param);
         JSONObject jsonObject = JSONObject.parseObject(res);
-        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
-        return yzygoodsList;
+        // 4. 解压缩数据
+        String decompressedJson = CompressionUtils.decompress(jsonObject.getBytes("data"));
+
+        // 反序列化为List<YZYGOODS>
+        List<YZYGOODS> goodsList = mapper.readValue(
+                decompressedJson,
+                mapper.getTypeFactory().constructCollectionType(List.class, YZYGOODS.class)
+        );
+        return goodsList;
     }
 
 
