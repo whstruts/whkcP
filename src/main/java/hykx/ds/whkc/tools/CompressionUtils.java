@@ -2,6 +2,7 @@ package hykx.ds.whkc.tools;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -27,7 +28,7 @@ public class CompressionUtils {
             while ((bytesRead = gzis.read(buffer)) != -1) {
                 bos.write(buffer, 0, bytesRead);
             }
-            return new String(bos.toByteArray());
+            return new String(bos.toByteArray(), StandardCharsets.UTF_8);
         }
     }
 }
