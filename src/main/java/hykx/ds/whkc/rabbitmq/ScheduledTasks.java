@@ -53,19 +53,19 @@ import lombok.extern.slf4j.Slf4j;
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityHYGY()throws Exception {
         try{
-            System.out.println("取中台华源工业公司数据:开始");
-            List<YZYGOODS> list = MiddleService.GetHYGYGoods("HBNAT");
-
-            System.out.println("取中台华源工业公司数据:"+list.size()+"行");
-            if(list.size()>10000)
-                khzlService.unOnSale();
-            for(YZYGOODS yzygoods:list)
-            {
-                khzlService.insertYZYGOODS(yzygoods);
-            }
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            System.out.println(df.format(new Date()));
-            System.out.println("取中台华源工业公司数据:结束");
+//            System.out.println("取中台华源工业公司数据:开始");
+//            List<YZYGOODS> list = MiddleService.GetHYGYGoods("HBNAT");
+//
+//            System.out.println("取中台华源工业公司数据:"+list.size()+"行");
+//            if(list.size()>10000)
+//                khzlService.unOnSale();
+//            for(YZYGOODS yzygoods:list)
+//            {
+//                khzlService.insertYZYGOODS(yzygoods);
+//            }
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            System.out.println(df.format(new Date()));
+//            System.out.println("取中台华源工业公司数据:结束");
 
             System.out.println("取爬虫数据:开始");
 
