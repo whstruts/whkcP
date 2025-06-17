@@ -64,4 +64,5 @@ public class KhzlService {
     public void batchUpdate(List<YZYGOODS> list){
       //  khzlMapper.batchUpdate(list);
     }
+    public void UpdateSPID() { khzlMapper.UpdateSPID();}
 }
