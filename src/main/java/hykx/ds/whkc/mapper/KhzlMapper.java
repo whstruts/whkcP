@@ -65,4 +65,10 @@ public interface KhzlMapper {
 
     @Update("update b set b.erp_id = a.spid from spkfk a,YZYGOODS_FIX b where  a.pizhwh=b.PZWH and a.shpgg=b.GG and a.dw=b.DW and b.erp_id is null ")
     void UpdateSPID();
+
+    @Update("update ysb_ddmx set drugCode_w = drugCode where drugCode like '%WHL' and drugCode_w is null ")
+    void UpdateDrugCode();
+
+    @Update("update mx set mx.drugCode = y.erp_id from ysb_ddmx mx,YZYGOODS_FIX y where mx.drugCode_w = y.goods_sn and mx.drugCode_w is not null and y.erp_id is not null ")
+    void UpdateDrugCodeX();
 }
