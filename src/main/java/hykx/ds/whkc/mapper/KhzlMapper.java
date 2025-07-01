@@ -20,14 +20,14 @@ public interface KhzlMapper {
     void updateYZYGOODSAll();
     @Delete("DELETE FROM jk_hy_kc where is_on_sale = 0")
     void deleteYZYGOODSAll();
-    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime,isTraceCode) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,#{isTraceCode})")
     void insertYZYGOODS(YZYGOODS yzygoods);
 
-    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime) "+
+    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime,isTraceCode) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,#{isTraceCode})")
     void insertYZYGOODS_FIX(YZYGOODS yzygoods);
 
 
@@ -37,11 +37,11 @@ public interface KhzlMapper {
     @Select("select count(*) from jk_hy_kc where goods_sn = #{goods_sn}")
     public int getYZYGOODS(String goods_sn);
 
-    @Update("update jk_hy_kc set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
+    @Update("update jk_hy_kc set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate,isTraceCode=#{isTraceCode} " +
             "where goods_sn = #{goods_sn}")
     public void updateYZYGOODS(YZYGOODS yzygoods);
 
-    @Update("update jk_hy_kc_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate " +
+    @Update("update jk_hy_kc_fix set goods_sn = #{goods_sn},goods_name = #{goods_name},goods_number = #{goods_number},market_price = #{market_price},shop_price = #{shop_price_st},is_on_sale = 1,YPDM = #{YPDM},CDMC = #{CDMC},CDDM = #{CDDM},GG = #{GG},TXM = #{TXM},DW = #{DW},JX = #{JX},PZWH = #{PZWH},BZ = #{BZ},ZBZ = #{ZBZ},YXQ = #{YXQ}, PH = #{PH},ISRETAIL = #{ISRETAIL},PCH = #{PCH},SCRQ = #{SCRQ},ypbh = #{ypbh},updatetime = sysdate,isTraceCode=#{isTraceCode} " +
             "where goods_sn = #{goods_sn}")
     public void updateYZYGOODSFIX(YZYGOODS yzygoods);
 
@@ -94,18 +94,18 @@ public interface KhzlMapper {
     @Delete("DELETE FROM jk_hy_kc_p")
     void deleteYZYGOODSAllP();
 
-    @Insert("INSERT INTO jk_hy_kc_p(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime) "+
+    @Insert("INSERT INTO jk_hy_kc_p(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime,isTraceCode) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},sysdate)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},sysdate,#{isTraceCode})")
     void insertYZYGOODSP(YZYGOODS yzygoods);
 
-    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime,is_pgby) "+
+    @Insert("INSERT INTO jk_hy_kc(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime,is_pgby,isTraceCode) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,1)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,1,#{isTraceCode})")
     void insertYZYGOODSPGBY(YZYGOODS yzygoods);
 
-    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime,is_pgby) "+
+    @Insert("INSERT INTO jk_hy_kc_fix(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,ypbh,updatetime,is_pgby,isTraceCode) "+
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
-            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,1)")
+            " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,1,#{isTraceCode})")
     void insertYZYGOODS_FIXPGBY(YZYGOODS yzygoods);
 }
