@@ -32,7 +32,7 @@ public class HttpUtils {
         // 配置超时时间
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         requestFactory.setConnectTimeout(5000); // 连接超时时间5秒
-        requestFactory.setReadTimeout(300000);    // 读取超时时间300秒
+        requestFactory.setReadTimeout(600000);    // 读取超时时间600秒
         restTemplate.setRequestFactory(requestFactory);
 
         // 信任所有HTTPS证书

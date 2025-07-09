@@ -117,6 +117,6 @@ public class MiddleService {
 //        dd.setYsbddhz(hz);
 //        dd.setYsbddmxes(list);
 //        saveOrder2GY(dd);
-        GetPGBY_X("YYKR");
+        GetPGBY("YYKR");
     }
 }
