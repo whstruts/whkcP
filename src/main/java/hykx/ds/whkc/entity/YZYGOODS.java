@@ -32,4 +32,5 @@ public class YZYGOODS {
    private String ypbh;
 
    private String YXQ;
+   private int isTraceCode;
 }
