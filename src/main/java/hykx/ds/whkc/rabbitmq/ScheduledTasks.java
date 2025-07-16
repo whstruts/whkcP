@@ -131,6 +131,17 @@ import java.util.List;
         }
     }
 
+    @Scheduled(fixedDelay = 60*1000)
+    private void UpdateSPIDToDDMX(){
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            khzlService.UpdateSPIDToDDMX();
+            System.out.println(df.format(new Date()));
+        }catch (Exception e) {
+            log.error("更新ERP_ID到YSB_DDMX", e);
+        }
+    }
+
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityPGBY()throws Exception {
         System.out.println("取批购包邮数据:开始");

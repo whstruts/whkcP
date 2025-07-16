@@ -67,6 +67,8 @@ public class KhzlService {
 
     public void UpdateSPID() { khzlMapper.UpdateSPID();}
 
+    public void UpdateSPIDToDDMX() { khzlMapper.UpdateSPIDToDDMX();}
+
     public void batchInsert(List<YZYGOODS> list){
         khzlMapper.batchInsert(list);
     }
