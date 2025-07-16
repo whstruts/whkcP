@@ -49,6 +49,8 @@ public interface KhzlMapper {
 
     @Update("update YZYGOODS set is_on_sale = 0")
     public void unOnSale();
+    @Update("update YZYGOODS_P set is_on_sale = 0")
+    public void unOnSaleP();
 
     @Update({"<script>" +
             "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +

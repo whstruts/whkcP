@@ -59,7 +59,10 @@ public class KhzlService {
         return  khzlMapper.getysbddmxbydjbh(djbh);
     }
 
-    public void unOnSale() { khzlMapper.unOnSale();}
+    public void unOnSale() {
+        khzlMapper.unOnSale();
+        khzlMapper.unOnSaleP();
+    }
 
     public void batchUpdate(List<YZYGOODS> list){
       //  khzlMapper.batchUpdate(list);
