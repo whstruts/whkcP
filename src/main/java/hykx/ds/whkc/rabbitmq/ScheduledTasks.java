@@ -74,6 +74,7 @@ import lombok.extern.slf4j.Slf4j;
         System.out.println("取到中台数据:"+list.size()+"行");
         for(YZYGOODS yzygoods:list)
         {
+            yzygoods.setShop_price_st(yzygoods.getShop_price());
             khzlService.insertYZYGOODS(yzygoods);
         }
         System.out.println("取中台数据:结束");
