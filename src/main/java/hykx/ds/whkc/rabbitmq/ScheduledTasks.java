@@ -132,6 +132,12 @@ import lombok.extern.slf4j.Slf4j;
         List<YZYGOODS> list = MiddleService.GetPGBY("HNYZT");
         khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
+            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+            if(yzygoods.getPH()==null) yzygoods.setPH("");
+            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+            if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
             System.out.println("批购包邮数据:" + yzygoods);
             khzlService.insertYZYGOODSP(yzygoods);
             khzlService.insertYZYGOODSPGBY(yzygoods);
