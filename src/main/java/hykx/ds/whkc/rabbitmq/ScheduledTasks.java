@@ -138,6 +138,7 @@ import lombok.extern.slf4j.Slf4j;
             if(yzygoods.getPCH()==null) yzygoods.setPCH("");
             if(yzygoods.getOtc()==null) yzygoods.setOtc("");
             if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
+            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
             System.out.println("批购包邮数据:" + yzygoods);
             khzlService.insertYZYGOODSP(yzygoods);
             khzlService.insertYZYGOODSPGBY(yzygoods);
