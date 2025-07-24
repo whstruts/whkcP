@@ -33,6 +33,34 @@ public class KhzlService {
         }
     }
 
+    public void insertYZYGOODSX(YZYGOODS yzygoods){
+        try {
+            if (khzlMapper.getYZYGOODS(yzygoods.getGoods_id_s()) > 0) {
+                khzlMapper.updateYZYGOODSX(yzygoods);
+            } else {
+                khzlMapper.insertYZYGOODSX(yzygoods);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.toString()+yzygoods.toString());
+        }
+    }
+
+    public void insertYZYGOODSPX(YZYGOODS yzygoods){
+        try {
+            if (khzlMapper.getYZYGOODSP(yzygoods.getYpbh()) > 0) {
+                khzlMapper.updateYZYGOODSPX(yzygoods);
+            } else {
+                khzlMapper.insertYZYGOODSPX(yzygoods);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.toString()+yzygoods.toString());
+        }
+    }
+
     public void insertYZYGOODSP(MyGoodsEntity yzygoods){
         try {
             if (khzlMapper.getYZYGOODSP(yzygoods.getYpbh()) > 0) {

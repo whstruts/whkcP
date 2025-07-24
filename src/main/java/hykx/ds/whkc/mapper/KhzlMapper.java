@@ -18,7 +18,7 @@ public interface KhzlMapper {
 
     @Insert("INSERT INTO powererp_hnhryy.jk_hy_yp(ypbh,goods_name,market_price,shop_price,is_on_sale,YPDM,CDDM,CDMC,GG,TXM,DJ,DW,JX,PZWH,BZ,ZBZ,ISRETAIL,updatetime ) "+
             " VALUES(#{ypbh},#{goods_name},#{market_price},#{shop_price},1,#{YPDM},#{CDDM},#{CDMC},#{GG},#{TXM},#{shop_price},#{DW},#{JX},#{PZWH},#{BZ},#{ZBZ},#{ISRETAIL},sysdate) ")
-    void insertYZYGOODSP(YZYGOODS yzygoods);
+    void insertYZYGOODSPX(YZYGOODS yzygoods);
 
 
     @Insert("INSERT INTO powererp_hnhryy.jk_hy_kc_ph(goods_id_s,ypbh,goods_number,scrq,yxq,ph,updatetime) "+
@@ -27,7 +27,7 @@ public interface KhzlMapper {
 
     @Insert("INSERT INTO powererp_hnhryy.jk_hy_kc_ph(goods_id_s,ypbh,goods_number,SCRQ,YXQ,PH,updatetime) "+
             " VALUES(#{goods_id_s},#{ypbh},#{goods_number},#{SCRQ},#{YXQ},#{PH},sysdate)")
-    void insertYZYGOODS(YZYGOODS yzygoods);
+    void insertYZYGOODSX(YZYGOODS yzygoods);
 
 
     @Select("select count(*) from powererp_hnhryy.jk_hy_kc_ph where goods_id_s = #{goods_id_s}")
@@ -45,7 +45,7 @@ public interface KhzlMapper {
 
     @Update("update powererp_hnhryy.jk_hy_kc_ph set goods_number = #{goods_number},updatetime = sysdate  " +
             "where goods_id_s = #{goods_id_s}")
-    public void updateYZYGOODS(YZYGOODS yzygoods);
+    public void updateYZYGOODSX(YZYGOODS yzygoods);
 
     @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 1,dj = #{dj},updatetime = sysdate  " +
             "where ypbh = #{ypbh}")
@@ -53,7 +53,7 @@ public interface KhzlMapper {
 
     @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 1,dj = #{shop_price},updatetime = sysdate  " +
             "where ypbh = #{ypbh}")
-    public void updateYZYGOODSP(YZYGOODS yzygoods);
+    public void updateYZYGOODSPX(YZYGOODS yzygoods);
 
     @Select("select * from powererp_hnhryy.ysb_ddhz where is_zx = '否' ")
     public List<ysbddhz> getysbddhzs();

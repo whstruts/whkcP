@@ -110,22 +110,26 @@ import lombok.extern.slf4j.Slf4j;
         }
     }
 
-//    @Scheduled(fixedDelay = 60*60*1000)
-//    public void reportCurrentTimeCommodityPGBY()throws Exception {
-//        System.out.println("取批购包邮数据:开始");
-//        List<YZYGOODS> list = MiddleService.GetPGBY("HNYZT");
-//        list.forEach(yzygoods -> {
-//            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
-//            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
-//            if(yzygoods.getPH()==null) yzygoods.setPH("");
-//            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
-//            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
-//            if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
-//            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
-//            System.out.println("批购包邮数据:" + yzygoods);
-//        });
-//        khzlService.updateXYYGWBH();
-//        System.out.println("取批购包邮数据:结束");
-//    }
+    @Scheduled(fixedDelay = 60*60*1000)
+    public void reportCurrentTimeCommodityPGBY()throws Exception {
+        System.out.println("取批购包邮数据:开始");
+        List<YZYGOODS> list = MiddleService.GetPGBY("HNYZT");
+        list.forEach(yzygoods -> {
+            yzygoods.setGoods_id_s(yzygoods.getGoods_sn());
+            yzygoods.setYpbh(yzygoods.getGoods_sn());
+            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+            if(yzygoods.getPH()==null) yzygoods.setPH("");
+            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+            if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
+            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
+            System.out.println("批购包邮数据:" + yzygoods);
+            khzlService.insertYZYGOODSX(yzygoods);
+            khzlService.insertYZYGOODSPX(yzygoods);
+        });
+        khzlService.updateXYYGWBH();
+        System.out.println("取批购包邮数据:结束");
+    }
 
 }
