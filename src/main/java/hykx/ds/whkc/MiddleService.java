@@ -3,6 +3,7 @@ package hykx.ds.whkc;
 import com.alibaba.fastjson.JSONObject;
 import hykx.ds.whkc.entity.MyGoodsEntity;
 import hykx.ds.whkc.entity.YBMGoods;
+import hykx.ds.whkc.entity.YZYGOODS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.List;
 public class MiddleService {
     public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetMyGoodsEntityByUser";
     public static final String MID_SYN_KC_YBM_URL = "http://116.62.46.187:10018/GetYBMGoodsByUser";
+
+    public static final String MID_SYN_PGBY_KC_URL = "http://121.40.203.59:9020/GetAllPGBY";
     public static List<MyGoodsEntity> GetMyGoodsEntityByUse(String userName) throws Exception {
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
@@ -63,9 +66,17 @@ public class MiddleService {
         return myGoodsEntityList;
     }
 
+    public static List<YZYGOODS> GetPGBY(String userName) throws Exception {
+        String param = "userName=" + userName;
+        String res = HttpUtils.sendGet(MID_SYN_PGBY_KC_URL, param);
+        JSONObject jsonObject = JSONObject.parseObject(res);
+        List<YZYGOODS> yzygoodsList = jsonObject.getJSONArray("data").toJavaList(YZYGOODS.class);
+        return yzygoodsList;
+    }
+
 
     public static void main(String[] args) throws Exception {
         //GetMyGoodsEntityByUse("18573102130");
-        GetYBMG2MGEByUser("HNHR");
+        GetPGBY("HNHR");
     }
 }

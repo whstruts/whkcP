@@ -2,6 +2,7 @@ package hykx.ds.whkc.mapper;
 
 import hykx.ds.whkc.bean.ERPddmx;
 import hykx.ds.whkc.entity.MyGoodsEntity;
+import hykx.ds.whkc.entity.YZYGOODS;
 import hykx.ds.whkc.entity.ysbddhz;
 import hykx.ds.whkc.entity.ysbddmx;
 import org.apache.ibatis.annotations.*;
@@ -15,9 +16,18 @@ public interface KhzlMapper {
             " #{pzwh},#{bz},#{zbz},#{isretail},sysdate)")
     void insertYZYGOODSP(MyGoodsEntity yzygoods);
 
+    @Insert("INSERT INTO powererp_hnhryy.jk_hy_yp(ypbh,goods_name,market_price,shop_price,is_on_sale,YPDM,CDDM,CDMC,GG,TXM,DJ,DW,JX,PZWH,BZ,ZBZ,ISRETAIL,updatetime ) "+
+            " VALUES(#{ypbh},#{goods_name},#{market_price},#{shop_price},1,#{YPDM},#{CDDM},#{CDMC},#{GG},#{TXM},#{shop_price},#{DW},#{JX},#{PZWH},#{BZ},#{ZBZ},#{ISRETAIL},sysdate) ")
+    void insertYZYGOODSP(YZYGOODS yzygoods);
+
+
     @Insert("INSERT INTO powererp_hnhryy.jk_hy_kc_ph(goods_id_s,ypbh,goods_number,scrq,yxq,ph,updatetime) "+
             " VALUES(#{id},#{ypbh},#{sl},#{scrq},#{yxq},#{ph},sysdate)")
     void insertYZYGOODS(MyGoodsEntity yzygoods);
+
+    @Insert("INSERT INTO powererp_hnhryy.jk_hy_kc_ph(goods_id_s,ypbh,goods_number,SCRQ,YXQ,PH,updatetime) "+
+            " VALUES(#{goods_id_s},#{ypbh},#{goods_number},#{SCRQ},#{YXQ},#{PH},sysdate)")
+    void insertYZYGOODS(YZYGOODS yzygoods);
 
 
     @Select("select count(*) from powererp_hnhryy.jk_hy_kc_ph where goods_id_s = #{goods_id_s}")
@@ -27,13 +37,23 @@ public interface KhzlMapper {
     public int getYZYGOODSP(String ypbh);
 
 
+
+
     @Update("update powererp_hnhryy.jk_hy_kc_ph set goods_number = #{sl},updatetime = sysdate  " +
             "where goods_id_s = #{id}")
     public void updateYZYGOODS(MyGoodsEntity yzygoods);
 
+    @Update("update powererp_hnhryy.jk_hy_kc_ph set goods_number = #{goods_number},updatetime = sysdate  " +
+            "where goods_id_s = #{goods_id_s}")
+    public void updateYZYGOODS(YZYGOODS yzygoods);
+
     @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 1,dj = #{dj},updatetime = sysdate  " +
             "where ypbh = #{ypbh}")
     public void updateYZYGOODSP(MyGoodsEntity yzygoods);
+
+    @Update("update powererp_hnhryy.jk_hy_yp set is_on_sale = 1,dj = #{shop_price},updatetime = sysdate  " +
+            "where ypbh = #{ypbh}")
+    public void updateYZYGOODSP(YZYGOODS yzygoods);
 
     @Select("select * from powererp_hnhryy.ysb_ddhz where is_zx = '否' ")
     public List<ysbddhz> getysbddhzs();
@@ -67,5 +87,7 @@ public interface KhzlMapper {
 
     @Update("update powererp_hnhryy.jk_hy_yp set gwbh = ypbh where gwbh is null and cddm = ' ' ")
     public void updateXYYGWBH();
+
+
 
 }
