@@ -62,7 +62,7 @@ public interface KhzlMapper {
             " sysdate,1,#{cgdj},#{cgje},1,#{beizhu})")
     public void insertysbddmxbak(ERPddmx erPddmx);
 
-    @Update("update jk_hy_kc set is_on_sale = 0,updatetime = sysdate ")
+    @Update("update jk_hy_kc set is_on_sale = 0,goods_number=0,updatetime = sysdate ")
     public void unOnSale();
 
     @Update({"<script>" +
