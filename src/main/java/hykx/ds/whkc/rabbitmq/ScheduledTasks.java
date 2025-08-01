@@ -107,11 +107,9 @@ import lombok.extern.slf4j.Slf4j;
             khzlService.insertYZYGOODS(yzygoods);
         }
         System.out.println("取中台数据:结束");
-    }
-    @Scheduled(fixedDelay = 60*60*1000)
-    public void reportCurrentTimeCommodityPGBY()throws Exception {
+        list.clear();
         System.out.println("取中台裂变数据:开始");
-        List<YZYGOODS> list = MiddleService.GetPGBYByUser("JSSNYY");
+        list = MiddleService.GetPGBYByUser("JSSNYY");
         System.out.println("取中台裂变数据:"+list.size()+"行");
         khzlService.deleteYZYGOODSP();
         list.forEach(yzygoods -> {
@@ -131,4 +129,8 @@ import lombok.extern.slf4j.Slf4j;
         });
         System.out.println("取中台裂变数据:结束");
     }
+//    @Scheduled(fixedDelay = 60*60*1000)
+//    public void reportCurrentTimeCommodityPGBY()throws Exception {
+//
+//    }
 }
