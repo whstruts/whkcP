@@ -38,6 +38,6 @@ public class MiddleService {
         return yzygoodsList;
     }
     public static void main(String[] args) throws Exception {
-        GetPGBYByUser("HBHDYY");
+        GetPGBYByUser("HBZYYY");
     }
 }
