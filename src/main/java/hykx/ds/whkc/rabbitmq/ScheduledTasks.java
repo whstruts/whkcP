@@ -64,16 +64,16 @@ import lombok.extern.slf4j.Slf4j;
         }
     }
 
-    @Scheduled(fixedDelay = 60*1000)
-    private void UpdateSPID(){
-        try{
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            khzlService.UpdateSPID();
-            System.out.println(df.format(new Date()));
-        }catch (Exception e) {
-            log.error("更新ERP_ID到YZYGOODS_FIX", e);
-        }
-    }
+//    @Scheduled(fixedDelay = 60*1000)
+//    private void UpdateSPID(){
+//        try{
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            khzlService.UpdateSPID();
+//            System.out.println(df.format(new Date()));
+//        }catch (Exception e) {
+//            log.error("更新ERP_ID到YZYGOODS_FIX", e);
+//        }
+//    }
 
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityYBM()throws Exception {
