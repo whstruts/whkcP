@@ -65,6 +65,9 @@ public interface KhzlMapper {
     @Update("update jk_hy_kc set is_on_sale = 0,goods_number=0,updatetime = sysdate ")
     public void unOnSale();
 
+    @Update("update jk_hy_kc_p set is_on_sale = 0,goods_number=0,updatetime = sysdate ")
+    public void unOnSaleP();
+
     @Update({"<script>" +
             "<foreach collection=\"goodsList\" item=\"item\" separator=\";\">" +
             " UPDATE" +
