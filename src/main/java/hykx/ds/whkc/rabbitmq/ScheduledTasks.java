@@ -84,6 +84,22 @@ import lombok.extern.slf4j.Slf4j;
         }catch (Exception e) {
             log.error("reportCurrentTimeCommodityHYGY", e);
         }
+        try {
+            System.out.println("取批购包邮数据:开始");
+            List<YZYGOODS> list = MiddleService.GetPGBY("HBNAT");
+            int list_size = list.size();
+            if (list_size > 0) khzlService.deleteYZYGOODSP();
+            list.forEach(yzygoods -> {
+                System.out.println("批购包邮数据:" + yzygoods);
+                khzlService.insertYZYGOODSP(yzygoods);
+            });
+            System.out.println("取批购包邮数据:结束");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.toString());
+            log.error("reportCurrentTimeCommodityPGBY",e.toString());
+        }
     }
 
 //    @Scheduled(fixedDelay = 60*60*1000)
@@ -105,22 +121,22 @@ import lombok.extern.slf4j.Slf4j;
 //            log.error("reportCurrentTimeCommodityPP", e);
 //        }
 //    }
-    @Scheduled(fixedDelay = 60*60*1000)
-    public void reportCurrentTimeCommodityPGBY()throws Exception {
-        try {
-            System.out.println("取批购包邮数据:开始");
-            List<YZYGOODS> list = MiddleService.GetPGBY("HBNAT");
-            int list_size = list.size();
-            if (list_size > 0) khzlService.deleteYZYGOODSP();
-            list.forEach(yzygoods -> {
-                System.out.println("批购包邮数据:" + yzygoods);
-                khzlService.insertYZYGOODSP(yzygoods);
-            });
-            System.out.println("取批购包邮数据:结束");
-        }
-        catch (Exception e)
-        {
-            log.error("reportCurrentTimeCommodityPGBY",e.toString());
-        }
-    }
+//    @Scheduled(fixedDelay = 60*60*1000)
+//    public void reportCurrentTimeCommodityPGBY()throws Exception {
+//        try {
+//            System.out.println("取批购包邮数据:开始");
+//            List<YZYGOODS> list = MiddleService.GetPGBY("HBNAT");
+//            int list_size = list.size();
+//            if (list_size > 0) khzlService.deleteYZYGOODSP();
+//            list.forEach(yzygoods -> {
+//                System.out.println("批购包邮数据:" + yzygoods);
+//                khzlService.insertYZYGOODSP(yzygoods);
+//            });
+//            System.out.println("取批购包邮数据:结束");
+//        }
+//        catch (Exception e)
+//        {
+//            log.error("reportCurrentTimeCommodityPGBY",e.toString());
+//        }
+//    }
 }
