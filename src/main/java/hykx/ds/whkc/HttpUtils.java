@@ -24,7 +24,10 @@ import java.util.zip.GZIPInputStream;
 public class HttpUtils
 {
     private static final Logger log = LoggerFactory.getLogger(HttpUtils.class);
-
+    // 连接超时时间（毫秒）
+    private static final int CONNECT_TIMEOUT = 1000*10;
+    // 读取超时时间（毫秒）
+    private static final int READ_TIMEOUT = 1000*60*10;
     /**
      * 向指定 URL 发送GET方法的请求
      *
@@ -47,6 +50,9 @@ public class HttpUtils
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             connection.setRequestProperty("Accept-Charset", "utf-8");
             connection.setRequestProperty("contentType", "utf-8");
+            // 3. 设置超时（关键优化：避免无限阻塞）
+            connection.setConnectTimeout(CONNECT_TIMEOUT);
+            connection.setReadTimeout(READ_TIMEOUT);
             connection.connect();
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
             String line;
