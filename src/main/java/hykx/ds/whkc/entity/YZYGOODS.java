@@ -28,4 +28,5 @@ public class YZYGOODS {
    private String ypbh;
    private String YXQ;
    private String updatetime;
+   private int isTraceCode;
 }
