@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class MiddleService {
     public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetYZYGOODSByUser";
-    public static final String MID_SYN_PGBY_KC_URL = "http://47.96.21.54:9021/GetAllPGBY";
+    public static final String MID_SYN_PGBY_KC_URL = "http://116.62.126.136:9021/GetAllPGBY";
 
     public static List<YZYGOODS> GetPGBY(String userName) throws Exception {
         String param = "userName=" + userName;
@@ -34,6 +34,6 @@ public class MiddleService {
     }
 
     public static void main(String[] args) throws Exception {
-        GetYZYGOODSByUser("HBQJ");
+        GetPGBY("HBQJ");
     }
 }
