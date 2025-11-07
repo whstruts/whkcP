@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class MiddleService {
-    public static final String MID_SYN_KC_URL_P = "http://116.62.46.187:9020/GetAllPGBY";
+    public static final String MID_SYN_KC_URL_P = "http://112.124.67.70:9021/GetAllPGBY";
 
     public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
         String param = "userName=" + userName;
