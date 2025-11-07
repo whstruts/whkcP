@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class MiddleService {
 
-    public static final String MID_SYN_PGBY_KC_URL = "http://116.62.46.187:9019/GetAllPGBY";
+    public static final String MID_SYN_PGBY_KC_URL = "http://112.124.67.70:9019/GetAllPGBY";
 
     public static List<YZYGOODS> GetPGBY(String userName) throws Exception {
         String param = "userName=" + userName;
