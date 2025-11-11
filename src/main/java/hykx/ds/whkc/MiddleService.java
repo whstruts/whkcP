@@ -12,10 +12,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class MiddleService {
-    public static final String MID_SYN_KC_URL = "http://112.124.67.70:10018/GetYZYGOODSByUser";
-    public static final String MID_SYN_NC_KC_URL = "http://112.124.67.70:10018/GetNCGoods";
+    public static final String MID_SYN_KC_URL = "http://116.62.46.187:10018/GetYZYGOODSByUser";
+    public static final String MID_SYN_NC_KC_URL = "http://116.62.46.187:10018/GetNCGoods";
 
-    public static final String MID_SYN_KC_PGBY_URL = "http://112.124.67.70:10018/GetPGBYByUser";
+    public static final String MID_SYN_KC_PGBY_URL = "http://116.62.46.187:10018/GetPGBYByUser";
     public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
         String param = "userName=" + userName;
         String res = HttpUtils.sendGet(MID_SYN_KC_URL, param);
