@@ -19,27 +19,27 @@ import lombok.extern.slf4j.Slf4j;
         private AmqpTemplate rabbitTemplate;
         @Autowired
         private KhzlService khzlService;
-    @Scheduled(fixedDelay = 60*1000)
-    public void reportCurrentTimeGY()throws Exception {
-        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
-        for (int i = 0; i < listysbddhz.size(); i++) {
-            ysbddhz ddhz = listysbddhz.get(i);
-            ddhz.setUserName("HBNAT");
-            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
-            ysbdd dd = new ysbdd();
-            if(listDDMX.size()>0)
-            {
-                dd.setYsbddhz(ddhz);
-                dd.setYsbddmxes(listDDMX);
-            }
-            else {
-                khzlService.updateysbddhz(ddhz.getDjbh());
-                continue;
-            }
-            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
-            MiddleService.saveOrder2GY(dd);
-        }
-    }
+//    @Scheduled(fixedDelay = 60*1000)
+//    public void reportCurrentTimeGY()throws Exception {
+//        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
+//        for (int i = 0; i < listysbddhz.size(); i++) {
+//            ysbddhz ddhz = listysbddhz.get(i);
+//            ddhz.setUserName("HBNAT");
+//            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
+//            ysbdd dd = new ysbdd();
+//            if(listDDMX.size()>0)
+//            {
+//                dd.setYsbddhz(ddhz);
+//                dd.setYsbddmxes(listDDMX);
+//            }
+//            else {
+//                khzlService.updateysbddhz(ddhz.getDjbh());
+//                continue;
+//            }
+//            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
+//            MiddleService.saveOrder2GY(dd);
+//        }
+//    }
 //    @Scheduled(cron="0 0 1 * * ?")
 //    private void DownDrug(){
 //        try{
