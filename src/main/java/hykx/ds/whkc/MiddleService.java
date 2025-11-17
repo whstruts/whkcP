@@ -21,9 +21,9 @@ public class MiddleService {
     //public static final String MID_SYN_HYGY_ORDER_URL = "http://localhost:9021/saveOrderGY";
     public static final String MID_SYN_HYGY_ORDER_URL = "http://112.124.67.70:9022/saveOrderGY";
 
-    public static final String MID_SYN_PP_KC_URL = "http://112.124.67.70:9022/GetPPAll";
+    public static final String MID_SYN_PP_KC_URL = "http://116.62.46.187:9018/GetPPAll";
 
-    public static final String MID_SYN_PGBY_KC_URL = "http://112.124.67.70:9022/GetAllPGBY";
+    public static final String MID_SYN_PGBY_KC_URL = "http://116.62.46.187:9018/GetAllPGBY";
 
     public static List<YZYGOODS> GetYZYGOODSByUser(String userName) throws Exception {
         String param = "userName=" + userName;
@@ -104,6 +104,6 @@ public class MiddleService {
 //        dd.setYsbddhz(hz);
 //        dd.setYsbddmxes(list);
 //        saveOrder2GY(dd);
-        GetPGBY("HBNAT");
+        GetPGBY("HBTXM");
     }
 }

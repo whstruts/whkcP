@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 //        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
 //        for (int i = 0; i < listysbddhz.size(); i++) {
 //            ysbddhz ddhz = listysbddhz.get(i);
-//            ddhz.setUserName("HBNAT");
+//            ddhz.setUserName("HBTXM");
 //            List<ysbddmx> listDDMX = khzlService.getysbddmxbydjbh(ddhz.getDjbh());
 //            ysbdd dd = new ysbdd();
 //            if(listDDMX.size()>0)
@@ -54,7 +54,7 @@ import lombok.extern.slf4j.Slf4j;
     public void reportCurrentTimeCommodityHYGY()throws Exception {
         try{
 //            System.out.println("取中台华源工业公司数据:开始");
-//            List<YZYGOODS> list = MiddleService.GetHYGYGoods("HBNAT");
+//            List<YZYGOODS> list = MiddleService.GetHYGYGoods("HBTXM");
 //
 //            System.out.println("取中台华源工业公司数据:"+list.size()+"行");
 //            if(list.size()>10000)
@@ -69,7 +69,7 @@ import lombok.extern.slf4j.Slf4j;
 
             System.out.println("取爬虫数据:开始");
 
-            List<YZYGOODS> list1 = MiddleService.GetPPGoods("HBNAT");
+            List<YZYGOODS> list1 = MiddleService.GetPPGoods("HBTXM");
 
             System.out.println("取爬虫数据:"+list1.size()+"行");
 
@@ -86,7 +86,7 @@ import lombok.extern.slf4j.Slf4j;
         }
         try {
             System.out.println("取批购包邮数据:开始");
-            List<YZYGOODS> list = MiddleService.GetPGBY("HBNAT");
+            List<YZYGOODS> list = MiddleService.GetPGBY("HBTXM");
             int list_size = list.size();
             if (list_size > 0) khzlService.deleteYZYGOODSP();
             list.forEach(yzygoods -> {
@@ -106,7 +106,7 @@ import lombok.extern.slf4j.Slf4j;
 //    public void reportCurrentTimeCommodityPP()throws Exception {
 //        try{
 //            System.out.println("取爬虫数据:开始");
-//            List<YZYGOODS> list = MiddleService.GetPPGoods("HBNAT");
+//            List<YZYGOODS> list = MiddleService.GetPPGoods("HBTXM");
 //
 //            System.out.println("取爬虫数据:"+list.size()+"行");
 //
@@ -125,7 +125,7 @@ import lombok.extern.slf4j.Slf4j;
 //    public void reportCurrentTimeCommodityPGBY()throws Exception {
 //        try {
 //            System.out.println("取批购包邮数据:开始");
-//            List<YZYGOODS> list = MiddleService.GetPGBY("HBNAT");
+//            List<YZYGOODS> list = MiddleService.GetPGBY("HBTXM");
 //            int list_size = list.size();
 //            if (list_size > 0) khzlService.deleteYZYGOODSP();
 //            list.forEach(yzygoods -> {

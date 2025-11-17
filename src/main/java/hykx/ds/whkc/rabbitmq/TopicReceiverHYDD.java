@@ -16,7 +16,7 @@
 //
 //
 //@Component
-//@RabbitListener(queues = "topic.HBNATOrderBack")
+//@RabbitListener(queues = "topic.HBTXMOrderBack")
 //public class TopicReceiverHYDD {
 //    @Autowired
 //    ysbddMapper ysbddMapper;
