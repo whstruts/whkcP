@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
         @Autowired
         private KhzlService khzlService;
         // 批量插入批次大小（根据数据库配置调整，默认 500 条/批）
-        private static final int BATCH_SIZE = 500;
+        private static final int BATCH_SIZE = 100;
 //    @Scheduled(fixedDelay = 60*1000)
 //    public void reportCurrentTimeGY()throws Exception {
 //        List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
