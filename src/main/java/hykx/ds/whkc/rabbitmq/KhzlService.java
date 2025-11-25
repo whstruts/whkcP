@@ -71,4 +71,8 @@ public class KhzlService {
     public void insertYZYGOODSP(YZYGOODS yzygoods){
         khzlMapper.insertYZYGOODSP(yzygoods);
     }
+
+    public void batchInsertYZYGOODSP(List<YZYGOODS> list){
+        khzlMapper.batchInsertYZYGOODSP(list);
+    }
 }

@@ -70,4 +70,19 @@ public interface KhzlMapper {
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price},#{is_on_sale},#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},'0',#{ypbh},GETDATE())")
     void insertYZYGOODSP(YZYGOODS yzygoods);
+
+    @Insert("<script>" +
+            "INSERT INTO YZYGOODS_P(" +
+            "goods_sn, goods_name, goods_number, market_price, shop_price, is_on_sale, " +
+            "YPDM, CDMC, CDDM, GG, TXM, DW, JX, PZWH, BZ, ZBZ, YXQ, PH, " +
+            "ISRETAIL, PCH, SCRQ, goods_id_s, is_sy, ypbh, updatetime" +
+            ") VALUES " +
+            "<foreach collection='list' item='item' separator=','>" +
+            "(#{item.goodsSn}, #{item.goodsName}, #{item.goodsNumber}, #{item.marketPrice}, #{item.shopPrice}, #{item.isOnSale}, " +
+            "#{item.YPDM}, #{item.CDMC}, #{item.CDDM}, #{item.GG}, #{item.TXM}, #{item.DW}, #{item.JX}, #{item.PZWH}, #{item.BZ}, #{item.ZBZ}, #{item.YXQ}, #{item.PH}, " +
+            "#{item.ISRETAIL}, #{item.PCH}, #{item.SCRQ}, #{item.goodsIdS}, 0, #{item.ypbh}, NOW())" +
+            "</foreach>" +
+            "</script>")
+    void batchInsertYZYGOODSP(List<YZYGOODS> yzygoodsList);  // 参数为集合
+
 }
