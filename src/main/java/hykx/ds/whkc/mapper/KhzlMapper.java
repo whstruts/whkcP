@@ -78,9 +78,9 @@ public interface KhzlMapper {
             "ISRETAIL, PCH, SCRQ, goods_id_s, is_sy, ypbh, updatetime" +
             ") VALUES " +
             "<foreach collection='list' item='item' separator=','>" +
-            "(#{item.goodsSn}, #{item.goodsName}, #{item.goodsNumber}, #{item.marketPrice}, #{item.shopPrice}, #{item.isOnSale}, " +
+            "(#{item.goods_sn}, #{item.goods_name}, #{item.goods_number}, #{item.market_price}, #{item.shop_price}, #{item.is_on_sale}, " +
             "#{item.YPDM}, #{item.CDMC}, #{item.CDDM}, #{item.GG}, #{item.TXM}, #{item.DW}, #{item.JX}, #{item.PZWH}, #{item.BZ}, #{item.ZBZ}, #{item.YXQ}, #{item.PH}, " +
-            "#{item.ISRETAIL}, #{item.PCH}, #{item.SCRQ}, #{item.goodsIdS}, 0, #{item.ypbh}, NOW())" +
+            "#{item.ISRETAIL}, #{item.PCH}, #{item.SCRQ}, #{item.goods_id_s}, 0, #{item.ypbh}, GETDATE())" +
             "</foreach>" +
             "</script>")
     void batchInsertYZYGOODSP(List<YZYGOODS> yzygoodsList);  // 参数为集合
