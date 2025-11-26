@@ -98,6 +98,6 @@ public class MiddleService {
 //        dd.setYsbddhz(hz);
 //        dd.setYsbddmxes(list);
 //        saveOrder2GY(dd);
-        GetPGBY("YYKR");
+        GetYZYGOODSByUser("YYKR");
     }
 }
