@@ -107,4 +107,7 @@ public class KhzlService {
             khzlMapper.insertYZYGOODS_FIXPGBY(yzygoods);
         }
     }
+    public void batchInsertYZYGOODSP(List<YZYGOODS> list){
+        khzlMapper.batchInsertYZYGOODSP(list);
+    }
 }

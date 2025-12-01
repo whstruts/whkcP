@@ -111,4 +111,29 @@ public interface KhzlMapper {
             " VALUES(#{goods_sn},#{goods_name},#{goods_number},#{market_price},#{shop_price_st},1,#{YPDM},#{CDMC},#{CDDM},#{GG},#{TXM},#{DW},#{JX},"+
             " #{PZWH},#{BZ},#{ZBZ},#{YXQ},#{PH},#{ISRETAIL},#{PCH},#{SCRQ},#{goods_id_s},#{ypbh},sysdate,1,#{isTraceCode})")
     void insertYZYGOODS_FIXPGBY(YZYGOODS yzygoods);
+
+    /**
+     * Oracle 批量插入商品数据（兼容所有 Oracle 版本）
+     * 注意：1. 集合不可为 null/空；2. 单批建议不超过 1000 条（Oracle 对 INSERT ALL 子句数量有限制）
+     * @param yzygoodsList 商品数据集合
+     */
+    @Insert("<script>" +
+            "INSERT ALL " +
+            "<foreach collection='list' item='item' index='idx'>" +
+            "INSERT INTO jk_hy_kc_p(goods_sn,goods_name,goods_number,market_price,shop_price,is_on_sale,YPDM,CDMC,CDDM,GG,TXM,DW,JX,PZWH,BZ,ZBZ,YXQ,PH,ISRETAIL,PCH,SCRQ,goods_id_s,is_sy,ypbh,updatetime,isTraceCode) " +
+            " VALUES (" +
+            "#{item.goods_sn, jdbcType=VARCHAR}, #{item.goods_name, jdbcType=VARCHAR}, " +
+            "#{item.goods_number, jdbcType=DECIMAL}, #{item.market_price, jdbcType=DECIMAL}, " +
+            "#{item.shop_price, jdbcType=DECIMAL}, #{item.is_on_sale, jdbcType=NUMERIC}, " +
+            "#{item.YPDM, jdbcType=VARCHAR}, #{item.CDMC, jdbcType=VARCHAR}, #{item.CDDM, jdbcType=VARCHAR}, " +
+            "#{item.GG, jdbcType=VARCHAR}, #{item.TXM, jdbcType=VARCHAR}, #{item.DW, jdbcType=VARCHAR}, " +
+            "#{item.JX, jdbcType=VARCHAR}, #{item.PZWH, jdbcType=VARCHAR}, #{item.BZ, jdbcType=VARCHAR}, " +
+            "#{item.ZBZ, jdbcType=VARCHAR}, #{item.YXQ, jdbcType=VARCHAR}, #{item.PH, jdbcType=VARCHAR}, " +
+            "#{item.ISRETAIL, jdbcType=NUMERIC}, #{item.PCH, jdbcType=VARCHAR}, #{item.SCRQ, jdbcType=DATE}, " +
+            "#{item.goods_id_s, jdbcType=VARCHAR}, 0, #{item.ypbh, jdbcType=VARCHAR}, SYSDATE,#{item.isTraceCode, jdbcType=NUMERIC}" +
+            ") " +
+            "</foreach>" +
+            "SELECT 1 FROM DUAL" + // Oracle 要求 INSERT ALL 必须以 SELECT 子句结束
+            "</script>")
+    void batchInsertYZYGOODSP(@Param("list") List<YZYGOODS> yzygoodsList);
 }
