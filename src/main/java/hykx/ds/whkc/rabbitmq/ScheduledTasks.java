@@ -57,26 +57,31 @@ import lombok.extern.slf4j.Slf4j;
     }
 
     @Scheduled(fixedDelay = 30*60*1000)
-    public void reportCurrentTimeERPSP()throws Exception {
-        List<erpsp> erpsps = khzlService.getERPSP();
-        for (int i = 0; i < erpsps.size(); i++) {
-            erpsp sp = erpsps.get(i);
+    public void reportCurrentTimeERPSP(){
+        try {
+            List<erpsp> erpsps = khzlService.getERPSP();
+            for (int i = 0; i < erpsps.size(); i++) {
+                erpsp sp = erpsps.get(i);
 
-            JSONObject data = JSONObject.fromObject(sp);
+                JSONObject data = JSONObject.fromObject(sp);
 
-            System.out.println("GetYZTERPGoods,Data:" + data.toString());
+                System.out.println("GetYZTERPGoods,Data:" + data.toString());
 
-            String context = data.toString();
+                String context = data.toString();
 
-            String routeKey = "topic.YZTERPGoods";
+                String routeKey = "topic.YZTERPGoods";
 
-            String exchange = "topicExchange";
+                String exchange = "topicExchange";
 
-            context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+                context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
-            System.out.println("sendYZTERPGoods : " + context);
+                System.out.println("sendYZTERPGoods : " + context);
 
-            this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+                this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+            }
+        }catch (Exception e)
+        {
+            log.error("reportCurrentTimeERPSP:", e);
         }
     }
     @Scheduled(cron="0 0 1 * * ?")
