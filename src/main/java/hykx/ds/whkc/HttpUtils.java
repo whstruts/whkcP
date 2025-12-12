@@ -27,7 +27,7 @@ public class HttpUtils
     // 连接超时时间（毫秒）
     private static final int CONNECT_TIMEOUT = 1000*10;
     // 读取超时时间（毫秒）
-    private static final int READ_TIMEOUT = 1000*60*30;
+    private static final int READ_TIMEOUT = 1000*60*60;
     /**
      * 向指定 URL 发送GET方法的请求
      *
