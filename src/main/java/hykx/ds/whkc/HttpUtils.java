@@ -50,13 +50,8 @@ public class HttpUtils
             connection.connect();
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
             String line;
-            int maxLength = 10 * 1024 * 1024;
             while ((line = in.readLine()) != null)
             {
-                if (result.length() + line.length() > maxLength) {
-                    log.warn("数据超过最大限制 {} 字节，截断处理", maxLength);
-                    break;
-                }
                 result.append(line);
             }
             log.info("recv - {} \n", result);
