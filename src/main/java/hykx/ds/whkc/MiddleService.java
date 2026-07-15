@@ -60,6 +60,8 @@ public class MiddleService {
         List<YBMGoods> ybmGoodsList = jsonObject.getJSONArray("data").toJavaList(YBMGoods.class);
         ybmGoodsList.forEach(ybmGoods -> {
             MyGoodsEntity myGoodsEntity = new MyGoodsEntity();
+            myGoodsEntity.setGoods_sn(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
+            myGoodsEntity.setGoods_id(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
             myGoodsEntity.setId(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
             myGoodsEntity.setYpbh(ybmGoods.getSkuId()+ybmGoods.getPname()+ybmGoods.getDname()+"L");
             if(0<ybmGoods.getKcsl_xg()&&ybmGoods.getKcsl_xg()<ybmGoods.getKcsl())
@@ -108,6 +110,6 @@ public class MiddleService {
 
 
     public static void main(String[] args) throws Exception {
-        GetPGBY("HNYZT");
+        GetYBMG2MGEByUser("HNYZT");
     }
 }

@@ -12,16 +12,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @Component
-    public class ScheduledTasks {
-        @Autowired
-        private AmqpTemplate rabbitTemplate;
-        @Autowired
-        private KhzlService khzlService;
+public class ScheduledTasks {
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+    @Autowired
+    private KhzlService khzlService;
+    
+    private static final int BATCH_SIZE = 50;
+
     @Scheduled(fixedDelay = 60*1000)
     public void reportCurrentTimeGY()throws Exception {
         List<ysbddhz> listysbddhz = khzlService.getysbddhzs();
+        log.info("处理订单数量: {}", listysbddhz.size());
         for (int i = 0; i < listysbddhz.size(); i++) {
             ysbddhz ddhz = listysbddhz.get(i);
             ddhz.setUserName("HNYZT");
@@ -36,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
                 khzlService.updateysbddhz(ddhz.getDjbh());
                 continue;
             }
-            khzlService.updateysbddhz(ddhz.getDjbh());//更新订单汇总状态
+            khzlService.updateysbddhz(ddhz.getDjbh());
 
             JSONObject data = JSONObject.fromObject(dd);
 
@@ -60,12 +65,12 @@ import lombok.extern.slf4j.Slf4j;
     public void reportCurrentTimeERPSP(){
         try {
             List<erpsp> erpsps = khzlService.getERPSP();
+            log.info("处理ERP商品数量: {}", erpsps.size());
+            int count = 0;
             for (int i = 0; i < erpsps.size(); i++) {
                 erpsp sp = erpsps.get(i);
 
                 JSONObject data = JSONObject.fromObject(sp);
-
-                System.out.println("GetYZTERPGoods,Data:" + data.toString());
 
                 String context = data.toString();
 
@@ -75,21 +80,26 @@ import lombok.extern.slf4j.Slf4j;
 
                 context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
 
-                System.out.println("sendYZTERPGoods : " + context);
-
                 this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+                
+                count++;
+                if (count % BATCH_SIZE == 0) {
+                    log.info("已处理ERP商品: {}/{}", count, erpsps.size());
+                }
             }
+            log.info("ERP商品处理完成: {}", count);
         }catch (Exception e)
         {
             log.error("reportCurrentTimeERPSP:", e);
         }
     }
+    
     @Scheduled(cron="0 0 1 * * ?")
     private void DownDrug(){
         try{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             khzlService.unOnSale();
-            System.out.println(df.format(new Date()));
+            log.info("全部华源商品下架完成: {}", df.format(new Date()));
         }catch (Exception e) {
             log.error("全部华源商品下架", e);
         }
@@ -98,57 +108,84 @@ import lombok.extern.slf4j.Slf4j;
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityXYY()throws Exception {
         try {
-            System.out.println("取药帮忙数据:开始");
+            log.info("取药帮忙数据:开始");
+            long startTime = System.currentTimeMillis();
+            
             List<MyGoodsEntity> list = MiddleService.GetYBMG2MGEByUser("HNYZT");
+            log.info("取到药帮忙数据: {} 条, 耗时: {}ms", list.size(), System.currentTimeMillis() - startTime);
+            
+            if (list.isEmpty()) {
+                log.info("药帮忙数据为空，跳过处理");
+                return;
+            }
+            
+            int count = 0;
+            int total = list.size();
             for (MyGoodsEntity myGoodsEntity : list) {
                 if(myGoodsEntity.getJx()==null)
                     myGoodsEntity.setJx("");
-                khzlService.insertYZYGOODS(myGoodsEntity);
+                
+                try {
+                    long dbStartTime = System.currentTimeMillis();
+                    khzlService.insertYZYGOODS(myGoodsEntity);
+                    long dbEndTime = System.currentTimeMillis();
+                    
+                    log.debug("写入药帮忙数据: {}, 耗时: {}ms", myGoodsEntity.getGoods_sn(), dbEndTime - dbStartTime);
+                } catch (Exception e) {
+                    log.error("写入药帮忙数据失败: {}, 错误: {}", myGoodsEntity.getGoods_sn(), e.getMessage());
+                }
+                
+                count++;
+                if (count % BATCH_SIZE == 0 || count == total) {
+                    log.info("写入药帮忙数据进度: {}/{}, 累计耗时: {}ms", count, total, System.currentTimeMillis() - startTime);
+                }
             }
-            System.out.println("取药帮忙数据:结束");
+            log.info("取药帮忙数据:结束, 总耗时: {}ms", System.currentTimeMillis() - startTime);
         }
         catch (Exception e)
         {
-            System.out.println("reportCurrentTimeCommodityXYY:"+e.toString());
+            log.error("reportCurrentTimeCommodityXYY:", e);
         }
-    }
-
-    @Scheduled(fixedDelay = 30*60*1000)
-    public void reportCurrentTimeCommodityHYGY()throws Exception {
-        System.out.println("取中台华源工业公司数据:开始");
-        List<YZYGOODS> list = MiddleService.GetHYGYGoods("HNYZT");
-
-        System.out.println("取中台华源工业公司数据:"+list.size()+"行");
-
-        for(YZYGOODS yzygoods:list)
-        {
-            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
-            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
-            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
-            if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
-            khzlService.insertYZYGOODSGY(yzygoods);
-        }
-        System.out.println("取中台华源工业公司数据:结束");
     }
 
     @Scheduled(fixedDelay = 60*60*1000)
     public void reportCurrentTimeCommodityPGBY()throws Exception {
-        System.out.println("取批购包邮数据:开始");
-        List<YZYGOODS> list = MiddleService.GetPGBY("HNYZT");
-        khzlService.deleteYZYGOODSP();
-        list.forEach(yzygoods -> {
-            if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
-            if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
-            if(yzygoods.getPH()==null) yzygoods.setPH("");
-            if(yzygoods.getPCH()==null) yzygoods.setPCH("");
-            if(yzygoods.getOtc()==null) yzygoods.setOtc("");
-            if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
-            if(yzygoods.getTXM()==null) yzygoods.setTXM("");
-            System.out.println("批购包邮数据:" + yzygoods);
-            khzlService.insertYZYGOODSP(yzygoods);
-            khzlService.insertYZYGOODSPGBY(yzygoods);
-        });
-        System.out.println("取批购包邮数据:结束");
+        try {
+            log.info("取批购包邮数据:开始");
+            long startTime = System.currentTimeMillis();
+            
+            List<YZYGOODS> list = MiddleService.GetPGBY("HNYZT");
+            log.info("取到批购包邮数据: {} 条, 耗时: {}ms", list.size(), System.currentTimeMillis() - startTime);
+            
+            khzlService.deleteYZYGOODSP();
+            
+            int count = 0;
+            int total = list.size();
+            for (YZYGOODS yzygoods : list) {
+                if(yzygoods.getYPDM()==null) yzygoods.setYPDM("");
+                if(yzygoods.getCDDM()==null) yzygoods.setCDDM("");
+                if(yzygoods.getPH()==null) yzygoods.setPH("");
+                if(yzygoods.getPCH()==null) yzygoods.setPCH("");
+                if(yzygoods.getOtc()==null) yzygoods.setOtc("");
+                if(yzygoods.getYpbh()==null) yzygoods.setYpbh("");
+                if(yzygoods.getTXM()==null) yzygoods.setTXM("");
+                
+                try {
+                    khzlService.insertYZYGOODSP(yzygoods);
+                    khzlService.insertYZYGOODSPGBY(yzygoods);
+                } catch (Exception e) {
+                    log.error("写入批购包邮数据失败: {}, 错误: {}", yzygoods.getGoods_sn(), e.getMessage());
+                }
+                
+                count++;
+                if (count % BATCH_SIZE == 0 || count == total) {
+                    log.info("写入批购包邮数据进度: {}/{}, 累计耗时: {}ms", count, total, System.currentTimeMillis() - startTime);
+                }
+            }
+            log.info("取批购包邮数据:结束, 总耗时: {}ms", System.currentTimeMillis() - startTime);
+        } catch (Exception e) {
+            log.error("reportCurrentTimeCommodityPGBY:", e);
+        }
     }
 
 }
