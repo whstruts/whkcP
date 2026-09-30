@@ -1,11 +1,8 @@
 package hykx.ds.whkc.rabbitmq;
 
-import hykx.ds.whkc.bean.ERPddhz;
-import hykx.ds.whkc.bean.ERPddmx;
 import hykx.ds.whkc.entity.*;
 import hykx.ds.whkc.mapper.KhzlMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +10,11 @@ import java.util.List;
 @Slf4j
 @Service
 public class KhzlService {
-    @Autowired
-    private KhzlMapper khzlMapper;
+    private final KhzlMapper khzlMapper;
 
+    public KhzlService(KhzlMapper khzlMapper) {
+        this.khzlMapper = khzlMapper;
+    }
 
     public void insertYZYGOODS(MyGoodsEntity myGoodsEntity){
         try {

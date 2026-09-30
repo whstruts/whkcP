@@ -4,7 +4,6 @@ import hykx.ds.whkc.MiddleService;
 import hykx.ds.whkc.entity.*;
 import net.sf.json.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class ScheduledTasks {
-    @Autowired
-    private AmqpTemplate rabbitTemplate;
-    @Autowired
-    private KhzlService khzlService;
-    
+    private final AmqpTemplate rabbitTemplate;
+    private final KhzlService khzlService;
+
+    public ScheduledTasks(AmqpTemplate rabbitTemplate, KhzlService khzlService) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.khzlService = khzlService;
+    }
+
     private static final int BATCH_SIZE = 50;
 
     @Scheduled(fixedDelay = 60*1000)
