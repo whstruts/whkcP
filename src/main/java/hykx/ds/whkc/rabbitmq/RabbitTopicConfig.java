@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 
 
@@ -16,7 +17,7 @@ public class RabbitTopicConfig {
 
     final static String YZTERPGoods = "topic.YZTERPGoods"; //20230607 whstruts 湖北朗志 商品数据
     @Bean
-    public Queue queueYZTERPGoods() {
+    Queue queueYZTERPGoods() {
         return new Queue(RabbitTopicConfig.YZTERPGoods);
     }
 
@@ -35,12 +36,12 @@ public class RabbitTopicConfig {
         return BindingBuilder.bind(queueYZTERPGoods).to(topicExchange).with("topic.YZTERPGoods");
     }
     @Bean
-    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
+    RabbitAdmin rabbitAdmin(@NonNull ConnectionFactory connectionFactory) {
         return new RabbitAdmin(connectionFactory);
     }
 
     @Bean
-    public MappingJackson2MessageConverter jackson2Converter() {
+    MappingJackson2MessageConverter jackson2Converter() {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         return converter;
     }
